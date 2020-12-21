@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "P3Angular"
+  "defaultProject": "P3Angular",
+  "cli": {
+    "analytics": "95a67672-b1b7-43ac-ba1d-153986df97dd"
+  }
 }
