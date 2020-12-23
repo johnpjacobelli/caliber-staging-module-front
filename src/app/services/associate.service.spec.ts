@@ -14,3 +14,13 @@ describe('AssociateService', () => {
     expect(service).toBeTruthy();
   });
 });
+
+describe('getAssociates', () => {
+  let component: AssociateService;
+  let id:number;
+  //checks whether the function will get an array or be undefined.
+  //id is parameter is for batch id.
+  it('getAllAssociates', () => {
+    expect(component.getAllAssociates(id)).toBeTruthy();
+  })
+})
