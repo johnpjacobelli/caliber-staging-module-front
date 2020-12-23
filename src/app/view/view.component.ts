@@ -11,15 +11,16 @@ export class ViewComponent implements OnInit {
 
   associates:Associate[];
 
-  constructor(private AssociateService: AssociateService) { }
+  constructor(private associateService: AssociateService) { }
 
   ngOnInit(): void {
   }
 
   getAllAssociates(id:number): void {
-    this.AssociateService.getAllAssociates(id).subscribe(
+    this.associateService.getAllAssociates(id).subscribe(
       data => {this.associates = data;}
     )
+    
   }
 
 }
