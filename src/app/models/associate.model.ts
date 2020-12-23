@@ -6,9 +6,10 @@ export class Associate {
     last_name: string;
     manager_id: number;
     batch_id: number;
+    status:string;
      
 
-    constructor(id: number,salesforce_id: string, email: string,  first_name: string,  last_name: string, manager_id: number,  batch_id: number){
+    constructor(id: number,salesforce_id: string, email: string,  first_name: string,  last_name: string, manager_id: number,  batch_id: number, status: string){
 
         this.id = id;
         this.salesforce_id = salesforce_id;
@@ -17,5 +18,6 @@ export class Associate {
         this.last_name = last_name;
         this.manager_id = manager_id;
         this.batch_id =batch_id;
+        this.status = status;
     }
 }
