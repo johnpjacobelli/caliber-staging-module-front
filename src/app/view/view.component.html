@@ -1,1 +1,11 @@
-<p>aaa</p>
+<div class="panel-heading">
+    <span class="label label-default label-center" id="users-list">Associate</span>
+</div>
+<div class="panel-body">
+    <ul class="users">
+        <li *ngFor="let associate of associates" [class.selected]="associate === selectedAssociate">
+            <!-- this needs to be placed as a grid so that we can show all information.-->
+            <span class="box">ID: {{associate.id}}</span>
+        </li>
+    </ul>
+</div>
