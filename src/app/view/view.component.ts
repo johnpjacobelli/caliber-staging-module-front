@@ -11,7 +11,7 @@ export class ViewComponent implements OnInit {
 
   associates:Associate[];
 
-  constructor(private AssociateService) { }
+  constructor(private  AssociateService) { }
 
   ngOnInit(): void {
   }

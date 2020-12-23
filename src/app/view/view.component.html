@@ -1,1 +1,11 @@
-<p>view works!</p>
+<div class="panel-heading">
+    <span class="label" id="users-list">Associates</span>
+</div>
+<div class="panel-body">
+    <ul class="users">
+        <li *ngFor="let associate of associates" [class.selected]="associate === selectedassociate">
+            <!--all of the information that we want for the associate and a grid need to be put here-->
+            <span class="box">ID: {{user.id}}</span> {{user.username}}
+        </li>
+    </ul>
+</div>
