@@ -22,7 +22,6 @@ export class ViewComponent implements OnInit {
     this.service.getAllAssociates(id)
     .subscribe(
       data => {
-        console.log('Hello')
         this.associates=data;
       }
     )
