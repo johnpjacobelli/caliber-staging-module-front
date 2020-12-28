@@ -23,4 +23,8 @@ describe('getAssociates', () => {
   it('getAllAssociates', () => {
     expect(component.getAllAssociates(id)).toBeTruthy();
   })
+
+  it('getAllNewAssociates', () => {
+    expect(component.getAllNewAssociates(id)).toBeTruthy();
+  })
 })

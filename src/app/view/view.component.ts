@@ -10,6 +10,7 @@ import { Associate } from '../models/associate.model';
 export class ViewComponent implements OnInit {
 
   associates:Associate[];
+  newassociates:Associate[];
   //service:AssociateService;
 
   constructor(private service:AssociateService) { }
@@ -23,6 +24,15 @@ export class ViewComponent implements OnInit {
     .subscribe(
       data => {
         this.associates=data;
+      }
+    )
+  }
+
+  public getAllNewAssociates(id:number): void {
+    this.service.getAllNewAssociates(id)
+    .subscribe(
+      data => {
+        this.newassociates=data;
       }
     )
   }

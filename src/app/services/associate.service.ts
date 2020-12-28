@@ -12,7 +12,14 @@ export class AssociateService {
   constructor( private http: HttpClient ) {  }
 
   getAllAssociates(id:number): Observable<Associate[]> { 
-    return this.http.get<Associate[]>(`${URL}/associates?manager=${id}`)  }  
+    return this.http.get<Associate[]>(`${URL}/associates?manager=${id}`)  
+  }
+
+  getAllNewAssociates(id:number): Observable<Associate[]> { 
+    return this.http.get<Associate[]>(`${URL}/associates/new?manager={id}`)  
+  }
 }
 
+
+///associates/new?manager={id}
 
