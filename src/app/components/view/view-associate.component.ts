@@ -1,14 +1,14 @@
-import { AssociateService } from './../../services/associate.service';
-import { Associate } from './../../models/associate.model';
+import { AssociateService } from './../../services/associate/associate.service';
+import { Associate } from '../../models/associate-model/associate.model';
 import { Component, OnInit } from '@angular/core';
 
 
 @Component({
-  selector: 'app-view',
-  templateUrl: './view.component.html',
-  styleUrls: ['./view.component.css']
+  selector: 'app-view-associate',
+  templateUrl: './view-associate.component.html',
+  styleUrls: ['./view-associate.component.css']
 })
-export class ViewComponent implements OnInit {
+export class ViewAssociateComponent implements OnInit {
 
   associates:Associate[];
   newAssociates:Associate[];

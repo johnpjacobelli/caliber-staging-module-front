@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Associate } from './../models/associate.model';
+import { Associate } from '../../models/associate-model/associate.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { URL } from './../../environments/environment.prod';
+import { URL } from './../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
