@@ -61,7 +61,14 @@
 
 .form-control{
     margin: 50px auto;
+    padding: 10px;
 }
+/**/
+.form-control:focus {
+    border-color: #f26926;
+    box-shadow: 0 0 0 0.2rem rgba(243,156,113,.25);
+}
+
 
 .login-btn{
     padding: 10px 20px;
