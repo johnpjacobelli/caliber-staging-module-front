@@ -1,0 +1,85 @@
+*{
+    color: silver;
+    margin: 0;
+    padding: 0;
+}
+
+.left{
+    background-color:#474C55;
+    height: 100vh;
+    width: 20%;
+    -webkit-box-shadow: 4px 2px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 2px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 4px 2px 5px 0px rgba(0,0,0,0.75);
+    padding: 20px;
+}
+.title{
+    margin: 20px auto;
+    font-size: 1.2rem;
+    font-weight: 100;
+    letter-spacing: 2px;
+    text-align: center;
+}
+.app-description{
+    margin-top: 30px;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Futura Bold', monospace;
+    line-height: 2;
+}
+
+.right{
+    height: 100vh;
+    width: 80%;
+    text-align: center;
+    padding: 50px;
+}
+
+.left::after, 
+.right::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.login-form{
+    padding: 50px;
+    width: 50%;
+    margin: auto;
+}
+
+.form-label{
+    float: left;
+    font-size: 1.2rem;
+}
+
+.form-label::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.form-control{
+    margin: 50px auto;
+    padding: 10px;
+}
+/**/
+.form-control:focus {
+    border-color: #f26926;
+    box-shadow: 0 0 0 0.2rem rgba(243,156,113,.25);
+}
+
+
+.login-btn{
+    padding: 10px 20px;
+    background-color: #f26926;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: 0.4s ease-in-out;
+}
+
+.login-btn:hover{
+    background-color: #474C55;
+    text-decoration: underline;
+}
