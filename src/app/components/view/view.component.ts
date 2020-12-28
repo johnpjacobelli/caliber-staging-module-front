@@ -1,4 +1,4 @@
-import { AssociateService } from './../services/associate.service';
+import { AssociateService } from './../../services/associate/associate.service';
 import { Component, OnInit } from '@angular/core';
 
 import { Associate } from '../../models/associate-model/associate.model';
