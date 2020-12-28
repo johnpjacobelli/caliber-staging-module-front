@@ -20,6 +20,3 @@ export class AssociateService {
   }
 }
 
-
-///associates/new?manager={id}
-
