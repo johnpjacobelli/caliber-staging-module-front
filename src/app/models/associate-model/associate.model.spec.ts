@@ -5,4 +5,3 @@ describe('Associate', () => {
     expect(new Associate()).toBeTruthy();
   });
 });
-
