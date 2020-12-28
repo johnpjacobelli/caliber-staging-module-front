@@ -1,0 +1,8 @@
+
+body {
+    display: grid;
+    min-height: 30px;
+    grid-template-columns: repeat(9,auto);
+    gap: 5px;
+    align-items: center;
+}
