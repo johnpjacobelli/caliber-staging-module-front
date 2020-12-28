@@ -16,10 +16,7 @@ export class AssociateService {
   }
 
   getAllNewAssociates(id:number): Observable<Associate[]> { 
-    return this.http.get<Associate[]>(`${URL}/associates/new?manager={id}`)  
+    return this.http.get<Associate[]>(`${URL}/associates/new?manager=${id}`)  
   }
 }
-
-
-///associates/new?manager={id}
 
