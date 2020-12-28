@@ -1,0 +1,23 @@
+<div class="panel-heading">
+    <span class="label label-default label-center" id="users-list">Associate</span>
+</div>
+<div class="panel-body">
+    <body class="associate">
+        <div class="associate-id">{{testAssociate.id}}</div>
+        <div class="associate-salesforce-id">{{testAssociate.salesforce_id}}</div>
+        <div class="associate-email">{{testAssociate.email}}</div>
+        <div class="associate-first">{{testAssociate.first_name}}</div>
+        <div class="associate-last">{{testAssociate.last_name}}</div>
+        <div class="associate-manager-id">{{testAssociate.manager_id}}</div>
+        <div class="associate-batch-id">{{testAssociate.batch_id}}</div>
+        <div class="associate-status">{{testAssociate.status}}</div>
+        <a mat-button href="" target="SWOTAnalysis">SWOT Analysis</a>
+    </body>
+    <ul class="associates">
+        <li *ngFor="let associate of associates" [class.selected]="associate === selectedAssociate">
+            <!-- this needs to be placed as a grid so that we can show all information.-->
+               
+            
+        </li>
+    </ul>
+</div>

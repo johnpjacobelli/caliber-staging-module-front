@@ -1,6 +1,7 @@
-import { AssociateService } from './../services/associate.service';
+import { AssociateService } from './../../services/associate.service';
+import { Associate } from './../../models/associate.model';
 import { Component, OnInit } from '@angular/core';
-import { Associate } from '../models/associate.model';
+
 
 @Component({
   selector: 'app-view',
@@ -10,29 +11,29 @@ import { Associate } from '../models/associate.model';
 export class ViewComponent implements OnInit {
 
   associates:Associate[];
-  newassociates:Associate[];
-  //service:AssociateService;
-
+  newAssociates:Associate[];
+  testAssociate = new Associate(1,"SF-1234","testEmail@email.com","test","tester",14,379,"Training");
+  
   constructor(private service:AssociateService) { }
-
+  
   ngOnInit(): void {
     this.getAllAssociates(1);
   }
-
+  
   public getAllAssociates(id:number): void {
     this.service.getAllAssociates(id)
     .subscribe(
       data => {
-        this.associates=data;
+        this.associates= data;
       }
-    )
-  }
+      )
+    }
 
   public getAllNewAssociates(id:number): void {
     this.service.getAllNewAssociates(id)
     .subscribe(
       data => {
-        this.newassociates=data;
+        this.newAssociates=data;
       }
     )
   }
