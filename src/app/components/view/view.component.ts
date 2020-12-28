@@ -1,4 +1,4 @@
-import { AssociateService } from './../services/associate.service';
+// import { AssociateService } from './../services/associate.service';
 import { Component, OnInit } from '@angular/core';
 import { Associate } from '../../models/associate-model/associate.model';
 
@@ -9,18 +9,17 @@ import { Associate } from '../../models/associate-model/associate.model';
 })
 export class ViewComponent implements OnInit {
 
-  associates:Associate[];
+  associates: Associate[];
 
-  constructor(private associateService: AssociateService) { }
+  constructor(/*private associateService: AssociateService*/) { }
 
   ngOnInit(): void {
   }
 
-  getAllAssociates(id:number): void {
-    this.associateService.getAllAssociates(id).subscribe(
-      data => {this.associates = data;}
-    )
-    
-  }
+  // getAllAssociates(id:number): void {
+  //   this.associateService.getAllAssociates(id).subscribe(
+  //     data => {this.associates = data;}
+  //   )
+  // }
 
 }
