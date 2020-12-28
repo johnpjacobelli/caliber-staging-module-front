@@ -8,13 +8,15 @@ import { ViewComponent } from './view/view.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SwotComponent } from './swot/swot.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     AssociateComponent,
-    ViewComponent
+    ViewComponent,
+    SwotComponent
   ],
   imports: [
     BrowserModule,
