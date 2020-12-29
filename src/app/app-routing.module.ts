@@ -8,8 +8,9 @@ const routes: Routes = [
     path: "login",
     component: LoginComponent
   },
-  {path:"view-associate",
-  component: ViewAssociateComponent
+  { 
+    path:"view-associate",
+    component: ViewAssociateComponent
   },
   {
     path: "",
