@@ -4,6 +4,7 @@ import { Swot } from './../../models/swot-model/swot';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap, catchError } from 'rxjs/operators';
+import { SwotItem } from 'src/app/models/swot-model/swot-item';
 
 
 @Injectable({
@@ -48,13 +49,34 @@ export class SwotService {
   }
 
   getSwotByAssociatedId(id: number): Observable<Swot[]> {
-    return this.http.get<Swot[]>(`http://localhost:8080/swot/view/${id}`)
+    return this.http.get<Swot[]>(`${BASE_URL}swot/view/${id}`)
       .pipe(
         catchError(this.handleError<Swot[]>('getAllSwots', []))
       );
   }
 
+  getItem(id: number): Observable<SwotItem> {
+    console.log(id);
+    return this.http.post<SwotItem>(`${BASE_URL}getSwotItem`, {id: id}, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<SwotItem>('getTask'))
+      );
+  }
 
+  updateItem(swotItem: SwotItem): Observable<SwotItem> {
+    let swotItemDTO = {
+      id: swotItem.id,
+      content: swotItem.content,
+      type: swotItem.type,
+      swot: {
+        id: swotItem.swotAnalysisId
+      }
+    }
+    return this.http.put<SwotItem>(`${BASE_URL}item/update/${swotItemDTO.id}`, swotItemDTO, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<SwotItem>('updateSwot'))
+      );
+  }
 
 }
 
