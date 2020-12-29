@@ -86,9 +86,10 @@
     padding: 10px;
 }
 
-.form-control:focus {
+.form-control:focus,
+.login-btn:focus{
     border-color: #f26926;
-    box-shadow: 0 0 0 0.2rem rgba(243, 156, 113, .25);
+    box-shadow: 0 0 0 0.2rem rgba(243, 156, 113, .40);
 }
 
 .login-btn {
