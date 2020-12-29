@@ -1,3 +1,4 @@
+import { SwotComponent } from './components/swot/swot.component';
 import { ViewAssociateComponent } from './components/view-associate/view-associate.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -10,6 +11,10 @@ const routes: Routes = [
   },
   {path:"view-associate",
   component: ViewAssociateComponent
+  },
+
+  {path:"swot",
+  component: SwotComponent
   },
   {
     path: "",
