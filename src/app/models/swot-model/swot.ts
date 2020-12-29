@@ -8,7 +8,7 @@ export class Swot {
     createdOn: Date;
     lastModified: Date; 
 
-    swotItems: SwotItem[];
+    analysisItems: SwotItem[];
 
     constructor(){
 

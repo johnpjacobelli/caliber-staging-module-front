@@ -1,3 +1,4 @@
+import { SwotComponent } from './components/swot/swot.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -7,11 +8,11 @@ import { ViewAssociateComponent } from './components/view-associate/view-associa
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SwotComponent } from './components/swot/swot.component';
 import { LoginComponent } from './components/login/login.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { HomeComponent } from './components/home/home.component';
+import { ViewSwotComponent } from './view-swot/view-swot.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HomeComponent } from './components/home/home.component';
     ViewAssociateComponent,
     SwotComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ViewSwotComponent
   ],
   imports: [
     BrowserModule,

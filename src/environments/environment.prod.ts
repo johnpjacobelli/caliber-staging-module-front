@@ -5,3 +5,4 @@ export const environment = {
 
 export const URL = `http://localhost:8080/`
 export const CALIBER_URL = `https://caliber2-mock.revaturelabs.com/mock`
+export const BASE_URL = `http://localhost:8080/`
