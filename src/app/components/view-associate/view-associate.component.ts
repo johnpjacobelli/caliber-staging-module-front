@@ -10,35 +10,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewAssociateComponent implements OnInit {
 
-  associates:Associate[];
-  newAssociates:Associate[];
-  testAssociate = new Associate(1,"SF-1234","testEmail@email.com","test","tester",14,379,"Training");
-  
-  constructor(private service:AssociateService) { }
-  
+  associates: Associate[];
+  newAssociates: Associate[];
+  testAssociate = new Associate(1, 'SF-1234', 'testEmail@email.com', 'test', 'tester', 14, 379, 'Training');
+
+  constructor(private service: AssociateService) { }
+
   ngOnInit(): void {
     this.getAllAssociates(1);
   }
-  
-  public getAllAssociates(id:number): void {
+
+  public getAllAssociates(id: number): void {
     this.service.getAllAssociates(id)
     .subscribe(
       data => {
-        this.associates= data;
+        this.associates = data;
       }
-      )
+      );
     }
 
-  public getAllNewAssociates(id:number): void {
+  public getAllNewAssociates(id: number): void {
     this.service.getAllNewAssociates(id)
     .subscribe(
       data => {
-        this.newAssociates=data;
+        this.newAssociates = data;
       }
-    )
+    );
   }
-  
-    
   }
 
 
