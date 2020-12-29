@@ -47,7 +47,12 @@ export class SwotService {
     }
   }
 
-
+  getSwotByAssociatedId(id: number): Observable<Swot[]> {
+    return this.http.get<Swot[]>(`http://localhost:8080/swot/view/${id}`)
+      .pipe(
+        catchError(this.handleError<Swot[]>('getAllSwots', []))
+      );
+  }
 
 
 

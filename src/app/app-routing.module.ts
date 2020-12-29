@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { HomeComponent } from './components/home/home.component';
+import { ViewSwotComponent } from './view-swot/view-swot.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
@@ -24,6 +25,9 @@ const routes: Routes = [
 
   {path:"swot",
   component: SwotComponent
+  },
+  {path:"view",
+  component: ViewSwotComponent
   },
   {
     path: 'home',
