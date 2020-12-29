@@ -30,10 +30,10 @@ export class SwotService {
 
   addSwot(swotAnalysis: Swot): Observable<any> {
 
-    let body = JSON.stringify(swotAnalysis)
-    console.log(body)
+    //let body = JSON.stringify(swotAnalysis)
+    console.log(swotAnalysis)
     console.log("Hey grayson")
-    return this.http.post<any>(`${BASE_URL}swot/create`, body, this.httpOptions)
+    return this.http.post<any>(`${BASE_URL}swot/create`, swotAnalysis, this.httpOptions)
       .pipe(
         tap((newSwotAnalysis: Swot) => console.log(newSwotAnalysis)),
         catchError(this.handleError<any>('addSwot'))
