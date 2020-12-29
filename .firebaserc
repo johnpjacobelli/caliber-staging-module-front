@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "test-f4c73": {
+      "hosting": {
+        "P3Angular": [
+          "test-f4c73"
+        ]
+      }
+    }
+  }
+}
