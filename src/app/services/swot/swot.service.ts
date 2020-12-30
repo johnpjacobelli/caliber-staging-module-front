@@ -33,7 +33,6 @@ export class SwotService {
 
     //let body = JSON.stringify(swotAnalysis)
     console.log(swotAnalysis)
-    console.log("Hey grayson")
     return this.http.post<any>(`${BASE_URL}swot/create`, swotAnalysis, this.httpOptions)
       .pipe(
         tap((newSwotAnalysis: Swot) => console.log(newSwotAnalysis)),
@@ -69,10 +68,12 @@ export class SwotService {
       content: swotItem.content,
       type: swotItem.type,
       swot: {
-        id: swotItem.swotAnalysisId
+        id: 1
       }
     }
-    return this.http.put<SwotItem>(`${BASE_URL}item/update/${swotItemDTO.id}`, swotItemDTO, this.httpOptions)
+
+  
+    return this.http.put<SwotItem>(`${BASE_URL}swot/item/update/${swotItemDTO.id}`, swotItemDTO, this.httpOptions)
       .pipe(
         catchError(this.handleError<SwotItem>('updateSwot'))
       );

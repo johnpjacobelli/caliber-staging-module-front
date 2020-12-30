@@ -6,7 +6,7 @@
             </div>
             <div class="col-lg-7 px-5 pt-5">
                 <h1 class="font-weight-bold py-3">Update Item</h1>
-                <form (ngSubmit)="onSubmit(signInForm)" #signInForm="ngForm">
+                <form (ngSubmit)="onSubmit(itemForm)" #itemForm="ngForm">
                     <div class="form-row">
                         <div class="col-lg-7">                            
                             <input type="text" class="form-control my-2 p-4" 
@@ -17,7 +17,7 @@
                         <div class="col-lg-7">
                             <select [(ngModel)]="swotItem.type" name="type"
                             id="type" class="form-control my-2 p-4" required>
-                                <!-- <option value="" disabled selected>Update SWOT Type</option> -->
+                                <option value="" disabled selected>Update SWOT Type</option>
                                 <option value="STRENGTH">strengths</option>
                                 <option value="WEAKNESS">weaknesses</option>
                                 <option value="OPPORTUNITY">opportunities</option>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-row">
                         <div class="col-lg-7">
-                            <button type="submit" class="btn1 mt-3 mb-3" value="updateTask">Update SWOT</button>
+                            <button type="submit" class="btn1 mt-3 mb-3" value="updateItem">Update SWOT</button>
                         </div>
                     </div>
                 </form>
