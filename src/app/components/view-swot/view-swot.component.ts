@@ -14,6 +14,7 @@ export class ViewSwotComponent implements OnInit {
 
   swotAnalyses : Swot[] = [];
   index : number = 0;
+  currentSwotAnalysis : Swot;
 
   constructor(private swotService: SwotService, private router : Router) { }
   
