@@ -1,4 +1,6 @@
 import { TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { ignoreElements } from 'rxjs/operators';
 
 import { SwotService } from './swot.service';
 
@@ -13,4 +15,18 @@ describe('SwotService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  //Needs a valid id number
+  //1 is a placeholder
+  it('getswot', ()=>{
+    expect(service.getSwotByAssociatedId(1)).toBeTruthy;
+  })
+
+  //This test needs checking. I do not understand spyon mock test much.
+  let test:string = "testing";
+  let spy:any = spyOn(service, 'addSwot').and.returnValue(of(test));
+  it("addSwot", () => {
+    expect(spy).toBe("testing");
+  })
+
 });
