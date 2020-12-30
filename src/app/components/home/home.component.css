@@ -56,11 +56,24 @@
     /* referring directly to the animation's @keyframe declaration */
     animation-duration: 3s;
     /* don't forget to set a duration! */
+    position: fixed;
+    bottom: 20px;
 }
 
 .logout-btn:hover {
-    background-color: #474C55;
+    background-color: #b6b1a8;
     text-decoration: underline;
+}
+.watermark{
+    margin: auto;
+    padding: auto;
+    opacity: 0.4;
+}
+
+.tagline{
+    color: #f26926;
+    margin-top: 20px;
+    letter-spacing: 2px;
 }
 
 /*Media Breakpoints*/
