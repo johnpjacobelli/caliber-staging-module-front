@@ -12,7 +12,9 @@ import { LoginComponent } from './components/login/login.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { HomeComponent } from './components/home/home.component';
-import { ViewSwotComponent } from './view-swot/view-swot.component';
+
+import { UpdateItemComponent } from './components/update-item/update-item.component';
+import { ViewSwotComponent } from './components/view-swot/view-swot.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { ViewSwotComponent } from './view-swot/view-swot.component';
     SwotComponent,
     LoginComponent,
     HomeComponent,
-    ViewSwotComponent
+    ViewSwotComponent,
+    UpdateItemComponent
   ],
   imports: [
     BrowserModule,

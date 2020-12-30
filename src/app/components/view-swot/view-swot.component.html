@@ -19,15 +19,15 @@
                         <ng-container *ngFor="let swotAnalysis of swotAnalyses;">
                                 <tr *ngFor="let swotItem of swotAnalysis.analysisItems;">
                                     <td>{{swotAnalysis.id}}</td>
-                                    <td>{{swotAnalysis.associateId}}</td>
-                                    <td>{{swotAnalysis.createdBy}}</td>
+                                    <td>{{swotAnalysis.associate.id}}</td>
+                                    <td>{{swotAnalysis.manager.id}}</td>
                                     <td>{{swotAnalysis.createdOn}}</td>
                                     <td>{{swotAnalysis.lastModified}}</td>
                                     <td>{{swotItem.id}}</td>
                                     <td>{{swotItem.content}}</td>
                                     <td>{{swotItem.type}}</td>
                                     <td>
-                                        <a routerLink="/api/updateSwot/{{swotItem.id}}">
+                                        <a (click)="openUpdatePage(swotItem)">
                                             <button class="btn btn-primary btn-sm" title="update swot">Update</button>
                                         </a>
                                     </td>
