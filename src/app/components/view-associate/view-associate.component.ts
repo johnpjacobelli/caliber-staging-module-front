@@ -32,6 +32,7 @@ export class ViewAssociateComponent implements OnInit {
     .subscribe(
       data => {
         this.associates = data;
+        console.log(this.associates);
       }
       );
     }

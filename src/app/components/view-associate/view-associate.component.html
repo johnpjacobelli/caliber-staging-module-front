@@ -19,9 +19,9 @@
         </thead>
         <tbody>
             <!-- <li *ngFor="let associate of associates" [class.selected]="associate === selectedAssociate"> -->
-            <tr>
+            <!--<tr>
                 <td>{{testAssociate.id}}</td>
-                <td>{{testAssociate.salesforce_id}}</td>
+                <td>{{testAssociate.salesforced}}</td>
                 <td>{{testAssociate.email}}</td>
                 <td>{{testAssociate.first_name}}</td>
                 <td>{{testAssociate.last_name}}</td>
@@ -30,17 +30,20 @@
                 <td>{{testAssociate.status}}</td>
                 <td><button class="btn btn-primary rev-btn" (click)="open()">Create SWOT</button></td>
                 <td><button class="btn btn-primary rev-btn" routerLink="/home">View SWOTs</button></td>
+            </tr>-->
+            <tr *ngFor="let associate of associates" [class.selected]="associate === selectedAssociate">
+                <td>{{associate.id}}</td>
+                <td>{{associate.salesforceId}}</td>
+                <td>{{associate.email}}</td>
+                <td>{{associate.firstName}}</td>
+                <td>{{associate.lastName}}</td>
+                <td>{{associate.manager}}</td>
+                <td>{{associate.batch}}</td>
+                <td>{{associate.status}}</td>
+                <td><button class="btn btn-primary rev-btn" (click)="open()">Create SWOT</button></td>
+                <td><button class="btn btn-primary rev-btn" routerLink="/home">View SWOTs</button></td>
             </tr>
+            
         </tbody>
     </table>
-</div>
-
-<div class="container">
-    <ul class="associates">
-        <li *ngFor="let associate of associates" [class.selected]="associate === selectedAssociate">
-            <!-- this needs to be placed as a grid so that we can show all information.-->
-               
-            
-        </li>
-    </ul>
 </div>
