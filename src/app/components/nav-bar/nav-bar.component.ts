@@ -1,4 +1,3 @@
-import { ComponentLoaderService } from './../../services/component-loader/component-loader.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 
@@ -9,7 +8,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private componentLoaderService: ComponentLoaderService) { }
+  constructor() { }
 
 
   ngOnInit(): void {
