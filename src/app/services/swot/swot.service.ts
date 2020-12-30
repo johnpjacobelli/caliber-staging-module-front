@@ -68,7 +68,7 @@ export class SwotService {
       content: swotItem.content,
       type: swotItem.type,
       swot: {
-        id: 1
+        id: swotItem.swotAnalysisId
       }
     }
 
