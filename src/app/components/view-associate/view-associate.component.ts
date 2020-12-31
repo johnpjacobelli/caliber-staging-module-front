@@ -16,23 +16,23 @@ export class ViewAssociateComponent implements OnInit {
   associates: Associate[];
   newAssociates: Associate[];
   private associateSubject: BehaviorSubject<Associate>;
-  public associate: Observable<Associate>; 
+  public associate: Observable<Associate>;
   testAssociate = new Associate(1, 'SF-1234', 'testEmail@email.com', 'test', 'tester', 14, 379, 'Training');
 
   private toggle = true;
 
-  constructor(private service: AssociateService, private modalService: NgbModal, private changeDetect: ChangeDetectorRef) { 
-    this.associateSubject = new BehaviorSubject<Associate>(JSON.parse(sessionStorage.getItem('currentUser')));  
+  constructor(private service: AssociateService, private modalService: NgbModal, private changeDetect: ChangeDetectorRef) {
+    this.associateSubject = new BehaviorSubject<Associate>(JSON.parse(sessionStorage.getItem('currentUser')));
     this.associate = this.associateSubject.asObservable();
   }
 
   ngOnInit(): void {
-    console.log(this.associateValue.email)
+    console.log(this.associateValue.email);
     this.getAllAssociates(1);
   }
 
   public toggleAssociateView() {
-    
+
     const button = document.getElementById('associate-btn');
     button.innerHTML = '';
 
@@ -47,7 +47,7 @@ export class ViewAssociateComponent implements OnInit {
     }
   }
 
-  public trackItem (index: number, item: Associate ) {
+  public trackItem(index: number, item: Associate ) {
     return `${item.id}-${index}`;
   }
 
@@ -70,8 +70,11 @@ export class ViewAssociateComponent implements OnInit {
         console.log(this.associates);
       }
       );
-      this.associates = this.newAssociates;
-      
+    this.associates = this.newAssociates;
+      // change to appropriate title
+    const title = document.getElementById('users-list');
+    title.innerHTML = '';
+    title.innerHTML = 'View All Associates';
     }
 
   public getAllNewAssociates(id: number): void {
@@ -82,6 +85,10 @@ export class ViewAssociateComponent implements OnInit {
         this.changeDetect.detectChanges();
       }
     );
+     // change to appropriate title
+    const title = document.getElementById('users-list');
+    title.innerHTML = '';
+    title.innerHTML = 'View New Associates';
   }
 
 }
