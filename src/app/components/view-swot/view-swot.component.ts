@@ -36,8 +36,7 @@ export class ViewSwotComponent implements OnInit {
   openUpdatePage(swotItem: SwotItem, swotAnalysisId: number){
     swotItem.swotAnalysisId = swotAnalysisId;
     const modalRef = this.modalService.open(UpdateItemComponent);
-    modalRef.componentInstance.name = 'UpdateSwot';    
-    //this.router.navigate(['/updateItem', JSON.stringify(swotItem)]);
+    modalRef.componentInstance.name = 'UpdateSwot';
   }
 
   open() {
