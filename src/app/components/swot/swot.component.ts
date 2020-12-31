@@ -65,6 +65,7 @@ export class SwotComponent implements OnInit {
      this.swotService.addSwot(this.swotAnalysis)
        .subscribe(data => {
          console.log(data);
+         alert(`${data.message}`);
        });
   }
 }
