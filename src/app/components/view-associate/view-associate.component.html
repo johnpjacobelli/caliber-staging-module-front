@@ -1,23 +1,49 @@
 <div class="panel-heading">
     <span class="label label-default label-center" id="users-list">Associate</span>
 </div>
-<div class="panel-body">
-    <body class="associate">
-        <div class="associate-id">{{testAssociate.id}}</div>
-        <div class="associate-salesforce-id">{{testAssociate.salesforce_id}}</div>
-        <div class="associate-email">{{testAssociate.email}}</div>
-        <div class="associate-first">{{testAssociate.first_name}}</div>
-        <div class="associate-last">{{testAssociate.last_name}}</div>
-        <div class="associate-manager-id">{{testAssociate.manager_id}}</div>
-        <div class="associate-batch-id">{{testAssociate.batch_id}}</div>
-        <div class="associate-status">{{testAssociate.status}}</div>
-        <a mat-button href="" target="SWOTAnalysis">SWOT Analysis</a>
-    </body>
-    <ul class="associates">
-        <li *ngFor="let associate of associates" [class.selected]="associate === selectedAssociate">
-            <!-- this needs to be placed as a grid so that we can show all information.-->
-               
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Sales Force ID</th>
+                <th class="text-center">Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Manager ID</th>
+                <th>Batch ID</th>
+                <th>Status</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <li *ngFor="let associate of associates" [class.selected]="associate === selectedAssociate"> -->
+            <!--<tr>
+                <td>{{testAssociate.id}}</td>
+                <td>{{testAssociate.salesforced}}</td>
+                <td>{{testAssociate.email}}</td>
+                <td>{{testAssociate.first_name}}</td>
+                <td>{{testAssociate.last_name}}</td>
+                <td>{{testAssociate.manager_id}}</td>
+                <td>{{testAssociate.batch_id}}</td>
+                <td>{{testAssociate.status}}</td>
+                <td><button class="btn btn-primary rev-btn" (click)="open()">Create SWOT</button></td>
+                <td><button class="btn btn-primary rev-btn" routerLink="/home">View SWOTs</button></td>
+            </tr>-->
+            <tr *ngFor="let associate of associates" [class.selected]="associate === selectedAssociate">
+                <td>{{associate.id}}</td>
+                <td>{{associate.salesforceId}}</td>
+                <td>{{associate.email}}</td>
+                <td>{{associate.firstName}}</td>
+                <td>{{associate.lastName}}</td>
+                <td>{{associate.manager}}</td>
+                <td>{{associate.batch}}</td>
+                <td>{{associate.status}}</td>
+                <td><button class="btn btn-primary rev-btn" (click)="open()">Create SWOT</button></td>
+                <td><button class="btn btn-primary rev-btn" routerLink="/view">View SWOTs</button></td>
+            </tr>
             
-        </li>
-    </ul>
+        </tbody>
+    </table>
 </div>
