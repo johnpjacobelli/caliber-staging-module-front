@@ -1,4 +1,5 @@
-import { BASE_URL } from './../../../environments/environment.prod';
+import { ClientMessage } from './../../models/client-message-model/client-message-model';
+import { BASE_URL, LOCAL_URL } from './../../../environments/environment.prod';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -14,9 +15,10 @@ export class LoginService {
   //This method will retrieve the manger ID associated with the email address provided.
 storeManagerIdFromServer(email:string)
 {
-  this.client.post<number>(`${BASE_URL}getmanager`,email).subscribe(
+  console.log("In MangerID retriever! " + "Email is: " +email)
+  this.client.post<ClientMessage>(`${LOCAL_URL}/getmanager`,new ClientMessage(email)).subscribe(
     data => {
-      this.managerId = data
+      this.managerId = parseInt(data.message)
       console.log("Manager ID: " + this.managerId)
     }
 

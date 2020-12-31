@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
     .then(user => console.log('User signed in is: ', user))
     .catch(error => console.log('Error while logging in user: ', error))
-    .finally(() => sessionStorage.setItem('currentUser', JSON.stringify(manager)));
+    .finally(() => {sessionStorage.setItem('currentUser', JSON.stringify(manager))
     const userString = sessionStorage.getItem('currentUser');
     console.log(userString);
     const myUser = JSON.parse(userString);
@@ -37,6 +37,9 @@ export class LoginComponent implements OnInit {
     console.log('User is logged under email: ' + myUser.email);
     this.loginService.storeManagerIdFromServer(myUser.email);
     this.router.navigate(['home']);
+
+  });
+   
   }
 
 }
