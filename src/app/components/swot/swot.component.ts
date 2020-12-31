@@ -1,8 +1,12 @@
 import { SwotItem } from './../../models/swot-model/swot-item';
 import { Swot } from './../../models/swot-model/swot';
 import { NgForm } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SwotService } from 'src/app/services/swot/swot.service';
+import { idTokenResult } from '@angular/fire/auth-guard';
+import { Associate } from 'src/app/models/associate-model/associate.model';
+import { Manager } from 'src/app/models/manager-model/manager';
+
 @Component({
   selector: 'app-swot',
   templateUrl: './swot.component.html',
@@ -16,6 +20,7 @@ export class SwotComponent implements OnInit {
   associateId : number;
   i : number = 0;
   hasData : boolean = false;
+  @Input() passedId: number;
   //analysisItems: Array<SwotItems>;
 
   //initililizes empty array of swot items
@@ -23,11 +28,13 @@ export class SwotComponent implements OnInit {
 
   constructor(private swotService: SwotService) { }
   ngOnInit(): void {
+    console.log(this.passedId);
+    this.associateId = this.passedId;
   }
 
   //collects data from form and creates item array in the user's view (PUSH METHOD)
   onSubmit(signInForm: NgForm){
-   let item : SwotItem = new SwotItem(0, this.content, this.type);
+   let item : SwotItem = new SwotItem(0, this.content, this.type, this.associateId);
    this.analysisItems.push(item);
    console.log(this.analysisItems);
     //  this.swotService.addSwot(this.swotAnalysis)
@@ -51,6 +58,8 @@ export class SwotComponent implements OnInit {
     console.log("add swot")
     console.log(this.analysisItems)
     this.swotAnalysis.analysisItems = this.analysisItems;
+    this.swotAnalysis.associate = new Associate(this.associateId, null, null, null, null, null, null, null); //associate model constructor needs to be adjusted
+    this.swotAnalysis.manager = new Manager(1); //hardcoded now, waiting for manager session tracking code
     console.log(this.analysisItems)
     console.log(this.swotAnalysis)
      this.swotService.addSwot(this.swotAnalysis)

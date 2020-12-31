@@ -25,7 +25,7 @@ import { ViewSwotComponent } from './components/view-swot/view-swot.component';
     LoginComponent,
     HomeComponent,
     ViewSwotComponent,
-    UpdateItemComponent
+    UpdateItemComponent,
   ],
   imports: [
     BrowserModule,
