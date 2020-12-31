@@ -42,6 +42,7 @@ export class ViewAssociateComponent implements OnInit {
     this.service.getAllAssociates(id)
     .subscribe(
       data => {
+        console.log(data);
         this.associates = data;
         console.log(this.associates);
       }
@@ -49,13 +50,18 @@ export class ViewAssociateComponent implements OnInit {
     }
 
   public getAllNewAssociates(id: number): void {
+    const table = document.getElementById('associate-content');
+    table.innerHTML = '';
     this.service.getAllNewAssociates(id)
     .subscribe(
       data => {
-        this.newAssociates = data;
+        this.associates = data;
       }
     );
-  }
+    const button = document.getElementById('associate-btn');
+    button.innerHTML = '';
+    button.innerHTML = 'View All';
+    button.setAttribute("onclick","getAllAssociates(1)");
   }
 
-
+}
