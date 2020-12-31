@@ -15,6 +15,7 @@ export class SwotComponent implements OnInit {
   type : string = "";
   associateId : number;
   i : number = 0;
+  hasData : boolean = false;
   //analysisItems: Array<SwotItems>;
 
   //initililizes empty array of swot items
@@ -33,11 +34,16 @@ export class SwotComponent implements OnInit {
     //    .subscribe(data => {
     //      console.log(data);
     //    });
+    this.hasData = true;
   }
   
   //deletes the item from the item array in the user's view on delete click(FILTER METHOD)
   delete(item: SwotItem): void {
     this.analysisItems = this.analysisItems.filter(swotItem => swotItem !== item);  // this is so the component maintains its own
+
+    if(this.analysisItems.length == 0){
+      this.hasData = false;
+    }
   }
 
 

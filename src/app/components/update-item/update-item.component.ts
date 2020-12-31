@@ -51,9 +51,9 @@ export class UpdateItemComponent implements OnInit {
   //    //this.task.taskStatus = "";
   //  })
  }
-  onSubmit(signInForm: NgForm) {
-    console.log(signInForm)
-    console.log(signInForm.value)
+  onSubmit(itemForm: NgForm) {
+    console.log(itemForm)
+    console.log(itemForm.value)
     console.log(this.swotItem)
     this.swotService.updateItem(this.swotItem)
       .subscribe(data => {

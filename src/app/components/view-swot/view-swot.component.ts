@@ -14,6 +14,7 @@ export class ViewSwotComponent implements OnInit {
 
   swotAnalyses : Swot[] = [];
   index : number = 0;
+  currentSwotAnalysis : Swot;
 
   constructor(private swotService: SwotService, private router : Router) { }
   
@@ -28,7 +29,8 @@ export class ViewSwotComponent implements OnInit {
     })
   }
 
-  openUpdatePage(swotItem: SwotItem){
+  openUpdatePage(swotItem: SwotItem, swotAnalysisId: number){
+    swotItem.swotAnalysisId = swotAnalysisId;
     this.router.navigate(['/updateItem', JSON.stringify(swotItem)]);
   }
 }
