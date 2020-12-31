@@ -1,7 +1,7 @@
+import { Associate } from './../../models/associate-model/associate.model';
 import { SwotComponent } from './../swot/swot.component';
 import { AssociateService } from '../../services/associate/associate.service';
-import { Associate } from '../../models/associate-model/associate.model';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -19,7 +19,9 @@ export class ViewAssociateComponent implements OnInit {
   public associate: Observable<Associate>; 
   testAssociate = new Associate(1, 'SF-1234', 'testEmail@email.com', 'test', 'tester', 14, 379, 'Training');
 
-  constructor(private service: AssociateService, private modalService: NgbModal) { 
+  private toggle = true;
+
+  constructor(private service: AssociateService, private modalService: NgbModal, private changeDetect: ChangeDetectorRef) { 
     this.associateSubject = new BehaviorSubject<Associate>(JSON.parse(sessionStorage.getItem('currentUser')));  
     this.associate = this.associateSubject.asObservable();
   }
@@ -27,6 +29,26 @@ export class ViewAssociateComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.associateValue.email)
     this.getAllAssociates(1);
+  }
+
+  public toggleAssociateView() {
+    
+    const button = document.getElementById('associate-btn');
+    button.innerHTML = '';
+
+    if (this.toggle) {
+      this.toggle = false;
+      button.innerHTML = 'View All';
+      this.getAllNewAssociates(1);
+    } else {
+      this.toggle = true;
+      button.innerHTML = 'View New';
+      this.getAllAssociates(1);
+    }
+  }
+
+  public trackItem (index: number, item: Associate ) {
+    return `${item.id}-${index}`;
   }
 
   public get associateValue(): Associate {
@@ -44,24 +66,22 @@ export class ViewAssociateComponent implements OnInit {
       data => {
         console.log(data);
         this.associates = data;
+        this.changeDetect.detectChanges();
         console.log(this.associates);
       }
       );
+      this.associates = this.newAssociates;
+      
     }
 
   public getAllNewAssociates(id: number): void {
-    const table = document.getElementById('associate-content');
-    table.innerHTML = '';
     this.service.getAllNewAssociates(id)
     .subscribe(
       data => {
         this.associates = data;
+        this.changeDetect.detectChanges();
       }
     );
-    const button = document.getElementById('associate-btn');
-    button.innerHTML = '';
-    button.innerHTML = 'View All';
-    button.setAttribute("onclick","getAllAssociates(1)");
   }
 
 }
