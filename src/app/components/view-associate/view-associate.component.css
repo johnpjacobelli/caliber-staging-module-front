@@ -1,8 +1,29 @@
 
-body {
+.associate {
     display: grid;
     min-height: 30px;
-    grid-template-columns: repeat(9,auto);
+    grid-template-columns: repeat(10,auto);
     gap: 5px;
     align-items: center;
+}
+
+/*.email {
+    text-align: center;
+}*/
+
+.rev-btn {
+    padding: 10px 20px;
+    background-color: #f26926;
+    color: white;
+    border: none;
+    border-radius: 10px;
+   /* transition: 0.4s ease-in-out;
+    animation: fadeInUp;
+    /* referring directly to the animation's @keyframe declaration */
+    /*animation-duration: 3s;
+    /* don't forget to set a duration! */
+}
+
+.modal-content {
+    background-color: none !important;
 }

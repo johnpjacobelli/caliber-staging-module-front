@@ -1,23 +1,23 @@
 export class Associate {
 
     id:number;
-    salesforce_id:string;
+    salesforceId:string;
     email:string;
-    first_name:string;
-    last_name:string;
-    manager_id:number;
-    batch_id:number;
+    firstName:string;
+    lastName:string;
+    manager:number;
+    batch:number;
     status:string;
 
-    constructor(id:number,salesforce_id:string,email:string,first_name:string,last_name:string,manager_id:number,batch_id:number,status:string){
+    constructor(id:number,salesforceId:string,email:string,firstName:string,lastName:string,manager:number,batch:number,status:string){
 
         this.id = id;
-        this.salesforce_id = salesforce_id;
+        this.salesforceId = salesforceId;
         this.email = email;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.manager_id = manager_id;
-        this.batch_id = batch_id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.manager = manager;
+        this.batch = batch;
         this.status = status;
         
     }
