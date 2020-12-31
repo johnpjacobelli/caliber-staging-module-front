@@ -1,3 +1,5 @@
+import { UpdateItemComponent } from './../update-item/update-item.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SwotItem } from './../../models/swot-model/swot-item';
 import { SwotService } from 'src/app/services/swot/swot.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,7 +18,9 @@ export class ViewSwotComponent implements OnInit {
   index : number = 0;
   currentSwotAnalysis : Swot;
 
-  constructor(private swotService: SwotService, private router : Router) { }
+  constructor(private swotService: SwotService, 
+              private router : Router,
+              private modalService: NgbModal) { }
   
 
   ngOnInit(): void {
@@ -31,6 +35,8 @@ export class ViewSwotComponent implements OnInit {
 
   openUpdatePage(swotItem: SwotItem, swotAnalysisId: number){
     swotItem.swotAnalysisId = swotAnalysisId;
-    this.router.navigate(['/updateItem', JSON.stringify(swotItem)]);
+    const modalRef = this.modalService.open(UpdateItemComponent);
+    modalRef.componentInstance.name = 'UpdateSwot';    
+    //this.router.navigate(['/updateItem', JSON.stringify(swotItem)]);
   }
 }
