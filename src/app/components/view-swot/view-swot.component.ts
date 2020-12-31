@@ -39,4 +39,9 @@ export class ViewSwotComponent implements OnInit {
     modalRef.componentInstance.name = 'UpdateSwot';    
     //this.router.navigate(['/updateItem', JSON.stringify(swotItem)]);
   }
+
+  open() {
+    const modalRef = this.modalService.open(UpdateItemComponent);
+    modalRef.componentInstance.name = 'UpdateSwot'; 
+  }
 }
