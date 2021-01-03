@@ -1,19 +1,20 @@
 *{
-    padding: 0;
-    margin: 0;
+    padding: 0px;
+    margin: 0px;
     box-sizing: border-box;
 }
 body{
     background: rgb(219, 226, 226);
+    
 }
 .row{
     background: white;
     border-radius: 30px;
 }
-img{
+/* img{
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
-}
+} */
 .btn1{
     border: none;
     padding: 5px 10px;
@@ -34,3 +35,66 @@ img{
 .modal-content {
     background-color: none !important;
 }
+
+.logo {
+    object-fit: contain;
+}
+
+.left {
+    background-color: #474C55;
+    height: 100vh;
+    width: 20%;
+    -webkit-box-shadow: 4px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 4px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 4px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    padding: 20px;
+}
+
+.title {
+    margin: 20px auto;
+    font-size: 1.2rem;
+    font-weight: 100;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.right {
+    height: 100vh;
+    width: 80%;
+    text-align: center;
+    padding: 50px;
+    overflow: auto;
+}
+
+.left::after,
+.right::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.swot-title{
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    color: silver;
+    font-size: 1.2rem;
+}
+
+.nav, .title {
+    color: #b6b1a8;
+}
+
+select {
+    
+    /* margin: 50px 0px 5px 40px; */
+    margin: 20px auto;
+}
+
+section {
+    margin: 0px !important;
+}
+
+
+
+
