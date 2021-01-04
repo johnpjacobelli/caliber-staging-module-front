@@ -19,6 +19,8 @@ storeManagerIdFromServer(email:string)
   this.client.post<ClientMessage>(`${LOCAL_URL}/getmanager`,new ClientMessage(email)).subscribe(
     data => {
       this.managerId = parseInt(data.message)
+      sessionStorage.setItem('managerId', JSON.stringify(this.managerId));
+      console.log(sessionStorage.getItem('managerId'));
       console.log("Manager ID: " + this.managerId)
     }
 
