@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Swot } from 'src/app/models/swot-model/swot';
 import { SwotItem } from 'src/app/models/swot-model/swot-item';
 import { ActivatedRoute } from '@angular/router';
@@ -15,11 +15,15 @@ export class UpdateItemComponent implements OnInit {
   swot : Swot = new Swot();
   swotItem : SwotItem = new SwotItem(0,"","");
   myImage: string = "assets/img/swot1.png";
+  @Input() passedSwotItem: SwotItem;
 
   constructor(private route: ActivatedRoute,
               private swotService: SwotService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.passedSwotItem);
+    this.swotItem = this.passedSwotItem;
+  }
 
   
   onSubmit(itemForm: NgForm) {

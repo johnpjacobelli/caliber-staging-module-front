@@ -41,12 +41,13 @@
                                     <td>{{currentSwotAnalysis.id}}</td>
                                     <td>{{currentSwotAnalysis.associate.id}}</td>
                                     <td>{{currentSwotAnalysis.manager.id}}</td>
-                                    <td>{{currentSwotAnalysis.createdOn | date:'short'}}</td>
-                                    <td>{{currentSwotAnalysis.lastModified | date:'short'}}</td>
+                                    <td>{{currentSwotAnalysis.createdOn | date:'short':'EST'}}</td>
+                                    <td>{{currentSwotAnalysis.lastModified | date:'short':'EST'}}</td>
                                     <td>{{swotItem.id}}</td>
                                     <td>{{swotItem.content}}</td>
                                     <td>{{swotItem.type}}</td>
-                                    <td><button class="btn btn-primary rev-btn" (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">UpdateV2</button></td>
+                                    <td><button class="btn btn-primary rev-btn" 
+                                         (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">Update</button></td>
                                 </tr>
                             </ng-container>
                     </tbody>
