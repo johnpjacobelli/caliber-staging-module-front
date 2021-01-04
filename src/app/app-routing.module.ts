@@ -17,21 +17,30 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'view-associate',
-    component: ViewAssociateComponent,
+    path: "view", 
+    component: ViewSwotComponent,
     canActivate: [AngularFireAuthGuard],
     data: {
       authGuardPipe: redirectUnauthorizedToLogin
     }
   },
 
-  {path:"swot",
-  component: SwotComponent
+  {
+    path: "swot",
+    component: SwotComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {
+      authGuardPipe: redirectUnauthorizedToLogin
+    }
   },
-  {path:"view",
-  component: ViewSwotComponent
-  },
-  {path: 'updateItem/:swotItem', component: UpdateItemComponent},
+  { 
+    path: 'updateItem/:swotItem', 
+    component: UpdateItemComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {
+      authGuardPipe: redirectUnauthorizedToLogin
+    } 
+},
   {
     path: 'home',
     component: HomeComponent,

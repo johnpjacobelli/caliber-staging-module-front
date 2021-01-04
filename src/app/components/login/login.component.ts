@@ -48,11 +48,20 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
         console.log('Now going to homepage...');
         this.loginService.storeManagerIdFromServer(currentUser.email)
+        this.sleep(500);
         // Step 5: Redirect user to home page
         this.router.navigate(['home']);
       })
       .catch(error => console.log('Error while logging in user: ', error));
 
   }
+   sleep(milliseconds){
+    const date = Date.now();
+    let currentDate = null;
+    do{
+      currentDate = Date.now();
+    }while(currentDate - date < milliseconds);
+  }
+  
 
 }
