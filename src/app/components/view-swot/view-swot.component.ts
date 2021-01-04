@@ -45,4 +45,12 @@ export class ViewSwotComponent implements OnInit {
     modalRef.componentInstance.passedSwotItem = swotItem;
   }
 
+  delete(swotItemId : number){
+    this.swotService.deleteItem(swotItemId)
+      .subscribe((data:any)=>{
+        console.log(data);
+        alert(`${data.message}`);
+      })
+  }
+
 }

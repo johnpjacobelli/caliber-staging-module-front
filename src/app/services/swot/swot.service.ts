@@ -79,6 +79,13 @@ export class SwotService {
       );
   }
 
+  deleteItem(swotItemId : number) : Observable<any> {
+    return this.http.delete<any>(`${BASE_URL}swot/item/delete/${swotItemId}`)
+      .pipe(
+        catchError(this.handleError<any>('deleteSwotItem'))
+      );
+  }
+
 }
 
 
