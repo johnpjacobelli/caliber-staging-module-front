@@ -1,5 +1,5 @@
 * {
-    color: silver;
+    color:  #b6b1a8;
     margin: 0;
     padding: 0;
 }
@@ -31,6 +31,7 @@
     width: 80%;
     text-align: center;
     padding: 50px;
+    overflow: auto;
 }
 
 .left::after,
