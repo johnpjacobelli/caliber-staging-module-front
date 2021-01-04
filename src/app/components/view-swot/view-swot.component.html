@@ -7,14 +7,18 @@
         <br>
         <p>Click on the dropdown to select a particular timestamp for a user SWOT.</p>
         <br>
-        <p>Click on "Update" to modify the SWOT analysis for an associate.</p>
+        <p>Click on "Update" to modify an individual SWOT item.</p>
+        <br>
+        <p>Click on "Delete" to remove an individual SWOT item.</p>
+        <br>
+        <p>Click on "Add New Item" to add an item to the existing SWOT. After adding, re-select the SWOT in the dropdown.</p>
     </nav>
 </div>
 
 
 <section class="Form my-4 mx-5 right">
     <div class="container">
-        <select [(ngModel)]="currentSwotAnalysis">
+        <select id="selectSwot" [(ngModel)]="currentSwotAnalysis">
             <option *ngFor="let swotAnalysis of swotAnalyses;" [ngValue]="swotAnalysis">{{swotAnalysis.createdOn | date:'short':'EST'}}</option>
         </select>
     </div>
@@ -49,8 +53,9 @@
                                     <td><button class="btn btn-primary rev-btn" 
                                          (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">Update</button></td>
                                     <td><button class="btn btn-danger rev-btn" 
-                                        (click)="delete(swotItem.id)" routerLink="/view/${currentSwotAnalysis.associate.id}">Delete</button></td>
+                                        (click)="delete(swotItem.id)">Delete</button></td>
                                 </tr>
+                                <button class="btn toggle-btn" (click)="addItem()">Add new item</button>
                             </ng-container>
                     </tbody>
                 </table>
