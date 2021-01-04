@@ -1,3 +1,4 @@
+import { LoginService } from './../../services/login-service/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  constructor(private fb: FormBuilder, public auth: AngularFireAuth, private router: Router) { }
+  constructor(private fb: FormBuilder, public auth: AngularFireAuth, private router: Router, private loginService:LoginService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -50,6 +51,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['home']);
       })
       .catch(error => console.log('Error while logging in user: ', error));
+
   }
 
 }
