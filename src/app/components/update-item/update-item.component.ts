@@ -15,44 +15,13 @@ export class UpdateItemComponent implements OnInit {
   swot : Swot = new Swot();
   swotItem : SwotItem = new SwotItem(0,"","");
   myImage: string = "assets/img/swot1.png";
+
   constructor(private route: ActivatedRoute,
-    private swotService: SwotService) { }
-  ngOnInit(): void {
-    this.getSwotItem();
-  }
+              private swotService: SwotService) { }
 
-  // This function looks like it could be removed, I don't know if any part of this is in use.
-  getSwotItem(): void {
-    // const id = +this.route.snapshot.paramMap.get('id')!.valueOf();
-    // const content =+ this.route.snapshot.paramMap.get('content')!;
-    // const type =+ this.route.snapshot.paramMap.get('type')!;
-    // console.log(id);
-    // console.log(content);
-    // console.log(type);
+  ngOnInit(): void {}
 
-   console.log("Hi");
-
-    // this.swotItem = JSON.parse(this.route.snapshot.params["swotItem"]);
-    // console.log(this.swotItem);
-
-
-      // this.route.queryParams.subscribe(params => {
-      //       let id = params[0];
-      //       let content = params[1];
-      //       let type = params[2];
-      //       console.log(id); // Print the parameter to the console. 
-      //       console.log(content);
-      //       console.log(type);
-      //   });
-    
-    
-  //  this.swotService.getItem(id)
-  //  .subscribe((data:SwotItem)=>{
-  //    console.log(data);
-  //    this.swotItem = data;
-  //    //this.task.taskStatus = "";
-  //  })
- }
+  
   onSubmit(itemForm: NgForm) {
     console.log(itemForm)
     console.log(itemForm.value)
