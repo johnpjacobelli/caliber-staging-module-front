@@ -22,19 +22,34 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  // This code seems to fix the issue. Please test this version of the login on your local machines.
+  // Please read comments to understand changes. -AK
   // tslint:disable-next-line:typedef
-  loginUser(){
+  async loginUser() {
+    // Step 0: get login form information
     const manager = this.loginForm.value;
-    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-    .then(user => console.log('User signed in is: ', user))
-    .catch(error => console.log('Error while logging in user: ', error))
-    .finally(() => sessionStorage.setItem('currentUser', JSON.stringify(manager)));
-    const userString = sessionStorage.getItem('currentUser');
-    console.log(userString);
-    const myUser = JSON.parse(userString);
-    console.log(myUser);
-    console.log('User is logged under email: ' + myUser.email);
-    this.router.navigate(['home']);
+    console.log(manager);
+
+    // Step 1: set the auth service provider
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    // Step 3: sign in user
+    // Please note the fact of this function is now async to fix the threading issue during logins
+    await this.auth.signInWithPopup(provider)
+      .then(user => {
+        const currentUser = {
+          email: manager.email,
+          firebaseCredentials: user
+        };
+        console.log('Successful login! User signed in is: ', currentUser);
+        console.log(currentUser);
+        // Step 4: After successful login, store user info in sessionStorage
+        sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
+        console.log('Now going to homepage...');
+        // Step 5: Redirect user to home page
+        this.router.navigate(['home']);
+      })
+      .catch(error => console.log('Error while logging in user: ', error));
   }
 
 }

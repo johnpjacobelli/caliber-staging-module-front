@@ -21,5 +21,8 @@ export class HomeComponent implements OnInit {
     this.auth.signOut()
     .then(() => this.router.navigate(['']))
     .catch(error => console.log(`Failed to log user out. Error => `, error));
+    // clear all session information
+    sessionStorage.clear();
+    console.log('session storage has been cleared!');
   }
 }
