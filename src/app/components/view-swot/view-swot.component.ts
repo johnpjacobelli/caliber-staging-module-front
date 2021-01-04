@@ -25,16 +25,8 @@ export class ViewSwotComponent implements OnInit {
   
 
   ngOnInit(): void {
+    this.pullSwotData();
 
-    const associateId = +this.route.snapshot.paramMap.get('associateId')!.valueOf();
-    console.log(associateId)
-    this.swotService.getSwotByAssociatedId(associateId)
-
-    .subscribe((data:any)=>{
-      console.log(data);
-
-      this.swotAnalyses = data;
-    })
   }
 
   // Opens Update as a modal page.
@@ -51,6 +43,19 @@ export class ViewSwotComponent implements OnInit {
         console.log(data);
         alert(`${data.message}`);
       })
+    this.currentSwotAnalysis.analysisItems = this.currentSwotAnalysis.analysisItems.filter(swotItem => swotItem.id != swotItemId);
+  }
+
+  pullSwotData(){
+    const associateId = +this.route.snapshot.paramMap.get('associateId')!.valueOf();
+    console.log(associateId)
+    this.swotService.getSwotByAssociatedId(associateId)
+
+    .subscribe((data:any)=>{
+      console.log(data);
+
+      this.swotAnalyses = data;
+    })
   }
 
 }

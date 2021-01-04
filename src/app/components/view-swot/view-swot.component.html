@@ -49,7 +49,7 @@
                                     <td><button class="btn btn-primary rev-btn" 
                                          (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">Update</button></td>
                                     <td><button class="btn btn-danger rev-btn" 
-                                        (click)="delete(swotItem.id)">Delete</button></td>
+                                        (click)="delete(swotItem.id)" routerLink="/view/${currentSwotAnalysis.associate.id}">Delete</button></td>
                                 </tr>
                             </ng-container>
                     </tbody>
