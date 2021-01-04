@@ -58,7 +58,7 @@ export class SwotComponent implements OnInit {
     console.log("add swot")
     console.log(this.analysisItems)
     this.swotAnalysis.analysisItems = this.analysisItems;
-    this.swotAnalysis.associate = new Associate(this.associateId, null, null, null, null, null, null, null); //associate model constructor needs to be adjusted
+    this.swotAnalysis.associate = new Associate(this.associateId); //associate model constructor needs to be adjusted
     this.swotAnalysis.manager = new Manager(1); //hardcoded now, waiting for manager session tracking code
     console.log(this.analysisItems)
     console.log(this.swotAnalysis)

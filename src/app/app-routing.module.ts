@@ -28,7 +28,7 @@ const routes: Routes = [
   {path: 'swot',
   component: SwotComponent
   },
-  {path: 'view',
+  {path: 'view/:associateId',
   component: ViewSwotComponent
   },
   {path: 'updateItem', component: UpdateItemComponent},

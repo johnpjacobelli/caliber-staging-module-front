@@ -29,7 +29,7 @@
                 <td>{{associate.batch}}</td>
                 <td>{{associate.status}}</td>
                 <td><button class="btn btn-primary rev-btn" (click)="activeId=associate.id; open()">Create SWOT</button></td>
-                <td><button class="btn btn-primary rev-btn" routerLink="/view">View SWOTs</button></td>
+                <td><button class="btn btn-primary rev-btn" routerLink="/view/{{associate.id}}">View SWOTs</button></td>
             </tr>
             
         </tbody>

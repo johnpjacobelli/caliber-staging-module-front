@@ -4,7 +4,7 @@ import { SwotItem } from './../../models/swot-model/swot-item';
 import { SwotService } from 'src/app/services/swot/swot.service';
 import { Component, OnInit } from '@angular/core';
 import { Swot } from 'src/app/models/swot-model/swot';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -18,14 +18,18 @@ export class ViewSwotComponent implements OnInit {
   index : number = 0;
   currentSwotAnalysis : Swot;
 
-  constructor(private swotService: SwotService, 
+  constructor(private swotService : SwotService, 
               private router : Router,
-              private modalService: NgbModal) { }
+              private modalService : NgbModal,
+              private route : ActivatedRoute) { }
   
 
   ngOnInit(): void {
 
-    this.swotService.getSwotByAssociatedId(1)
+    const associateId = +this.route.snapshot.paramMap.get('associateId')!.valueOf();
+    console.log(associateId)
+    this.swotService.getSwotByAssociatedId(associateId)
+
     .subscribe((data:any)=>{
       console.log(data);
 
