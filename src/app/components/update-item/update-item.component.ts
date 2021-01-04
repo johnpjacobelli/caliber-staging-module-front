@@ -20,6 +20,8 @@ export class UpdateItemComponent implements OnInit {
   ngOnInit(): void {
     this.getSwotItem();
   }
+
+  // This function looks like it could be removed, I don't know if any part of this is in use.
   getSwotItem(): void {
     // const id = +this.route.snapshot.paramMap.get('id')!.valueOf();
     // const content =+ this.route.snapshot.paramMap.get('content')!;
@@ -30,8 +32,8 @@ export class UpdateItemComponent implements OnInit {
 
    console.log("Hi");
 
-    this.swotItem = JSON.parse(this.route.snapshot.params["swotItem"]);
-    console.log(this.swotItem);
+    // this.swotItem = JSON.parse(this.route.snapshot.params["swotItem"]);
+    // console.log(this.swotItem);
 
 
       // this.route.queryParams.subscribe(params => {

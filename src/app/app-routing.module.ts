@@ -25,13 +25,13 @@ const routes: Routes = [
     }
   },
 
-  {path:"swot",
+  {path: 'swot',
   component: SwotComponent
   },
-  {path:"view",
+  {path: 'view',
   component: ViewSwotComponent
   },
-  {path: 'updateItem/:swotItem', component: UpdateItemComponent},
+  {path: 'updateItem', component: UpdateItemComponent},
   {
     path: 'home',
     component: HomeComponent,
