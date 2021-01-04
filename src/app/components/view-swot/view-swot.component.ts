@@ -38,9 +38,4 @@ export class ViewSwotComponent implements OnInit {
     const modalRef = this.modalService.open(UpdateItemComponent);
     modalRef.componentInstance.name = 'UpdateSwot';
   }
-
-  open() {
-    const modalRef = this.modalService.open(UpdateItemComponent);
-    modalRef.componentInstance.name = 'UpdateSwot'; 
-  }
 }

@@ -40,3 +40,12 @@ img{
 .modal-content {
     width: 600px !important;
 }
+
+.nav-link{
+    color: white;
+}
+
+.nav-link:hover{
+    color: #b6b1a8;
+}
+
