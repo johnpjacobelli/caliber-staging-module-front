@@ -10,10 +10,10 @@ WORKDIR /app
 COPY package.json /app
 RUN npm install
 
+# Add the app
 COPY . /app
 RUN npm run build --prod
 
 # Stage 2
 FROM nginx:1.17.1-alpine
-# --from=builder is copying the contents from the previous stage
-COPY --from=builder /app/dist/caliber-staging-module-front /usr/share/nginx/html
+COPY --from=builder /app/dist/P3Angular /usr/share/nginx/html
