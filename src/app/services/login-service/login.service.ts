@@ -1,5 +1,5 @@
 import { ClientMessage } from './../../models/client-message-model/client-message-model';
-import { BASE_URL } from './../../../environments/environment.prod';
+import { BASE_URL, LOCAL_URL } from './../../../environments/environment.prod';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -16,7 +16,7 @@ export class LoginService {
 storeManagerIdFromServer(email:string)
 {
   console.log("In MangerID retriever! " + "Email is: " +email)
-  this.client.post<ClientMessage>(`${URL}/getmanager`,new ClientMessage(email)).subscribe(
+  this.client.post<ClientMessage>(`${LOCAL_URL}/getmanager`,new ClientMessage(email)).subscribe(
     data => {
       this.managerId = parseInt(data.message)
       console.log("Manager ID: " + this.managerId)
