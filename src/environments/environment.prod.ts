@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   firebase: {
     "apiKey": "AIzaSyC4sxZlT-McTildwtxa8LV1lj7ZQhzOrs0",
     "authDomain": "training-team-253916.firebaseapp.com",
@@ -8,8 +8,7 @@ export const environment = {
     "messagingSenderId": "492701958610",
     "appId": "1:492701958610:web:4a30a1be93803701d3480b",
     "measurementId": "G-DP6XDH9DTW"
-  }
+  },
+  CALIBER_URL: `https://caliber2-mock.revaturelabs.com/mock`,
+  BASE_URL: `http://ec2-54-237-27-253.compute-1.amazonaws.com:8081/`
 };
-
-export const CALIBER_URL = `https://caliber2-mock.revaturelabs.com/mock`;
-export const BASE_URL = `http://ec2-54-237-27-253.compute-1.amazonaws.com:8081/`;
