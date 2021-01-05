@@ -1,3 +1,4 @@
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginService } from './../../services/login-service/login.service';
 import { SwotItem } from './../../models/swot-model/swot-item';
 import { Swot } from './../../models/swot-model/swot';
@@ -27,7 +28,7 @@ export class SwotComponent implements OnInit {
   //initililizes empty array of swot items
   analysisItems : SwotItem[] = [];
 
-  constructor(private swotService: SwotService,private loginService:LoginService) { }
+  constructor(private swotService: SwotService,private loginService:LoginService, private modalService: NgbModal) { }
   ngOnInit(): void {
     console.log(this.passedId);
     this.associateId = this.passedId;
@@ -68,5 +69,6 @@ export class SwotComponent implements OnInit {
          console.log(data);
          alert(`${data.message}`);
        });
+    this.modalService.dismissAll();
   }
 }
