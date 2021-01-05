@@ -2,6 +2,6 @@ import { Manager } from './manager';
 
 describe('Manager', () => {
   it('should create an instance', () => {
-    expect(new Manager()).toBeTruthy();
+    expect(new Manager(1)).toBeTruthy();
   });
 });

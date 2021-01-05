@@ -18,11 +18,9 @@ export class ViewAssociateComponent implements OnInit {
   newAssociates: Associate[];
   private associateSubject: BehaviorSubject<Associate>;
   public associate: Observable<Associate>;
-  testAssociate = new Associate(1, 'SF-1234', 'testEmail@email.com', 'test', 'tester', 14, 379, 'Training');
 
   activeId: number;
   managerId: number;
-
 
   private toggle = true;
 
@@ -32,13 +30,10 @@ export class ViewAssociateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.associateValue.email);
     this.managerId = parseInt(sessionStorage.getItem('managerId'));
     console.log("session: "+ this.managerId);
     this.getAllAssociates(this.managerId);
   }
-
-  
 
   public toggleAssociateView() {
 
