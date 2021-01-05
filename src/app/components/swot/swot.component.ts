@@ -1,3 +1,4 @@
+import { LoginService } from './../../services/login-service/login.service';
 import { SwotItem } from './../../models/swot-model/swot-item';
 import { Swot } from './../../models/swot-model/swot';
 import { NgForm } from '@angular/forms';
@@ -26,7 +27,7 @@ export class SwotComponent implements OnInit {
   //initililizes empty array of swot items
   analysisItems : SwotItem[] = [];
 
-  constructor(private swotService: SwotService) { }
+  constructor(private swotService: SwotService,private loginService:LoginService) { }
   ngOnInit(): void {
     console.log(this.passedId);
     this.associateId = this.passedId;
@@ -59,7 +60,7 @@ export class SwotComponent implements OnInit {
     console.log(this.analysisItems)
     this.swotAnalysis.analysisItems = this.analysisItems;
     this.swotAnalysis.associate = new Associate(this.associateId); //associate model constructor needs to be adjusted
-    this.swotAnalysis.manager = new Manager(1); //hardcoded now, waiting for manager session tracking code
+    this.swotAnalysis.manager = new Manager(this.loginService.managerId); 
     console.log(this.analysisItems)
     console.log(this.swotAnalysis)
      this.swotService.addSwot(this.swotAnalysis)
