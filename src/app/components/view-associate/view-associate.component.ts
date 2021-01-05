@@ -34,7 +34,6 @@ export class ViewAssociateComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.associateValue.email);
     this.managerId = parseInt(sessionStorage.getItem('managerId'));
-    console.log("session: "+ this.managerId);
     this.getAllAssociates(this.managerId);
   }
 

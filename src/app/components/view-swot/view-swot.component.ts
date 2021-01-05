@@ -79,9 +79,12 @@ export class ViewSwotComponent implements OnInit {
       beforeDismiss: () => {
         this.pullSwotData();
         this.currentSwotAnalysis = null;
+
         return true;
       }
     }
+    
+
     // this.currentSwotAnalysis.analysisItems.push()
     const modalRef = this.modalService.open(AddItemComponent, options);
     

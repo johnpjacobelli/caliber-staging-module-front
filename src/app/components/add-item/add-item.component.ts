@@ -28,6 +28,7 @@ export class AddItemComponent implements OnInit {
     this.swotService.addItem(this.swotItem)
       .subscribe(data => {
         console.log(data);
+        alert("Success! New SWOT item has been added.")
       });
   }
 

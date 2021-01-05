@@ -85,6 +85,27 @@ body{
 .nav, .title {
     color: #b6b1a8;
 }
+#display-box-info{
+    background-color:#474C55;
+    border: 5px solid #f26926;
+    width: 250px;
+    font-size:0.8rem;
+    border-radius: 20px;
+    margin: 10px auto;
+    padding: 10px;
+    color: silver;
+
+}
+
+#selectSwot{
+    padding:10px;
+}
+
+#homeLink{
+    color: #f26926;
+    margin-top: 5px;
+    text-align: center;
+}
 
 select {
     
