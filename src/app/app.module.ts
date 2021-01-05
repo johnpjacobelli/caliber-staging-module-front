@@ -15,6 +15,7 @@ import { HomeComponent } from './components/home/home.component';
 
 import { UpdateItemComponent } from './components/update-item/update-item.component';
 import { ViewSwotComponent } from './components/view-swot/view-swot.component';
+import { AddItemComponent } from './components/add-item/add-item.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ViewSwotComponent } from './components/view-swot/view-swot.component';
     LoginComponent,
     HomeComponent,
     ViewSwotComponent,
-    UpdateItemComponent
+    UpdateItemComponent,
+    AddItemComponent,
   ],
   imports: [
     BrowserModule,

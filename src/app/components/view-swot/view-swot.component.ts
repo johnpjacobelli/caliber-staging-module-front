@@ -1,10 +1,11 @@
+import { UpdateItemComponent } from './../update-item/update-item.component';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { SwotItem } from './../../models/swot-model/swot-item';
 import { SwotService } from 'src/app/services/swot/swot.service';
 import { Component, OnInit } from '@angular/core';
 import { Swot } from 'src/app/models/swot-model/swot';
-import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { UpdateItemComponent } from '../update-item/update-item.component';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AddItemComponent } from '../add-item/add-item.component';
 
 
 @Component({
@@ -18,12 +19,41 @@ export class ViewSwotComponent implements OnInit {
   index : number = 0;
   currentSwotAnalysis : Swot;
 
-  constructor(private swotService: SwotService, private router : Router, private modalService: NgbModal) { }
+  constructor(private swotService : SwotService, 
+              private router : Router,
+              private modalService : NgbModal,
+              private route : ActivatedRoute) { 
+
+              }
   
 
   ngOnInit(): void {
+    this.pullSwotData();
 
-    this.swotService.getSwotByAssociatedId(1)
+  }
+
+  // Opens Update as a modal page.
+  openUpdatePage(swotItem: SwotItem, swotAnalysisId: number){
+    swotItem.swotAnalysisId = swotAnalysisId;
+    const modalRef = this.modalService.open(UpdateItemComponent);
+    modalRef.componentInstance.name = 'UpdateSwot';
+    modalRef.componentInstance.passedSwotItem = swotItem;
+  }
+
+  delete(swotItemId : number){
+    this.swotService.deleteItem(swotItemId)
+      .subscribe((data:any)=>{
+        console.log(data);
+        alert(`${data.message}`);
+      })
+    this.currentSwotAnalysis.analysisItems = this.currentSwotAnalysis.analysisItems.filter(swotItem => swotItem.id != swotItemId);
+  }
+
+  pullSwotData(){
+    const associateId = +this.route.snapshot.paramMap.get('associateId')!.valueOf();
+    console.log(associateId)
+    this.swotService.getSwotByAssociatedId(associateId)
+
     .subscribe((data:any)=>{
       console.log(data);
 
@@ -31,11 +61,33 @@ export class ViewSwotComponent implements OnInit {
     })
   }
 
-  openUpdatePage(swotItem: SwotItem, swotAnalysisId: number){
-    swotItem.swotAnalysisId = swotAnalysisId;
-    // this.router.navigate(['/updateItem', JSON.stringify(swotItem)]);
-    const modalRef = this.modalService.open(UpdateItemComponent);
-    modalRef.componentInstance.name = 'UpdateSWOT';
+  pullSwotData2(){
+    // const associateId = +this.route.snapshot.paramMap.get('associateId')!.valueOf();
+    // console.log(associateId)
+    // this.swotService.getSwotByAssociatedId(associateId)
+    // this.swotService.
 
+    // .subscribe((data:any)=>{
+    //   console.log(data);
+
+    //   this.swotAnalyses = data;
+    // })
   }
+
+  addItem(){
+    const options : NgbModalOptions = {
+      beforeDismiss: () => {
+        this.pullSwotData();
+        this.currentSwotAnalysis = null;
+        return true;
+      }
+    }
+    // this.currentSwotAnalysis.analysisItems.push()
+    const modalRef = this.modalService.open(AddItemComponent, options);
+    
+    modalRef.componentInstance.name = 'AddItem';
+    modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
+    // this.pullSwotData();
+  }
+
 }
