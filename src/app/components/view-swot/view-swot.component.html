@@ -7,15 +7,19 @@
         <br>
         <p>Click on the dropdown to select a particular timestamp for a user SWOT.</p>
         <br>
-        <p>Click on "Update" to modify the SWOT analysis for an associate.</p>
+        <p>Click on "Update" to modify an individual SWOT item.</p>
+        <br>
+        <p>Click on "Delete" to remove an individual SWOT item.</p>
+        <br>
+        <p>Click on "Add New Item" to add an item to the existing SWOT. After adding, re-select the SWOT in the dropdown.</p>
     </nav>
 </div>
 
 
 <section class="Form my-4 mx-5 right">
     <div class="container">
-        <select [(ngModel)]="currentSwotAnalysis">
-            <option *ngFor="let swotAnalysis of swotAnalyses;" [ngValue]="swotAnalysis">{{swotAnalysis.createdOn | date:'short'}}</option>
+        <select id="selectSwot" [(ngModel)]="currentSwotAnalysis">
+            <option *ngFor="let swotAnalysis of swotAnalyses;" [ngValue]="swotAnalysis">{{swotAnalysis.createdOn | date:'short':'EST'}}</option>
         </select>
     </div>
     <div class="container">
@@ -41,18 +45,18 @@
                                     <td>{{currentSwotAnalysis.id}}</td>
                                     <td>{{currentSwotAnalysis.associate.id}}</td>
                                     <td>{{currentSwotAnalysis.manager.id}}</td>
-                                    <td>{{currentSwotAnalysis.createdOn | date:'short'}}</td>
-                                    <td>{{currentSwotAnalysis.lastModified | date:'short'}}</td>
+                                    <td>{{currentSwotAnalysis.createdOn | date:'short':'EST'}}</td>
+                                    <td>{{currentSwotAnalysis.lastModified | date:'short':'EST'}}</td>
                                     <td>{{swotItem.id}}</td>
                                     <td>{{swotItem.content}}</td>
                                     <td>{{swotItem.type}}</td>
-                                    <td>
-                                        <a (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">
-                                            <button class="btn btn1 btn-primary" title="update swot">Update</button>
-                                        </a>
-                                    </td>
+                                    <td><button class="btn btn-primary rev-btn" 
+                                         (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">Update</button></td>
+                                    <td><button class="btn btn-danger rev-btn" 
+                                        (click)="delete(swotItem.id)">Delete</button></td>
                                 </tr>
-                            </ng-container> 
+                                <button class="btn toggle-btn" (click)="addItem()">Add new item</button>
+                            </ng-container>
                     </tbody>
                 </table>
             </div>

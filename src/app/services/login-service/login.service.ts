@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 })
 export class LoginService {
 
-  public managerId:number =0;
+  public managerId:number = 0;
   constructor(private client:HttpClient) { }
 
   //This method will retrieve the manger ID associated with the email address provided.

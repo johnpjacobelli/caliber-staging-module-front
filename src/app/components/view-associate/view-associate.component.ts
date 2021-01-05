@@ -19,7 +19,10 @@ export class ViewAssociateComponent implements OnInit {
   private associateSubject: BehaviorSubject<Associate>;
   public associate: Observable<Associate>;
   testAssociate = new Associate(1, 'SF-1234', 'testEmail@email.com', 'test', 'tester', 14, 379, 'Training');
+
+  activeId: number;
   managerId: number;
+
 
   private toggle = true;
 
@@ -64,6 +67,8 @@ export class ViewAssociateComponent implements OnInit {
   open() {
     const modalRef = this.modalService.open(SwotComponent);
     modalRef.componentInstance.name = 'CreateSwot';
+    console.log(this.activeId);
+    modalRef.componentInstance.passedId = this.activeId;
   }
 
   public getAllAssociates(id: number): void {

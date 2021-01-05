@@ -71,11 +71,32 @@ export class SwotService {
         id: swotItem.swotAnalysisId
       }
     }
-
-  
     return this.http.put<SwotItem>(`${BASE_URL}swot/item/update/${swotItemDTO.id}`, swotItemDTO, this.httpOptions)
       .pipe(
         catchError(this.handleError<SwotItem>('updateSwot'))
+      );
+  }
+
+  addItem(swotItem: SwotItem): Observable<SwotItem> {
+    let swotItemDTO = {
+      id: swotItem.id,
+      content: swotItem.content,
+      type: swotItem.type,
+      swot: {
+        id: swotItem.swotAnalysisId
+      }
+    }
+    console.log(swotItem);
+    return this.http.post<SwotItem>(`${BASE_URL}swot/item/new`, swotItemDTO, this.httpOptions)
+    .pipe(
+      catchError(this.handleError<SwotItem>('addSwotItem'))
+    )
+  }
+
+  deleteItem(swotItemId : number) : Observable<any> {
+    return this.http.delete<any>(`${BASE_URL}swot/item/delete/${swotItemId}`)
+      .pipe(
+        catchError(this.handleError<any>('deleteSwotItem'))
       );
   }
 
