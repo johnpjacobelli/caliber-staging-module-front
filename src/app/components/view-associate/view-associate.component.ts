@@ -1,3 +1,4 @@
+import { LoginService } from './../../services/login-service/login.service';
 import { Associate } from './../../models/associate-model/associate.model';
 import { SwotComponent } from './../swot/swot.component';
 import { AssociateService } from '../../services/associate/associate.service';
@@ -18,19 +19,26 @@ export class ViewAssociateComponent implements OnInit {
   private associateSubject: BehaviorSubject<Associate>;
   public associate: Observable<Associate>;
   testAssociate = new Associate(1, 'SF-1234', 'testEmail@email.com', 'test', 'tester', 14, 379, 'Training');
+
   activeId: number;
+  managerId: number;
+
 
   private toggle = true;
 
-  constructor(private service: AssociateService, private modalService: NgbModal, private changeDetect: ChangeDetectorRef) {
+  constructor(private service: AssociateService, private modalService: NgbModal, private changeDetect: ChangeDetectorRef, private loginService: LoginService) {
     this.associateSubject = new BehaviorSubject<Associate>(JSON.parse(sessionStorage.getItem('currentUser')));
     this.associate = this.associateSubject.asObservable();
   }
 
   ngOnInit(): void {
     console.log(this.associateValue.email);
-    this.getAllAssociates(1);
+    this.managerId = parseInt(sessionStorage.getItem('managerId'));
+    console.log("session: "+ this.managerId);
+    this.getAllAssociates(this.managerId);
   }
+
+  
 
   public toggleAssociateView() {
 
@@ -40,11 +48,11 @@ export class ViewAssociateComponent implements OnInit {
     if (this.toggle) {
       this.toggle = false;
       button.innerHTML = 'View All';
-      this.getAllNewAssociates(1);
+      this.getAllNewAssociates(this.managerId);
     } else {
       this.toggle = true;
       button.innerHTML = 'View New';
-      this.getAllAssociates(1);
+      this.getAllAssociates(this.managerId);
     }
   }
 

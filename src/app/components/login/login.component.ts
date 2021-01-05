@@ -32,11 +32,11 @@ export class LoginComponent implements OnInit {
     console.log(manager);
 
     // Step 1: set the auth service provider
-    const provider = new firebase.auth.GoogleAuthProvider();
+    const provider = new firebase.auth.EmailAuthProvider();
 
     // Step 3: sign in user
     // Please note the fact of this function is now async to fix the threading issue during logins
-    await this.auth.signInWithPopup(provider)
+    await this.auth.signInWithEmailAndPassword(manager.email,manager.password)
       .then(user => {
         const currentUser = {
           email: manager.email,
@@ -47,11 +47,21 @@ export class LoginComponent implements OnInit {
         // Step 4: After successful login, store user info in sessionStorage
         sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
         console.log('Now going to homepage...');
+        this.loginService.storeManagerIdFromServer(currentUser.email)
+        this.sleep(500);
         // Step 5: Redirect user to home page
         this.router.navigate(['home']);
       })
       .catch(error => console.log('Error while logging in user: ', error));
 
   }
+   sleep(milliseconds){
+    const date = Date.now();
+    let currentDate = null;
+    do{
+      currentDate = Date.now();
+    }while(currentDate - date < milliseconds);
+  }
+  
 
 }
