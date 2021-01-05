@@ -16,7 +16,7 @@ export class LoginService {
 storeManagerIdFromServer(email:string)
 {
   console.log("In MangerID retriever! " + "Email is: " +email)
-  this.client.post<ClientMessage>(`${LOCAL_URL}/getmanager`,new ClientMessage(email)).subscribe(
+  this.client.post<ClientMessage>(`${LOCAL_URL}getmanager`,new ClientMessage(email)).subscribe(
     data => {
       this.managerId = parseInt(data.message)
       sessionStorage.setItem('managerId', JSON.stringify(this.managerId));
