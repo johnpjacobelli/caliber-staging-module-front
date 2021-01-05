@@ -12,7 +12,7 @@ RUN npm install
 
 # Add the app
 COPY . /app
-RUN npm run build --prod
+RUN ng build --prod
 
 # Stage 2
 FROM nginx:1.17.1-alpine
