@@ -9,6 +9,7 @@ WORKDIR /app
 # Copy package.json into /app and then install to get dependencies.
 COPY package.json /app
 RUN npm install
+RUN npm install -y @angular/cli@latest
 
 # Add the app
 COPY . /app
