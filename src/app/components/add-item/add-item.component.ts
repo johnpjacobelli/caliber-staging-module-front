@@ -22,13 +22,9 @@ export class AddItemComponent implements OnInit {
   }
 
   onSubmit(itemForm: NgForm) {
-    // this.swotItem.content = itemForm.content
-    console.log(itemForm)
-    console.log(itemForm.value)
-    console.log(this.swotItem)
     this.swotService.addItem(this.swotItem)
       .subscribe(data => {
-        console.log(data);
+        alert("Success! New SWOT item has been added.")
       });
       this.modalService.dismissAll();
   }

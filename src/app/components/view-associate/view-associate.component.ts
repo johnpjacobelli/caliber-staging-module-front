@@ -24,14 +24,15 @@ export class ViewAssociateComponent implements OnInit {
 
   private toggle = true;
 
-  constructor(private service: AssociateService, private modalService: NgbModal, private changeDetect: ChangeDetectorRef, private loginService: LoginService) {
+  constructor(private service: AssociateService, 
+              private modalService: NgbModal, 
+              private changeDetect: ChangeDetectorRef) {
     this.associateSubject = new BehaviorSubject<Associate>(JSON.parse(sessionStorage.getItem('currentUser')));
     this.associate = this.associateSubject.asObservable();
   }
 
   ngOnInit(): void {
     this.managerId = parseInt(sessionStorage.getItem('managerId'));
-    console.log("session: "+ this.managerId);
     this.getAllAssociates(this.managerId);
   }
 

@@ -64,19 +64,6 @@ export class ViewSwotComponent implements OnInit {
     })
   }
 
-  pullSwotData2(){
-    // const associateId = +this.route.snapshot.paramMap.get('associateId')!.valueOf();
-    // console.log(associateId)
-    // this.swotService.getSwotByAssociatedId(associateId)
-    // this.swotService.
-
-    // .subscribe((data:any)=>{
-    //   console.log(data);
-
-    //   this.swotAnalyses = data;
-    // })
-  }
-
   addItem(){
     const options : NgbModalOptions = {
       beforeDismiss: () => {
@@ -89,12 +76,11 @@ export class ViewSwotComponent implements OnInit {
         return true;
       }
     }
-    // this.currentSwotAnalysis.analysisItems.push()
+    
     const modalRef = this.modalService.open(AddItemComponent, options);
     
     modalRef.componentInstance.name = 'AddItem';
     modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
-    // this.pullSwotData();
   }
 
 }

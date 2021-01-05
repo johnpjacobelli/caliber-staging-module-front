@@ -35,6 +35,8 @@ export class UpdateItemComponent implements OnInit {
     this.swotService.updateItem(this.swotItem)
       .subscribe(data => {
         console.log(data);
+        alert("Success! SWOT item has been updated.")
+
       });
     this.modalService.dismissAll();
   }
