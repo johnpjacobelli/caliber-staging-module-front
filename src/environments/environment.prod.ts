@@ -3,7 +3,6 @@ export const environment = {
 
 };
 export const LOCAL_URL = `http://localhost:8080`;
-
 export const URL = `http://localhost:8080`;
 // export const URL = `http://ec2-54-237-27-253.compute-1.amazonaws.com:8080/`;
 export const CALIBER_URL = `https://caliber2-mock.revaturelabs.com/mock`;
