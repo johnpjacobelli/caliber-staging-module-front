@@ -9,11 +9,10 @@ WORKDIR /app
 # Copy package.json into /app and then install to get dependencies.
 COPY package.json /app
 RUN npm install
-RUN npm install -y @angular/cli@latest
 
 # Add the app
 COPY . /app
-RUN ng build --prod
+RUN npm run build --prod
 
 # Stage 2
 FROM nginx:1.17.1-alpine
