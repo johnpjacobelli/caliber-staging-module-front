@@ -16,9 +16,8 @@ export const environment = {
 };
 
 
-export const LOCAL_URL = `http://localhost:8080/`;
 export const CALIBER_URL = `https://caliber2-mock.revaturelabs.com/mock`;
-export const BASE_URL = `http://localhost:8080/`;
+export const BASE_URL = `http://localhost:8081/`;
 
 /*
  * For easier debugging in development mode, you can import the following file
