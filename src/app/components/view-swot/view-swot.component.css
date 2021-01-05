@@ -25,7 +25,8 @@ body{
 }
 .btn1:hover{
     background-color: #b6b1a8;
-    border: 1px solid black;
+    /* commented out because this line was affected the margins of other elements near this button -AK */
+    /* border: 1px solid black; */
     text-decoration: underline;
 }
 .btn1:focus{
@@ -95,6 +96,14 @@ section {
     margin: 0px !important;
 }
 
+/* Added animation CSS code STARTS here -AK */
+.navbar{
+    animation: fadeInLeft;
+    animation-duration: 2.5s;
+}
 
-
-
+#data-row{
+    animation: flipInX;
+    animation-duration: 3s;
+}
+/* Added animation ENDS here -AK */

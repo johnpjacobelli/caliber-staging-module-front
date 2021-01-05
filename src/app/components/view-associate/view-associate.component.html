@@ -19,7 +19,7 @@
             </tr>
         </thead>
         <tbody id="associate-content">
-            <tr *ngFor="let associate of associates; trackBy: trackItem" [class.selected]="associate === selectedAssociate">
+            <tr *ngFor="let associate of associates; trackBy: trackItem" [class.selected]="associate === selectedAssociate" id="data-row">
                 <td>{{associate.id}}</td>
                 <td>{{associate.salesforceId}}</td>
                 <td>{{associate.email}}</td>

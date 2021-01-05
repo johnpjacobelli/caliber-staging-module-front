@@ -48,3 +48,8 @@
     background-color: #b6b1a8;
     text-decoration: underline;
 }
+
+#data-row{
+    animation: flipInX;
+    animation-duration: 3s;
+}

@@ -77,6 +77,11 @@
     letter-spacing: 2px;
 }
 
+ .navbar{
+    animation: fadeInLeft;
+    animation-duration: 2.5s;
+}
+
 /*Media Breakpoints*/
 
 /* Smartphones (portrait and landscape) ----------- */
