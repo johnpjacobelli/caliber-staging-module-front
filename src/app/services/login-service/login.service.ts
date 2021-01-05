@@ -1,4 +1,4 @@
-import { BASE_URL } from './../../../environments/environment.prod';
+import { environment } from 'src/environments/environment.prod';
 import { ClientMessage } from './../../models/client-message-model/client-message-model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -16,7 +16,7 @@ export class LoginService {
 storeManagerIdFromServer(email:string)
 {
   console.log("In MangerID retriever! " + "Email is: " +email)
-  this.client.post<ClientMessage>(`${BASE_URL}getmanager`,new ClientMessage(email)).subscribe(
+  this.client.post<ClientMessage>(`${environment.BASE_URL}getmanager`,new ClientMessage(email)).subscribe(
     data => {
       this.managerId = parseInt(data.message)
       sessionStorage.setItem('managerId', JSON.stringify(this.managerId));
