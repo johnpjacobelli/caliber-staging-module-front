@@ -18,6 +18,7 @@ export class ViewSwotComponent implements OnInit {
   swotAnalyses : Swot[] = [];
   index : number = 0;
   currentSwotAnalysis : Swot;
+  activeSwotIndex : number;
 
   constructor(private swotService : SwotService, 
               private router : Router,
@@ -28,6 +29,7 @@ export class ViewSwotComponent implements OnInit {
   
 
   ngOnInit(): void {
+    this.activeSwotIndex=0;
     this.pullSwotData();
 
   }
@@ -58,6 +60,7 @@ export class ViewSwotComponent implements OnInit {
       console.log(data);
 
       this.swotAnalyses = data;
+      this.currentSwotAnalysis = this.swotAnalyses[this.activeSwotIndex]
     })
   }
 
@@ -77,8 +80,12 @@ export class ViewSwotComponent implements OnInit {
   addItem(){
     const options : NgbModalOptions = {
       beforeDismiss: () => {
+        for (var i = 0; i < this.swotAnalyses.length; i++){
+          if (this.currentSwotAnalysis == this.swotAnalyses[i]){
+            this.activeSwotIndex = i;
+          }
+        }
         this.pullSwotData();
-        this.currentSwotAnalysis = null;
         return true;
       }
     }
