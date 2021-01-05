@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Associate } from '../../models/associate-model/associate.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BASE_URL } from './../../../environments/environment';
+import { BASE_URL } from './../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'

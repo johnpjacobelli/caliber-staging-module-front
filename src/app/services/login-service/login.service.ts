@@ -1,5 +1,5 @@
+import { BASE_URL } from './../../../environments/environment.prod';
 import { ClientMessage } from './../../models/client-message-model/client-message-model';
-import { BASE_URL } from './../../../environments/environment';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
