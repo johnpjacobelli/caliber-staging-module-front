@@ -25,24 +25,12 @@ const routes: Routes = [
     }
   },
   {path: 'swot',
-  component: SwotComponent,
-  canActivate: [AngularFireAuthGuard],
-    data: {
-      authGuardPipe: redirectUnauthorizedToLogin
-    }
+  component: SwotComponent
   },
   {path: 'view/:associateId',
-  component: ViewSwotComponent,
-  canActivate: [AngularFireAuthGuard],
-    data: {
-      authGuardPipe: redirectUnauthorizedToLogin
-    }
+  component: ViewSwotComponent
   },
-  {path: 'updateItem', component: UpdateItemComponent,
-  canActivate: [AngularFireAuthGuard],
-  data: {
-    authGuardPipe: redirectUnauthorizedToLogin
-  }},
+  {path: 'updateItem', component: UpdateItemComponent},
 
   {
     path: 'home',
