@@ -17,8 +17,7 @@ export const environment = {
   BASE_URL: `http://ec2-54-237-27-253.compute-1.amazonaws.com:8081/`
 };
 
-export const CALIBER_URL= `https://caliber2-mock.revaturelabs.com/mock`
-export const BASE_URL= `http://ec2-54-237-27-253.compute-1.amazonaws.com:8081/`
+
 
 /*
  * For easier debugging in development mode, you can import the following file
