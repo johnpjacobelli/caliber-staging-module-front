@@ -16,4 +16,4 @@ RUN npm run build --prod
 # Stage 2
 FROM nginx:1.17.1-alpine
 COPY --from=builder /app/dist/P3Angular /usr/share/nginx/html
-COPY --from=builder /nginx.conf /etc/nginx/conf.d/nginx.conf
+COPY --from=builder /app/nginx.conf /etc/nginx/conf.d/nginx.conf
