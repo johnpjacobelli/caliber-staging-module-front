@@ -11,7 +11,7 @@ RUN npm install
 
 # Add the app
 COPY . /app
-RUN npm run build --base-href /app/ --prod
+RUN npm run build --base-href /<project_name>/ --prod
 
 # Stage 2
 FROM nginx:1.17.1-alpine
