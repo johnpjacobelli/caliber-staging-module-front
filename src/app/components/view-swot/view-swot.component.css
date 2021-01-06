@@ -43,7 +43,7 @@ body{
 
 .left {
     background-color: #474C55;
-    height: 100vh;
+    height: 100%;
     width: 20%;
     -webkit-box-shadow: 4px 2px 5px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 4px 2px 5px 0px rgba(0, 0, 0, 0.75);

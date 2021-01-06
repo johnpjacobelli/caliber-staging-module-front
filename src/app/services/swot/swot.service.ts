@@ -13,14 +13,7 @@ import { environment } from 'src/environments/environment.prod';
 export class SwotService {
 
   httpOptions = {
-    headers: new HttpHeaders(
-      {
-        // 'Content-Type': 'application/json',
-        // 'Access-Control-Allow-Origin': '*/*',
-        // 'Access-Control-Allow-Methods': 'OPTIONS, HEAD, GET, POST, PUT, PATCH, DELETE',
-        // 'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding, X-Auth-Token, content-type',
-      }
-    )
+    headers: new HttpHeaders({})
   }
 
  
@@ -31,7 +24,6 @@ export class SwotService {
 
   addSwot(swotAnalysis: Swot): Observable<any> {
 
-    //let body = JSON.stringify(swotAnalysis)
     console.log(swotAnalysis)
     return this.http.post<any>(`${environment.BASE_URL}swot/create`, swotAnalysis, this.httpOptions)
       .pipe(

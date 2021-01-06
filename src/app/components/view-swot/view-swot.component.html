@@ -21,7 +21,7 @@
 <div id="display-box-info"  class = "row align-items-center justify-content-center" *ngIf="currentSwotAnalysis">
     <h5>SWOT Analysis Info:</h5>
     <div *ngFor="let swotItem of currentSwotAnalysis.analysisItems; first as isFirst;">
-        <p *ngIf="isFirst">Associate Id: {{currentSwotAnalysis.associate.id}}</p>
+        <p *ngIf="isFirst">Associate: {{currentSwotAnalysis.associate.firstName}} {{currentSwotAnalysis.associate.lastName}}</p>
         <p *ngIf="isFirst">Manager ID: {{currentSwotAnalysis.manager.id}}</p>
         <p *ngIf="isFirst">Created On:
             {{currentSwotAnalysis.createdOn | date:'short':'EST'}}</p>
@@ -31,7 +31,7 @@
 </div>
 
 
-<section class="Form my-4 mx-5 right">
+<section class="Form my-4 mx-5 right row align-items-center justify-content-center">
     <div class="container">
         <select id="selectSwot" [(ngModel)]="currentSwotAnalysis">
             <option *ngFor="let swotAnalysis of swotAnalyses;" [ngValue]="swotAnalysis">
@@ -52,7 +52,7 @@
                             <th>Item ID</th>
                             <th>Content</th>
                             <th>Type</th>
-                            <th></th>
+                            <th></th> <!-- Added to make the header full -->
                             <th></th>
                         </tr>
                     </thead>
