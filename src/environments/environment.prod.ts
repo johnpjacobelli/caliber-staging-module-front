@@ -1,3 +1,5 @@
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
+
 export const environment = {
   production: false,
   firebase: {
@@ -8,9 +10,9 @@ export const environment = {
     "messagingSenderId": "492701958610",
     "appId": "1:492701958610:web:4a30a1be93803701d3480b",
     "measurementId": "G-DP6XDH9DTW"
-  }
+  },
+  CALIBER_URL: `https://caliber2-mock.revaturelabs.com/mock`,
+  BASE_URL: `http://ec2-54-237-27-253.compute-1.amazonaws.com:8081/`
 };
 
-// export const URL = `http://ec2-54-237-27-253.compute-1.amazonaws.com:8080/`;
-export const CALIBER_URL = `https://caliber2-mock.revaturelabs.com/mock`;
-export const BASE_URL = `http://ec2-54-237-27-253.compute-1.amazonaws.com:8081/`;
+
