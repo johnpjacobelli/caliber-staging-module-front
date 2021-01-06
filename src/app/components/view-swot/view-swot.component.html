@@ -1,6 +1,6 @@
 <div class="float-left left">
     <a routerLink="/home">
-        <img src="/assets/img/rev-logo.png" class="img-fluid logo" alt="Revature Logo">
+        <img src="https://i.imgur.com/dYo5Z7w.png" class="img-fluid logo" alt="Revature Logo">
         <p id="homeLink">Return to Home</p>
     </a>
     <nav class="nav flex-column navbar">
@@ -21,10 +21,9 @@
 <div id="display-box-info"  class = "row align-items-center justify-content-center" *ngIf="currentSwotAnalysis">
     <h5>SWOT Analysis Info:</h5>
     <div *ngFor="let swotItem of currentSwotAnalysis.analysisItems; first as isFirst;">
-        <p *ngIf="isFirst">Id: {{currentSwotAnalysis.id}}</p>
         <p *ngIf="isFirst">Associate Id: {{currentSwotAnalysis.associate.id}}</p>
         <p *ngIf="isFirst">Manager ID: {{currentSwotAnalysis.manager.id}}</p>
-        <p *ngIf="isFirst">Created By:
+        <p *ngIf="isFirst">Created On:
             {{currentSwotAnalysis.createdOn | date:'short':'EST'}}</p>
         <p *ngIf="isFirst">Last Modified:
             {{currentSwotAnalysis.lastModified | date:'short':'EST'}}</p>
@@ -53,6 +52,8 @@
                             <th>Item ID</th>
                             <th>Content</th>
                             <th>Type</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
