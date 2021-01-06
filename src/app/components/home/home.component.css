@@ -2,6 +2,7 @@
     color:  #b6b1a8;
     margin: 0;
     padding: 0;
+    position: relative;
 }
 
 .logo {
@@ -16,6 +17,7 @@
     -moz-box-shadow: 4px 2px 5px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 4px 2px 5px 0px rgba(0, 0, 0, 0.75);
     padding: 20px;
+    position:absolute;
 }
 
 .title {
