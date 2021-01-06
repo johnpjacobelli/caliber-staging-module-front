@@ -1,7 +1,7 @@
 import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 
 export const environment = {
-  production: false,
+  production: true,
   firebase: {
     "apiKey": "AIzaSyC4sxZlT-McTildwtxa8LV1lj7ZQhzOrs0",
     "authDomain": "training-team-253916.firebaseapp.com",
