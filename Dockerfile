@@ -11,7 +11,7 @@ RUN npm install
 
 # Add the app
 COPY . /app
-RUN npm run build --prod
+RUN npm run build --prod -- --base-href='http://ec2-54-237-27-253.compute-1.amazonaws.com'
 
 # Stage 2
 FROM nginx:1.17.1-alpine
