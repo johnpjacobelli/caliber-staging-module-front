@@ -18,27 +18,23 @@ export class ViewAssociateComponent implements OnInit {
   newAssociates: Associate[];
   private associateSubject: BehaviorSubject<Associate>;
   public associate: Observable<Associate>;
-  testAssociate = new Associate(1, 'SF-1234', 'testEmail@email.com', 'test', 'tester', 14, 379, 'Training');
 
   activeId: number;
   managerId: number;
 
-
   private toggle = true;
 
-  constructor(private service: AssociateService, private modalService: NgbModal, private changeDetect: ChangeDetectorRef, private loginService: LoginService) {
+  constructor(private service: AssociateService, 
+              private modalService: NgbModal, 
+              private changeDetect: ChangeDetectorRef) {
     this.associateSubject = new BehaviorSubject<Associate>(JSON.parse(sessionStorage.getItem('currentUser')));
     this.associate = this.associateSubject.asObservable();
   }
 
   ngOnInit(): void {
-    console.log(this.associateValue.email);
     this.managerId = parseInt(sessionStorage.getItem('managerId'));
-    console.log("session: "+ this.managerId);
     this.getAllAssociates(this.managerId);
   }
-
-  
 
   public toggleAssociateView() {
 
