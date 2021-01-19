@@ -1,0 +1,154 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+body{
+    background: rgb(219, 226, 226);
+    
+}
+.row{
+    background: white;
+    border-radius: 30px;
+}
+/* img{
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+} */
+.btn1{
+    border: none;
+    padding: 5px 10px;
+    background-color: #f26926;
+    color: white;
+    border-radius: 10px;
+    transition: 0.4s ease-in-out;
+}
+.btn1:hover{
+    background-color: #b6b1a8;
+    /* commented out because this line was affected the margins of other elements near this button -AK */
+    /* border: 1px solid black; */
+    text-decoration: underline;
+}
+.btn1:focus{
+    border-color: #f26926;
+    box-shadow: 0 0 0 0.2rem rgba(243, 156, 113, .40);
+}
+.modal-content {
+    background-color: none !important;
+}
+
+.logo {
+    object-fit: contain;
+}
+
+.left {
+    background-color: #474C55;
+    height: 100%;
+    width: 20%;
+    -webkit-box-shadow: 4px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 4px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 4px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    padding: 20px;
+}
+
+.title {
+    margin: 20px auto;
+    font-size: 1.2rem;
+    font-weight: 100;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.right {
+    height: 100vh;
+    width: 80%;
+    text-align: center;
+    padding: 50px;
+    overflow: auto;
+}
+
+.left::after,
+.right::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.swot-title{
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    color: silver;
+    font-size: 1.2rem;
+}
+
+.nav, .title {
+    color: #b6b1a8;
+}
+#display-box-info{
+    background-color:#474C55;
+    border: 5px solid #f26926;
+    width: 250px;
+    font-size:0.8rem;
+    border-radius: 20px;
+    margin: 10px auto;
+    padding: 10px;
+    color: silver;
+
+}
+
+#selectSwot{
+    padding:10px;
+}
+
+#homeLink{
+    color: #f26926;
+    margin-top: 5px;
+    text-align: center;
+}
+
+select {
+    
+    /* margin: 50px 0px 5px 40px; */
+    margin: 20px auto;
+}
+
+section {
+    margin: 0px !important;
+}
+
+
+/* Added animation CSS code STARTS here -AK */
+.navbar{
+    animation: fadeInLeft;
+    animation-duration: 2.5s;
+}
+
+#data-row{
+    animation: flipInX;
+    animation-duration: 3s;
+}
+/* Added animation ENDS here -AK */
+
+.toggle-btn:focus{
+    border-color: #f26926;
+    box-shadow: 0 0 0 0.2rem rgba(243, 156, 113, .40);
+}
+
+.toggle-btn {
+    padding: 10px 20px;
+    background-color: #f26926;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: 0.4s ease-in-out;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.toggle-btn:hover {
+    background-color: #b6b1a8;
+    text-decoration: underline;
+}
+
+
