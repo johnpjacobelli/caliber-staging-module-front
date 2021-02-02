@@ -15,60 +15,78 @@ import { AddItemComponent } from '../add-item/add-item.component';
 })
 export class ViewSwotComponent implements OnInit {
 
-  swotAnalyses : Swot[] = [];
-  index : number = 0;
-  currentSwotAnalysis : Swot;
-  activeSwotIndex : number;
+  swotAnalyses: Swot[] = [];
+  index: number = 0;
+  currentSwotAnalysis: Swot;
+  currentStrengths: SwotItem[] = [];
+  currentWeak: SwotItem[] = [];
+  currentOpp: SwotItem[] = [];
+  currentThreat: SwotItem[] = [];
+  activeSwotIndex: number;
 
-  constructor(private swotService : SwotService, 
-              private router : Router,
-              private modalService : NgbModal,
-              private route : ActivatedRoute) { 
+  constructor(private swotService: SwotService,
+    private router: Router,
+    private modalService: NgbModal,
+    private route: ActivatedRoute) {
 
-              }
-  
+  }
+
 
   ngOnInit(): void {
-    this.activeSwotIndex=0;
+    this.activeSwotIndex = 0;
     this.pullSwotData();
 
   }
 
   // Opens Update as a modal page.
-  openUpdatePage(swotItem: SwotItem, swotAnalysisId: number){
+  openUpdatePage(swotItem: SwotItem, swotAnalysisId: number) {
     swotItem.swotAnalysisId = swotAnalysisId;
     const modalRef = this.modalService.open(UpdateItemComponent);
     modalRef.componentInstance.name = 'UpdateSwot';
     modalRef.componentInstance.passedSwotItem = swotItem;
   }
 
-  delete(swotItemId : number){
+  delete(swotItemId: number) {
     this.swotService.deleteItem(swotItemId)
-      .subscribe((data:any)=>{
+      .subscribe((data: any) => {
         console.log(data);
         alert(`${data.message}`);
       })
     this.currentSwotAnalysis.analysisItems = this.currentSwotAnalysis.analysisItems.filter(swotItem => swotItem.id != swotItemId);
   }
 
-  pullSwotData(){
+  pullSwotData() {
     const associateId = +this.route.snapshot.paramMap.get('associateId')!.valueOf();
     console.log(associateId)
     this.swotService.getSwotByAssociatedId(associateId)
 
-    .subscribe((data:any)=>{
-      console.log(data);
-
-      this.swotAnalyses = data;
-      this.currentSwotAnalysis = this.swotAnalyses[this.activeSwotIndex]
-    })
+      .subscribe((data: any) => {
+        console.log(data);
+        this.currentStrengths = [];
+        this.currentWeak = [];
+        this.currentOpp = [];
+        this.currentThreat = [];
+        this.swotAnalyses = data;
+        this.currentSwotAnalysis = this.swotAnalyses[this.activeSwotIndex]
+        for (let temp of this.currentSwotAnalysis.analysisItems) {
+          if (temp.type === 'STRENGTH') {
+            this.currentStrengths.push(temp);
+          } else if (temp.type === 'WEAKNESS') {
+            this.currentWeak.push(temp);
+          } else if (temp.type === 'OPPORTUNITY') {
+            this.currentOpp.push(temp);
+          } else {
+            this.currentThreat.push(temp);
+          }
+        }
+      })
   }
 
-  addItem(){
-    const options : NgbModalOptions = {
+  addItem() {
+    const options: NgbModalOptions = {
       beforeDismiss: () => {
-        for (var i = 0; i < this.swotAnalyses.length; i++){
-          if (this.currentSwotAnalysis == this.swotAnalyses[i]){
+        for (var i = 0; i < this.swotAnalyses.length; i++) {
+          if (this.currentSwotAnalysis == this.swotAnalyses[i]) {
             this.activeSwotIndex = i;
           }
         }
@@ -76,9 +94,9 @@ export class ViewSwotComponent implements OnInit {
         return true;
       }
     }
-    
+
     const modalRef = this.modalService.open(AddItemComponent, options);
-    
+
     modalRef.componentInstance.name = 'AddItem';
     modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
   }
