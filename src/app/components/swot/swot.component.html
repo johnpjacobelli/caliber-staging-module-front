@@ -9,12 +9,12 @@
                                 [(ngModel)]="passedId" id="associateId" name="associateId" required>
                         </div>
                     </div>
-                    <div class="form-row">
+                    <!-- <div class="form-row">     This adds a name to a swot item, not the swot as a whole
                         <div class="col-lg-12">
                             <input type="text" placeholder="Swot Name" class="form-control my-2 p-2"
                                 [(ngModel)]="swotName" id="swotName" name="swotName" required>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-row">
                         <div class="col-lg-12">
                             <select [(ngModel)]="type" name="type" id="type" class="form-control my-2 p-1" required>
@@ -62,6 +62,11 @@
                 </div>
 
                 <div class="form-row" *ngIf="hasData">
+                    <div>
+                        <input type="text" placeholder="Enter SWOT Description" class="form-control my-2 p-2"
+                            [(ngModel)]="swotName" id="swotName" name="swotName" required/>
+
+                    </div>
                     <div class="col-lg-12">
                         <button (click)="addSwot()" type="submit" class="btn1 mt-3 mb-5" value="promote">SUBMIT</button>
                     </div>
