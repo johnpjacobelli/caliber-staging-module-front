@@ -14,7 +14,7 @@ import { NgForm } from '@angular/forms';
 export class UpdateItemComponent implements OnInit {
 
   swot : Swot = new Swot();
-  swotItem : SwotItem = new SwotItem(0,"","");
+  swotItem : SwotItem = new SwotItem(0,"","", "");
   myImage: string = "assets/img/swot1.png";
   @Input() passedSwotItem: SwotItem;
 
@@ -27,7 +27,7 @@ export class UpdateItemComponent implements OnInit {
     this.swotItem = this.passedSwotItem;
   }
 
-  
+
   onSubmit(itemForm: NgForm) {
     console.log(itemForm)
     console.log(itemForm.value)
