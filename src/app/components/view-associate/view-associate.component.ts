@@ -105,11 +105,8 @@ export class ViewAssociateComponent implements OnInit {
   }
 
   updateBatch(): void {
-
     const modalRef = this.modalService.open(UpdateAssociateComponent);
     modalRef.componentInstance.associateId = this.activeId;
     modalRef.componentInstance.curBatchId = this.batchId;
-
   }
-
 }
