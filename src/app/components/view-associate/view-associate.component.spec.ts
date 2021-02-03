@@ -10,7 +10,7 @@ import { AssociateService } from 'src/app/services/associate/associate.service';
 
 import { ViewAssociateComponent } from './view-associate.component';
 
-fdescribe('ViewAssociateComponent', () => {
+describe('ViewAssociateComponent', () => {
   let mockedJob = [
     {
       batch: 1,

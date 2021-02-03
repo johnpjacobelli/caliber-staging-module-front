@@ -9,7 +9,7 @@ import { UpdateBatchPayload } from '../view-associate/update-batch-payload';
 
 import { UpdateAssociateComponent } from './update-associate.component';
 
-describe('UpdateAssociateComponent', () => {
+fdescribe('UpdateAssociateComponent', () => {
  
   class MockService {
     updateBatch(updatePayload: UpdateBatchPayload) { }
@@ -51,11 +51,9 @@ describe('UpdateAssociateComponent', () => {
     let pageTitle = fixture.debugElement.query(By.css("h1")).nativeElement;
     let assocId = fixture.debugElement.query(By.css("#assocId")).nativeElement;
     let batchId = fixture.debugElement.query(By.css("#batchId")).nativeElement;
-    let label = fixture.debugElement.query(By.css("label")).nativeElement;
     expect(pageTitle.innerHTML).toBe("Update Batch");
     expect(assocId.innerHTML).toContain("Associate ID:");
     expect(batchId.innerHTML).toContain("Current Batch ID:");
-    expect(label.innerHTML).toContain("Input New Batch ID:");
   });
 
   it('should call the onSubmit() method', waitForAsync(()=>{
