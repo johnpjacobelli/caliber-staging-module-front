@@ -120,13 +120,13 @@ section {
 
 /* Added animation CSS code STARTS here -AK */
 .navbar{
-    animation: fadeInLeft;
-    animation-duration: 2.5s;
+    /* animation: fadeInLeft;
+    animation-duration: 2.5s; */
 }
 
 #data-row{
-    animation: flipInX;
-    animation-duration: 3s;
+    /* animation: flipInX;
+    animation-duration: 3s; */
 }
 /* Added animation ENDS here -AK */
 

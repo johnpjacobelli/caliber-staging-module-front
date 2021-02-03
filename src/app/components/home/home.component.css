@@ -56,10 +56,10 @@
     border: none;
     border-radius: 10px;
     transition: 0.4s ease-in-out;
-    animation: fadeInUp;
-    /* referring directly to the animation's @keyframe declaration */
+    /* animation: fadeInUp;
+     referring directly to the animation's @keyframe declaration 
     animation-duration: 3s;
-    /* don't forget to set a duration! */
+    don't forget to set a duration! */
     position: fixed;
     bottom: 20px;
 }
@@ -81,8 +81,8 @@
 }
 
  .navbar{
-    animation: fadeInLeft;
-    animation-duration: 2.5s;
+    /*animation: fadeInLeft;
+    animation-duration: 2.5s;*/
 }
 
 /*Media Breakpoints*/
