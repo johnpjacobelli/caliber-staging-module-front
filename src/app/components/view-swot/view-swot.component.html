@@ -38,6 +38,63 @@
                 {{swotAnalysis.createdOn | date:'short':'EST'}}</option>
         </select>
     </div>
+<<<<<<< Updated upstream
+=======
+
+    <table *ngIf="currentSwotAnalysis" id="swot-table">
+        <tr>
+            <td>
+                <div class="card" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Strength</h5>
+                        <ul *ngFor="let swotItem of currentStrengths;">
+                            <li ><a href="#" (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.content}}</a></li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="card" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Weakness</h5>
+                        <ul>
+                            <li *ngFor="let swotItem of currentWeak;">{{swotItem.content}}</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="card" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Opportunity</h5>
+                        <ul>
+                            <li *ngFor="let swotItem of currentOpp;">{{swotItem.content}}</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="col-sm-4 scroll">
+                    <div class="card" style="width: 20rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Threat</h5>
+                            <ul>
+                                <li *ngFor="let swotItem of currentThreat;">{{swotItem.content}}</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+>>>>>>> Stashed changes
     <div class="container">
         <div class="row no-gutters">
             <div class="table-responsive px-5 pt-5">
