@@ -50,7 +50,7 @@
                         <ul *ngFor="let swotItem of currentStrengths;">
                             <li ><a href="#" (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.content}}</a></li>
                         </ul>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <button class="btn toggle-btn" (click)="addItem()">+</button>
                     </div>
                 </div>
             </td>
@@ -61,7 +61,7 @@
                         <ul>
                             <li *ngFor="let swotItem of currentWeak;">{{swotItem.content}}</li>
                         </ul>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <button class="btn toggle-btn" (click)="addItem()">+</button>
                     </div>
                 </div>
             </td>
@@ -74,7 +74,7 @@
                         <ul>
                             <li *ngFor="let swotItem of currentOpp;">{{swotItem.content}}</li>
                         </ul>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <button class="btn toggle-btn" (click)="addItem()">+</button>
                     </div>
                 </div>
             </td>
@@ -86,7 +86,7 @@
                             <ul>
                                 <li *ngFor="let swotItem of currentThreat;">{{swotItem.content}}</li>
                             </ul>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <button class="btn toggle-btn" (click)="addItem()">+</button>
                         </div>
                     </div>
                 </div>
