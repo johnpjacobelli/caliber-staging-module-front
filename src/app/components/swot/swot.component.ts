@@ -31,7 +31,6 @@ export class SwotComponent implements OnInit {
 
   constructor(private swotService: SwotService,private loginService:LoginService, private modalService: NgbModal) { }
   ngOnInit(): void {
-    console.log(this.passedId);
     this.associateId = this.passedId;
   }
 
@@ -58,17 +57,14 @@ export class SwotComponent implements OnInit {
 
 
   addSwot(): void{
-    console.log("add swot")
-    console.log(this.analysisItems)
     this.swotAnalysis.analysisItems = this.analysisItems;
     this.swotAnalysis.associate = new Associate(this.associateId); //associate model constructor needs to be adjusted
-    this.swotAnalysis.manager = new Manager(this.loginService.managerId);
     this.swotAnalysis.description = this.description;
     console.log(this.analysisItems)
     console.log(this.swotAnalysis)
+    this.swotAnalysis.manager = new Manager(Number(sessionStorage.getItem('managerId')));
      this.swotService.addSwot(this.swotAnalysis)
        .subscribe(data => {
-         console.log(data);
          alert(`${data.message}`);
        });
     this.modalService.dismissAll();
