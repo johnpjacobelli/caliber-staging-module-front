@@ -18,11 +18,10 @@
     </nav>
 </div>
 
-<div id="display-box-info" class="row align-items-center justify-content-center" *ngIf="currentSwotAnalysis">
+<div id="display-box-info"  class = "row align-items-center justify-content-center" *ngIf="currentSwotAnalysis">
     <h5>SWOT Analysis Info:</h5>
     <div *ngFor="let swotItem of currentSwotAnalysis.analysisItems; first as isFirst;">
-        <p *ngIf="isFirst">Associate: {{currentSwotAnalysis.associate.firstName}}
-            {{currentSwotAnalysis.associate.lastName}}</p>
+        <p *ngIf="isFirst">Associate: {{currentSwotAnalysis.associate.firstName}} {{currentSwotAnalysis.associate.lastName}}</p>
         <p *ngIf="isFirst">Manager ID: {{currentSwotAnalysis.manager.id}}</p>
         <p *ngIf="isFirst">Created On:
             {{currentSwotAnalysis.createdOn | date:'short':'EST'}}</p>
@@ -32,9 +31,6 @@
 </div>
 
 
-
-
-
 <section class="Form my-4 mx-5 right row align-items-center justify-content-center">
     <div class="container">
         <select id="selectSwot" [(ngModel)]="currentSwotAnalysis">
@@ -42,6 +38,8 @@
                 {{swotAnalysis.createdOn | date:'short':'EST'}}</option>
         </select>
     </div>
+<<<<<<< Updated upstream
+=======
 
     <table *ngIf="currentSwotAnalysis" id="swot-table">
         <tr>
@@ -49,8 +47,8 @@
                 <div class="card" style="width: 20rem;">
                     <div class="card-body">
                         <h5 class="card-title">Strength</h5>
-                        <ul>
-                            <li *ngFor="let swotItem of currentStrengths;">{{swotItem.content}}</li>
+                        <ul *ngFor="let swotItem of currentStrengths;">
+                            <li ><a href="#" (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.content}}</a></li>
                         </ul>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
@@ -96,6 +94,7 @@
         </tr>
     </table>
 
+>>>>>>> Stashed changes
     <div class="container">
         <div class="row no-gutters">
             <div class="table-responsive px-5 pt-5">
