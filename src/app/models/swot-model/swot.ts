@@ -10,6 +10,7 @@ export class Swot {
     manager: Manager;
     createdOn: Date;
     lastModified: Date; 
+    description: string;
 
     analysisItems: SwotItem[];
 

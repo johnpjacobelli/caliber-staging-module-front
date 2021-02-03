@@ -20,7 +20,7 @@ export class SwotComponent implements OnInit {
   content : string;
   type : string = "";
   associateId : number;
-  swotName: string;
+  description: string;
   i : number = 0;
   hasData : boolean = false;
   @Input() passedId: number;
@@ -36,7 +36,7 @@ export class SwotComponent implements OnInit {
 
   //collects data from form and creates item array in the user's view (PUSH METHOD)
   onSubmit(signInForm: NgForm){
-   let item : SwotItem = new SwotItem(0, this.content, this.type, this.swotName, this.associateId);
+   let item : SwotItem = new SwotItem(0, this.content, this.type, this.associateId);
    this.analysisItems.push(item);
    console.log(this.analysisItems);
     //  this.swotService.addSwot(this.swotAnalysis)
@@ -59,9 +59,10 @@ export class SwotComponent implements OnInit {
   addSwot(): void{
     this.swotAnalysis.analysisItems = this.analysisItems;
     this.swotAnalysis.associate = new Associate(this.associateId); //associate model constructor needs to be adjusted
-
+    this.swotAnalysis.description = this.description;
+    console.log(this.analysisItems)
+    console.log(this.swotAnalysis)
     this.swotAnalysis.manager = new Manager(Number(sessionStorage.getItem('managerId')));
-    console.log("This is what we are looking for: ", sessionStorage.getItem('managerId'));
      this.swotService.addSwot(this.swotAnalysis)
        .subscribe(data => {
          alert(`${data.message}`);
