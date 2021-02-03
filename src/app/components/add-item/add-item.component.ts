@@ -14,7 +14,7 @@ export class AddItemComponent implements OnInit {
 
   swotItem : SwotItem;
   @Input() parentSwot : Swot;
-  
+
   constructor(private swotService : SwotService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
