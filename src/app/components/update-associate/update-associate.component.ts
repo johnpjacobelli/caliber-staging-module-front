@@ -40,6 +40,7 @@ export class UpdateAssociateComponent implements OnInit {
     .subscribe((data: any) => {
       console.log(data);
     });
+    location.reload();
   }
 
 }
