@@ -50,6 +50,7 @@
                     <thead>
                         <tr>
                             <th>Item ID</th>
+                            <th>description</th>
                             <th>Content</th>
                             <th>Type</th>
                             <th></th> <!-- Added to make the header full -->
@@ -60,6 +61,7 @@
                         <ng-container *ngIf="currentSwotAnalysis">
                             <tr *ngFor="let swotItem of currentSwotAnalysis.analysisItems;" id="data-row">
                                 <td>{{swotItem.id}}</td>
+                                <td>{{swotItem.description}}</td>
                                 <td>{{swotItem.content}}</td>
                                 <td>{{swotItem.type}}</td>
                                 <td><button class="btn toggle-btn"

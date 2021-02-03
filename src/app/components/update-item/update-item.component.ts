@@ -14,7 +14,7 @@ import { NgForm } from '@angular/forms';
 export class UpdateItemComponent implements OnInit {
 
   swot : Swot = new Swot();
-  swotItem : SwotItem = new SwotItem(0,"","", "");
+  swotItem : SwotItem = new SwotItem(0,"","","");
   myImage: string = "assets/img/swot1.png";
   @Input() passedSwotItem: SwotItem;
 
@@ -23,7 +23,7 @@ export class UpdateItemComponent implements OnInit {
               private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    console.log(this.passedSwotItem);
+    console.log(this.passedSwotItem, 'update item component');
     this.swotItem = this.passedSwotItem;
   }
 

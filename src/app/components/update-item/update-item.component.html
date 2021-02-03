@@ -4,8 +4,8 @@
                 <h1 class="font-weight-bold py-3">Update SWOT Item</h1>
                 <form (ngSubmit)="onSubmit(itemForm)" #itemForm="ngForm">
                     <div class="form-row">
-                        <div class="col-lg-12">                            
-                            <input type="text" class="form-control my-2 p-2" 
+                        <div class="col-lg-12">
+                            <input type="text" class="form-control my-2 p-2"
                             [(ngModel)]="swotItem.id" id="id" name="id" readonly required>
                         </div>
                     </div>
@@ -19,6 +19,12 @@
                                 <option value="OPPORTUNITY">Opportunity</option>
                                 <option value="THREAT">Threat</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-12">
+                            <input type="text" placeholder="description" class="form-control my-2 p-2"
+                                [(ngModel)]="swotItem.description" id="description" name="description" required>
                         </div>
                     </div>
                     <div class="form-row">
