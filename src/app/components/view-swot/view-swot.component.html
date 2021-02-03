@@ -18,11 +18,10 @@
     </nav>
 </div>
 
-<div id="display-box-info" class="row align-items-center justify-content-center" *ngIf="currentSwotAnalysis">
+<div id="display-box-info"  class = "row align-items-center justify-content-center" *ngIf="currentSwotAnalysis">
     <h5>SWOT Analysis Info:</h5>
     <div *ngFor="let swotItem of currentSwotAnalysis.analysisItems; first as isFirst;">
-        <p *ngIf="isFirst">Associate: {{currentSwotAnalysis.associate.firstName}}
-            {{currentSwotAnalysis.associate.lastName}}</p>
+        <p *ngIf="isFirst">Associate: {{currentSwotAnalysis.associate.firstName}} {{currentSwotAnalysis.associate.lastName}}</p>
         <p *ngIf="isFirst">Manager ID: {{currentSwotAnalysis.manager.id}}</p>
         <p *ngIf="isFirst">Created On:
             {{currentSwotAnalysis.createdOn | date:'short':'EST'}}</p>
@@ -30,9 +29,6 @@
             {{currentSwotAnalysis.lastModified | date:'short':'EST'}}</p>
     </div>
 </div>
-
-
-
 
 
 <section class="Form my-4 mx-5 right row align-items-center justify-content-center">
@@ -43,25 +39,34 @@
         </select>
     </div>
 
+
     <table *ngIf="currentSwotAnalysis" id="swot-table">
         <tr>
             <td>
                 <div class="card" style="width: 20rem;">
                     <div class="card-body">
+
                         <h5 class="card-title">Strength</h5>
-                        <ul>
-                            <li *ngFor="let swotItem of currentStrengths;">{{swotItem.content}}</li>
+                        <ul *ngFor="let swotItem of currentStrengths;">
+                            <li ><button class="btn update" (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.content}}</button></li>
+
                         </ul>
-                        <button class="btn toggle-btn" (click)="addItem()">+</button>
+                        <form (ngSubmit)="onSubmit(itemForm)" #itemForm="ngForm">
+                            <input type="hidden" name="type" value="STRENGTH">
+                            <button class="btn toggle-btn" (click)="addItem()">+</button>
+                        </form>
                     </div>
                 </div>
             </td>
             <td>
                 <div class="card" style="width: 20rem;">
                     <div class="card-body">
+
+
                         <h5 class="card-title">Weakness</h5>
-                        <ul>
-                            <li *ngFor="let swotItem of currentWeak;">{{swotItem.content}}</li>
+                        <ul *ngFor="let swotItem of currentWeak;">
+                            <li ><button class="btn update" (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.content}}</button>{{swotItem.content}}</li>
+
                         </ul>
                         <button class="btn toggle-btn" (click)="addItem()">+</button>
                     </div>
@@ -72,9 +77,11 @@
             <td>
                 <div class="card" style="width: 20rem;">
                     <div class="card-body">
+
+
                         <h5 class="card-title">Opportunity</h5>
-                        <ul>
-                            <li *ngFor="let swotItem of currentOpp;">{{swotItem.content}}</li>
+                        <ul *ngFor="let swotItem of currentOpp;">
+                            <li><button class="btn update" (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.content}}</button></li>
                         </ul>
                         <button class="btn toggle-btn" (click)="addItem()">+</button>
                     </div>
@@ -84,9 +91,11 @@
                 <div class="col-sm-4 scroll">
                     <div class="card" style="width: 20rem;">
                         <div class="card-body">
+
                             <h5 class="card-title">Threat</h5>
-                            <ul>
-                                <li *ngFor="let swotItem of currentThreat;">{{swotItem.content}}</li>
+                            <ul *ngFor="let swotItem of currentThreat;">
+                                <li><button class="btn update" (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.content}}</button></li>
+
                             </ul>
                             <button class="btn toggle-btn" (click)="addItem()">+</button>
                         </div>
@@ -95,6 +104,7 @@
             </td>
         </tr>
     </table>
+
 
     <div class="container">
         <div class="row no-gutters">

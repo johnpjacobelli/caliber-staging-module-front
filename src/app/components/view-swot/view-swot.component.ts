@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { Swot } from 'src/app/models/swot-model/swot';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AddItemComponent } from '../add-item/add-item.component';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class ViewSwotComponent implements OnInit {
   swotAnalyses: Swot[] = [];
   index: number = 0;
   currentSwotAnalysis: Swot;
+  type: string = "";
   currentStrengths: SwotItem[] = [];
   currentWeak: SwotItem[] = [];
   currentOpp: SwotItem[] = [];
@@ -100,6 +102,10 @@ export class ViewSwotComponent implements OnInit {
     modalRef.componentInstance.name = 'AddItem';
     modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
     modalRef.componentInstance
+  }
+  
+  onSubmit(itemForm: NgForm) {
+    console.log(itemForm.value);
   }
 
 }
