@@ -61,7 +61,9 @@ export class SwotComponent implements OnInit {
     console.log(this.analysisItems)
     this.swotAnalysis.analysisItems = this.analysisItems;
     this.swotAnalysis.associate = new Associate(this.associateId); //associate model constructor needs to be adjusted
-    this.swotAnalysis.manager = new Manager(this.loginService.managerId); 
+    this.swotAnalysis.manager = new Manager(Number(sessionStorage.getItem('managerId')));
+    console.log("This is what we are looking for: ", sessionStorage.getItem('managerId'));
+    console.log(this.swotAnalysis.manager); 
     console.log(this.analysisItems)
     console.log(this.swotAnalysis)
      this.swotService.addSwot(this.swotAnalysis)
