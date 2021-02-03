@@ -99,6 +99,7 @@ export class ViewSwotComponent implements OnInit {
 
     modalRef.componentInstance.name = 'AddItem';
     modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
+    modalRef.componentInstance
   }
 
 }
