@@ -38,8 +38,7 @@
                 {{swotAnalysis.createdOn | date:'short':'EST'}}</option>
         </select>
     </div>
-<<<<<<< Updated upstream
-=======
+
 
     <table *ngIf="currentSwotAnalysis" id="swot-table">
         <tr>
@@ -48,7 +47,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Strength</h5>
                         <ul *ngFor="let swotItem of currentStrengths;">
-                            <li ><a href="#" (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.content}}</a></li>
+                            <li ><button class="btn update" (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.content}}</button></li>
                         </ul>
                         <button class="btn toggle-btn" (click)="addItem()">+</button>
                     </div>
@@ -94,7 +93,7 @@
         </tr>
     </table>
 
->>>>>>> Stashed changes
+
     <div class="container">
         <div class="row no-gutters">
             <div class="table-responsive px-5 pt-5">
