@@ -16,6 +16,7 @@ export class UpdateAssociateComponent implements OnInit {
   curBatchId!: number;
   newBatchId!: number;
   updatePayload!: UpdateBatchPayload;
+  formModel: any;
 
 
   constructor(private modalService: NgbModal, private formBuild: FormBuilder, private assocService: AssociateService) { }
@@ -23,7 +24,12 @@ export class UpdateAssociateComponent implements OnInit {
   ngOnInit(): void {
     this.updateForm = this.formBuild.group({
       inputedBatchId: ['', [Validators.required]]
+
     })
+    this.updatePayload = {
+      associate_id:0,
+      batch_id:0
+    }
   }
 
   onSubmit(): void {
