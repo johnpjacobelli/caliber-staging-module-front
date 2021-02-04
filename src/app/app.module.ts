@@ -1,6 +1,8 @@
 import { SwotComponent } from './components/swot/swot.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -38,7 +40,10 @@ import { UpdateAssociateComponent } from './components/update-associate/update-a
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
+    
   ],
   providers: [ {
     provide: HTTP_INTERCEPTORS, useClass: CorsInterceptor, multi: true 
