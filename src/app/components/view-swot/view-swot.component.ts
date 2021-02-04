@@ -84,7 +84,7 @@ export class ViewSwotComponent implements OnInit {
       })
   }
 
-  addItem() {
+  addItemStrength() {
     const options: NgbModalOptions = {
       beforeDismiss: () => {
         for (var i = 0; i < this.swotAnalyses.length; i++) {
@@ -96,15 +96,81 @@ export class ViewSwotComponent implements OnInit {
         return true;
       }
     }
+    this.type = "STRENGTH";
 
     const modalRef = this.modalService.open(AddItemComponent, options);
 
     modalRef.componentInstance.name = 'AddItem';
     modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
+    modalRef.componentInstance.type = this.type;
   }
-  
-  onSubmit(itemForm: NgForm) {
-    console.log(itemForm.value);
+
+  addItemWeak() {
+    const options: NgbModalOptions = {
+      beforeDismiss: () => {
+        for (var i = 0; i < this.swotAnalyses.length; i++) {
+          if (this.currentSwotAnalysis == this.swotAnalyses[i]) {
+            this.activeSwotIndex = i;
+          }
+        }
+        this.pullSwotData();
+        return true;
+      }
+    }
+    this.type = "WEAKNESS";
+
+    const modalRef = this.modalService.open(AddItemComponent, options);
+
+    modalRef.componentInstance.name = 'AddItem';
+    modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
+    modalRef.componentInstance.type = this.type;
   }
+
+  addItemOpp() {
+    const options: NgbModalOptions = {
+      beforeDismiss: () => {
+        for (var i = 0; i < this.swotAnalyses.length; i++) {
+          if (this.currentSwotAnalysis == this.swotAnalyses[i]) {
+            this.activeSwotIndex = i;
+          }
+        }
+        this.pullSwotData();
+        return true;
+      }
+    }
+    this.type = "OPPORTUNITY";
+
+    const modalRef = this.modalService.open(AddItemComponent, options);
+
+    modalRef.componentInstance.name = 'AddItem';
+    modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
+    modalRef.componentInstance.type = this.type;
+  }
+
+  addItemThreat() {
+    const options: NgbModalOptions = {
+      beforeDismiss: () => {
+        for (var i = 0; i < this.swotAnalyses.length; i++) {
+          if (this.currentSwotAnalysis == this.swotAnalyses[i]) {
+            this.activeSwotIndex = i;
+          }
+        }
+        this.pullSwotData();
+        return true;
+      }
+    }
+    this.type = "THREAT";
+
+    const modalRef = this.modalService.open(AddItemComponent, options);
+
+    modalRef.componentInstance.name = 'AddItem';
+    modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
+    modalRef.componentInstance.type = this.type;
+  }
+
+  // onSubmit(itemForm: NgForm) {
+  //   console.log(itemForm.value);
+  //   console.log(this.type);
+  // }
 
 }
