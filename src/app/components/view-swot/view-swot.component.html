@@ -35,7 +35,7 @@
     <div class="container">
         <select id="selectSwot" [(ngModel)]="currentSwotAnalysis">
             <option *ngFor="let swotAnalysis of swotAnalyses;" [ngValue]="swotAnalysis">
-                {{swotAnalysis.description}}</option>
+                {{swotAnalysis.description}} {{swotAnalysis.createdOn | date:'short':'EST'}}</option>
         </select>
     </div>
 
