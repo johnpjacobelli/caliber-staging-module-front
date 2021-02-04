@@ -164,11 +164,11 @@ section {
 /* Cards diplay for 4 blocks */
 
 .card{
-    height: 170px;
+    height: 250px;
     text-align: center;
     overflow-y: auto;
 
-    margin: 2%;
+    margin-bottom: 5%;
 }
 
 .card::-webkit-scrollbar {
@@ -183,6 +183,10 @@ section {
     background-color: #b8b3aa;
     /* outline: 1px solid slategrey; */
     border-radius: 10px;
+}
+
+#swot-table {
+    margin: auto;
 }
 
 #swot-table td {
