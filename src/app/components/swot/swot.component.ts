@@ -19,7 +19,7 @@ export class SwotComponent implements OnInit {
   swotAnalysis = new Swot();
   content : string;
   type : string = "";
-  comment: string = "";
+  note: string = "";
   associateId : number;
   description: string;
   i : number = 0;
@@ -37,7 +37,7 @@ export class SwotComponent implements OnInit {
 
   //collects data from form and creates item array in the user's view (PUSH METHOD)
   onSubmit(signInForm: NgForm){
-   let item : SwotItem = new SwotItem(0, this.content, this.type, this.comment, this.associateId);
+   let item : SwotItem = new SwotItem(0, this.content, this.type, this.note, this.associateId);
    this.analysisItems.push(item);
    console.log(this.analysisItems);
     //  this.swotService.addSwot(this.swotAnalysis)
