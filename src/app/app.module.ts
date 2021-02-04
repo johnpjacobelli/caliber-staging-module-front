@@ -20,6 +20,7 @@ import { ViewSwotComponent } from './components/view-swot/view-swot.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { CorsInterceptor } from './services/interceptor/cors.interceptor';
 import { UpdateAssociateComponent } from './components/update-associate/update-associate.component';
+import { ToastMessageComponent } from './components/toast-message/toast-message.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { UpdateAssociateComponent } from './components/update-associate/update-a
     UpdateItemComponent,
     AddItemComponent,
     UpdateAssociateComponent,
+    ToastMessageComponent,
   ],
   imports: [
     BrowserModule,
