@@ -69,7 +69,6 @@ ul {
     width: 80%;
     text-align: center;
     padding: 50px;
-    overflow: auto;
 }
 
 .left::after,
@@ -142,7 +141,7 @@ section {
 }
 
 .toggle-btn {
-    padding: 10px 20px;
+    padding: 5px 15px;
     background-color: #f26926;
     color: white;
     border: none;
@@ -154,6 +153,9 @@ section {
 }
 
 .circle-btn {
+    position: absolute;
+    bottom: 0px;
+    right: 20px;
     border-radius: 50%;
 }
 
@@ -163,12 +165,21 @@ section {
 }
 /* Cards diplay for 4 blocks */
 
-.card{
-    height: 170px;
-    text-align: center;
-    overflow-y: auto;
 
-    margin: 2%;
+.card{
+    height: 250px;
+    text-align: center;
+    /* overflow-y: auto; */
+    position: relative;
+    margin: 10px;
+}
+.card-title{
+    background-color: transparent;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+.card-body{
+    position: relative;
+    overflow-y: auto;
 }
 
 .card::-webkit-scrollbar {
@@ -185,9 +196,15 @@ section {
     border-radius: 10px;
 }
 
+#swot-table{
+    margin: auto;
+    position: relative;
+}
+
 #swot-table td {
     width: 340px;
 }
+
 
 .update {
     background: none!important;
