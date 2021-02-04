@@ -17,7 +17,7 @@ import { Manager } from 'src/app/models/manager-model/manager';
 export class SwotComponent implements OnInit {
   myImage: string = "assets/img/swot1.png";
   swotAnalysis = new Swot();
-  content : string;
+  name : string;
   type : string = "";
   note: string = "";
   associateId : number;
@@ -37,7 +37,7 @@ export class SwotComponent implements OnInit {
 
   //collects data from form and creates item array in the user's view (PUSH METHOD)
   onSubmit(signInForm: NgForm){
-   let item : SwotItem = new SwotItem(0, this.content, this.type, this.note, this.associateId);
+   let item : SwotItem = new SwotItem(0, this.name, this.type, this.note, this.associateId);
    this.analysisItems.push(item);
    console.log(this.analysisItems);
     //  this.swotService.addSwot(this.swotAnalysis)
