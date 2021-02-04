@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
 import { Swot } from 'src/app/models/swot-model/swot';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AddItemComponent } from '../add-item/add-item.component';
+import { UpdateSwotComponent } from '../update-swot/update-swot.component';
 import { NgForm } from '@angular/forms';
-
 
 @Component({
   selector: 'app-view-swot',
@@ -107,4 +107,8 @@ export class ViewSwotComponent implements OnInit {
     console.log(itemForm.value);
   }
 
+  changeDescription(){
+    const modalRef = this.modalService.open(UpdateSwotComponent);
+    modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
+  }
 }
