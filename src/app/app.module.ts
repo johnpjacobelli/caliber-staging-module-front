@@ -1,23 +1,22 @@
-import { SwotComponent } from './components/swot/swot.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { ViewAssociateComponent } from './components/view-associate/view-associate.component';
-import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './components/login/login.component';
+import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
-import { HomeComponent } from './components/home/home.component';
-
-import { UpdateItemComponent } from './components/update-item/update-item.component';
-import { ViewSwotComponent } from './components/view-swot/view-swot.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
-import { CorsInterceptor } from './services/interceptor/cors.interceptor';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { SwotComponent } from './components/swot/swot.component';
 import { UpdateAssociateComponent } from './components/update-associate/update-associate.component';
+import { UpdateItemComponent } from './components/update-item/update-item.component';
+import { ViewAssociateComponent } from './components/view-associate/view-associate.component';
+import { ViewSwotComponent } from './components/view-swot/view-swot.component';
+import { CorsInterceptor } from './services/interceptor/cors.interceptor';
+import { JwtInterceptor } from './services/interceptor/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -38,12 +37,20 @@ import { UpdateAssociateComponent } from './components/update-associate/update-a
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [ {
-    provide: HTTP_INTERCEPTORS, useClass: CorsInterceptor, multi: true 
-  }
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CorsInterceptor,
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
