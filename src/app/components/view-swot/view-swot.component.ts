@@ -84,19 +84,7 @@ export class ViewSwotComponent implements OnInit {
   }
 
   changeDescription(){
-    const options : NgbModalOptions = {
-      beforeDismiss: () => {
-        this.pullSwotData();
-        return true;
-      }
-    }
-    const modalRef = this.modalService.open(UpdateSwotComponent,options);
+    const modalRef = this.modalService.open(UpdateSwotComponent);
     modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
-    // this.currentSwotAnalysis.description = "new name";
-    // console.log(this.currentSwotAnalysis);
-    // this.swotService.addSwot(this.currentSwotAnalysis).subscribe(data => {
-    // });
   }
-
-
 }
