@@ -139,8 +139,9 @@ section {
     padding: 10px 20px;
     background-color: #f26926;
     color: white;
+    
     border: none;
-    border-radius: 10px;
+    border-radius: 50%;
     transition: 0.4s ease-in-out;
     margin-bottom: 10px;
     margin-top: 10px;
@@ -148,7 +149,26 @@ section {
 
 .toggle-btn:hover {
     background-color: #b6b1a8;
-    text-decoration: underline;
+    
+}
+/* Cards diplay for 4 blocks */
+
+
+
+.card{
+    height: 170px;
+    text-align: center;
+    overflow-y: scroll;
 }
 
 
+.update {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: #069;
+    cursor: pointer;
+}
