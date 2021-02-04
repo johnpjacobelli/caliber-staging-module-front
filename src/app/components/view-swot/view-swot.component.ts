@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { Swot } from 'src/app/models/swot-model/swot';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AddItemComponent } from '../add-item/add-item.component';
-
+import { UpdateSwotComponent } from '../update-swot/update-swot.component';
 
 @Component({
   selector: 'app-view-swot',
@@ -82,5 +82,21 @@ export class ViewSwotComponent implements OnInit {
     modalRef.componentInstance.name = 'AddItem';
     modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
   }
+
+  changeDescription(){
+    const options : NgbModalOptions = {
+      beforeDismiss: () => {
+        this.pullSwotData();
+        return true;
+      }
+    }
+    const modalRef = this.modalService.open(UpdateSwotComponent,options);
+    modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
+    // this.currentSwotAnalysis.description = "new name";
+    // console.log(this.currentSwotAnalysis);
+    // this.swotService.addSwot(this.currentSwotAnalysis).subscribe(data => {
+    // });
+  }
+
 
 }
