@@ -1,24 +1,24 @@
 export class SwotItem {
 
     id: number;
-    content: string;
+    name: string;
     type: string;
     comment: string;
     swotAnalysisId: number;
 
 
 
-    constructor(id: number, content: string, type: string, comment: string, swotAnalysisId?: number) {
+    constructor(id: number, name: string, type: string, comment: string, swotAnalysisId?: number) {
 
         if (swotAnalysisId) {
             this.id = id;
-            this.content = content;
+            this.name = name;
             this.swotAnalysisId = swotAnalysisId;
             this.type = type;
             this.comment =comment;
         } else {
             this.id = id;
-            this.content = content;
+            this.name = name;
             this.type = type;
             this.comment = comment;
         }

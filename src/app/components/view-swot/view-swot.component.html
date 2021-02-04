@@ -42,62 +42,62 @@
 
     <table *ngIf="currentSwotAnalysis" id="swot-table">
         <tr>
-            <td>
+            <td class="table-data">
                 <div class="card" style="width: 20rem;">
                     <div class="card-body">
 
                         <h5 class="card-title">Strength</h5>
                         <ul *ngFor="let swotItem of currentStrengths;">
-                            <li ><button class="btn update" (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.content}}</button></li>
+                            <li ><button class="btn update" (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.name}}</button></li>
 
                         </ul>
                         <form (ngSubmit)="onSubmit(itemForm)" #itemForm="ngForm">
                             <input type="hidden" name="type" value="STRENGTH">
-                            <button class="btn toggle-btn" (click)="addItem()">+</button>
+                            <button class="btn toggle-btn circle-btn" (click)="addItem()">+</button>
                         </form>
                     </div>
                 </div>
             </td>
-            <td>
+            <td class="table-data">
                 <div class="card" style="width: 20rem;">
                     <div class="card-body">
 
 
                         <h5 class="card-title">Weakness</h5>
                         <ul *ngFor="let swotItem of currentWeak;">
-                            <li ><button class="btn update" (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.content}}</button>{{swotItem.content}}</li>
+                            <li ><button class="btn update" (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.name}}</button>{{swotItem.name}}</li>
 
                         </ul>
-                        <button class="btn toggle-btn" (click)="addItem()">+</button>
+                        <button class="btn toggle-btn circle-btn" (click)="addItem()">+</button>
                     </div>
                 </div>
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="table-data">
                 <div class="card" style="width: 20rem;">
                     <div class="card-body">
 
 
                         <h5 class="card-title">Opportunity</h5>
                         <ul *ngFor="let swotItem of currentOpp;">
-                            <li><button class="btn update" (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.content}}</button></li>
+                            <li><button class="btn update" (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.name}}</button></li>
                         </ul>
-                        <button class="btn toggle-btn" (click)="addItem()">+</button>
+                        <button class="btn toggle-btn circle-btn" (click)="addItem()">+</button>
                     </div>
                 </div>
             </td>
-            <td>
+            <td class="table-data">
                 <div class="col-sm-4 scroll">
                     <div class="card" style="width: 20rem;">
                         <div class="card-body">
 
                             <h5 class="card-title">Threat</h5>
                             <ul *ngFor="let swotItem of currentThreat;">
-                                <li><button class="btn update" (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.content}}</button></li>
+                                <li><button class="btn update" (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.name}}</button></li>
 
                             </ul>
-                            <button class="btn toggle-btn" (click)="addItem()">+</button>
+                            <button class="btn toggle-btn circle-btn" (click)="addItem()">+</button>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@
                     <thead>
                         <tr>
                             <th>Item ID</th>
-                            <th>Content</th>
+                            <th>Name</th>
                             <th>Type</th>
                             <th></th> <!-- Added to make the header full -->
                             <th></th>
@@ -128,7 +128,7 @@
                         <ng-container *ngIf="currentSwotAnalysis">
                             <tr *ngFor="let swotItem of currentSwotAnalysis.analysisItems;" id="data-row">
                                 <td>{{swotItem.id}}</td>
-                                <td>{{swotItem.content}}</td>
+                                <td>{{swotItem.name}}</td>
                                 <td>{{swotItem.type}}</td>
                                 <td><button class="btn toggle-btn"
                                         (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">Update</button></td>

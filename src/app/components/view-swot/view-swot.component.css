@@ -139,12 +139,16 @@ section {
     padding: 10px 20px;
     background-color: #f26926;
     color: white;
-    
     border: none;
-    border-radius: 50%;
     transition: 0.4s ease-in-out;
     margin-bottom: 10px;
     margin-top: 10px;
+
+    box-shadow: 0 1px 3px black;
+}
+
+.circle-btn {
+    border-radius: 50%;
 }
 
 .toggle-btn:hover {
@@ -153,12 +157,30 @@ section {
 }
 /* Cards diplay for 4 blocks */
 
-
-
 .card{
     height: 170px;
     text-align: center;
-    overflow-y: scroll;
+    overflow-y: auto;
+
+    margin: 2%;
+}
+
+.card::-webkit-scrollbar {
+    width: .5em;
+}
+
+.card::-webkit-scrollbar-track{
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.card::-webkit-scrollbar-thumb {
+    background-color: #b8b3aa;
+    /* outline: 1px solid slategrey; */
+    border-radius: 10px;
+}
+
+#swot-table td {
+    width: 340px;
 }
 
 
