@@ -23,7 +23,7 @@ export class SwotService {
 
 
   addSwot(swotAnalysis: Swot): Observable<any> {
-
+    console.log("this should be a swot");
     console.log(swotAnalysis)
     return this.http.post<any>(`${environment.BASE_URL}swot/create`, swotAnalysis, this.httpOptions)
       .pipe(
