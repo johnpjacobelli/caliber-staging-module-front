@@ -59,6 +59,7 @@ export class SwotService {
       id: swotItem.id,
       content: swotItem.content,
       type: swotItem.type,
+      comment: swotItem.comment,
       swot: {
         id: swotItem.swotAnalysisId
       }
@@ -74,6 +75,7 @@ export class SwotService {
       id: swotItem.id,
       content: swotItem.content,
       type: swotItem.type,
+      comment: swotItem.comment,
       swot: {
         id: swotItem.swotAnalysisId
       }
