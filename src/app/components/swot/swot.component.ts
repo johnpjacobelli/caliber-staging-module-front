@@ -8,6 +8,8 @@ import { SwotService } from 'src/app/services/swot/swot.service';
 import { idTokenResult } from '@angular/fire/auth-guard';
 import { Associate } from 'src/app/models/associate-model/associate.model';
 import { Manager } from 'src/app/models/manager-model/manager';
+import { ToastrService } from 'ngx-toastr';
+import { NotificationService } from 'src/app/services/notifications/notification.service';
 
 @Component({
   selector: 'app-swot',
@@ -29,7 +31,7 @@ export class SwotComponent implements OnInit {
   //initililizes empty array of swot items
   analysisItems : SwotItem[] = [];
 
-  constructor(private swotService: SwotService,private loginService:LoginService, private modalService: NgbModal) { }
+  constructor(private swotService: SwotService,private loginService:LoginService, private modalService: NgbModal, private toastr : NotificationService ) { }
   ngOnInit(): void {
     console.log(this.passedId);
     this.associateId = this.passedId;
@@ -68,7 +70,8 @@ export class SwotComponent implements OnInit {
      this.swotService.addSwot(this.swotAnalysis)
        .subscribe(data => {
          console.log(data);
-         alert(`${data.message}`);
+         this.toastr.showSuccess("SWOT added successfully !!", "Hello ")
+        //  alert(`${data.message}`);
        });
     this.modalService.dismissAll();
   }
