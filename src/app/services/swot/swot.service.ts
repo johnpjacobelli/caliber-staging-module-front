@@ -59,8 +59,9 @@ export class SwotService {
   updateItem(swotItem: SwotItem): Observable<SwotItem> {
     let swotItemDTO = {
       id: swotItem.id,
-      content: swotItem.content,
+      name: swotItem.name,
       type: swotItem.type,
+      note: swotItem.note,
       swot: {
         id: swotItem.swotAnalysisId
       }
@@ -74,8 +75,9 @@ export class SwotService {
   addItem(swotItem: SwotItem): Observable<SwotItem> {
     let swotItemDTO = {
       id: swotItem.id,
-      content: swotItem.content,
+      name: swotItem.name,
       type: swotItem.type,
+      note: swotItem.note,
       swot: {
         id: swotItem.swotAnalysisId
       }
