@@ -7,6 +7,7 @@ import { Swot } from 'src/app/models/swot-model/swot';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AddItemComponent } from '../add-item/add-item.component';
 import { NgForm } from '@angular/forms';
+import { ResourceLoader } from '@angular/compiler';
 
 
 @Component({
@@ -31,13 +32,14 @@ export class ViewSwotComponent implements OnInit {
     private modalService: NgbModal,
     private route: ActivatedRoute) {
 
+        
   }
 
 
   ngOnInit(): void {
     this.activeSwotIndex = 0;
     this.pullSwotData();
-
+    
   }
 
   // Opens Update as a modal page.
@@ -46,15 +48,20 @@ export class ViewSwotComponent implements OnInit {
     const modalRef = this.modalService.open(UpdateItemComponent);
     modalRef.componentInstance.name = 'UpdateSwot';
     modalRef.componentInstance.passedSwotItem = swotItem;
+    modalRef.componentInstance.deleteEmitter.subscribe(this.delete.bind(this));
+    
   }
 
   delete(swotItemId: number) {
+    console.log("Deleting from view-Swot, ID: " + swotItemId);
+    
     this.swotService.deleteItem(swotItemId)
       .subscribe((data: any) => {
         console.log(data);
         alert(`${data.message}`);
       })
     this.currentSwotAnalysis.analysisItems = this.currentSwotAnalysis.analysisItems.filter(swotItem => swotItem.id != swotItemId);
+    this.pullSwotData();
   }
 
   pullSwotData() {
