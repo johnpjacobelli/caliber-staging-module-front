@@ -42,8 +42,6 @@ export class ViewAssociateComponent implements OnInit {
     this.counter = 0;
   }
 
-  
-
   public toggleAssociateView() {
 
     const button = document.getElementById('associate-btn');

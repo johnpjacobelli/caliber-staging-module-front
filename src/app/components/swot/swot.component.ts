@@ -8,14 +8,16 @@ import { SwotService } from 'src/app/services/swot/swot.service';
 import { idTokenResult } from '@angular/fire/auth-guard';
 import { Associate } from 'src/app/models/associate-model/associate.model';
 import { Manager } from 'src/app/models/manager-model/manager';
+// import { ToastrService } from 'ngx-toastr';
+// import { NotificationService } from 'src/app/services/notifications/notification.service';
 
 @Component({
   selector: 'app-swot',
   templateUrl: './swot.component.html',
-  styleUrls: ['./swot.component.css']
+  styleUrls: ['./swot.component.css'],
 })
 export class SwotComponent implements OnInit {
-  myImage: string = "assets/img/swot1.png";
+  myImage: string = 'assets/img/swot1.png';
   swotAnalysis = new Swot();
   name : string;
   type : string = "";
@@ -28,9 +30,14 @@ export class SwotComponent implements OnInit {
   //analysisItems: Array<SwotItems>;
 
   //initililizes empty array of swot items
-  analysisItems : SwotItem[] = [];
+  analysisItems: SwotItem[] = [];
 
-  constructor(private swotService: SwotService,private loginService:LoginService, private modalService: NgbModal) { }
+  constructor(
+    private swotService: SwotService,
+    private loginService: LoginService,
+    private modalService: NgbModal
+  ) // private toastr: NotificationService
+  {}
   ngOnInit(): void {
     this.associateId = this.passedId;
   }
@@ -49,13 +56,14 @@ export class SwotComponent implements OnInit {
 
   //deletes the item from the item array in the user's view on delete click(FILTER METHOD)
   delete(item: SwotItem): void {
-    this.analysisItems = this.analysisItems.filter(swotItem => swotItem !== item);  // this is so the component maintains its own
+    this.analysisItems = this.analysisItems.filter(
+      (swotItem) => swotItem !== item
+    ); // this is so the component maintains its own
 
-    if(this.analysisItems.length == 0){
+    if (this.analysisItems.length == 0) {
       this.hasData = false;
     }
   }
-
 
   addSwot(): void{
     this.swotAnalysis.analysisItems = this.analysisItems;
