@@ -107,6 +107,9 @@ export class ViewSwotComponent implements OnInit {
     console.log(itemForm.value);
   }
 
+/**
+ * This displays the modal to update the description of a swot
+ */
   changeDescription(){
     const modalRef = this.modalService.open(UpdateSwotComponent);
     modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
