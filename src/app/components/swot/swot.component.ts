@@ -74,7 +74,6 @@ export class SwotComponent implements OnInit {
     this.swotAnalysis.manager = new Manager(Number(sessionStorage.getItem('managerId')));
      this.swotService.addSwot(this.swotAnalysis)
        .subscribe(data => {
-         console.log(data);
          alert(`${data.message}`);
        });
     this.modalService.dismissAll();
