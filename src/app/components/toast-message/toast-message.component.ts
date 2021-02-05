@@ -24,18 +24,23 @@ export class ToastMessageComponent implements OnInit {
     if(actionDetails == "create") {
     this.message = "Success! New SWOT item has been added.";
     this.buttonId = '#createButton';
-    this.setTimeVisible();
+    // this.setTimeVisible();
     }
     //update message
     else if(actionDetails == "update") {
     this.message = "Success! SWOT item has been updated.";
     this.buttonId = '#addButton';
+    // this.setTimeVisible();
     }
     // delete message -> see delete method in view-swot component
     else if(actionDetails == "delete") {
     this.message =  "";
     this.buttonId = 'deleteButton';
+    // this.setTimeVisible();
     }
+    // Alternatively, if setTimeVisible doesn't require special information from the action there can be
+    // A genereal setTimeVisible instead
+    this.setTimeVisible();
   }
 
   /*
