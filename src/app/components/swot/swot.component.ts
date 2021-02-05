@@ -19,12 +19,13 @@ import { Manager } from 'src/app/models/manager-model/manager';
 export class SwotComponent implements OnInit {
   myImage: string = 'assets/img/swot1.png';
   swotAnalysis = new Swot();
-  content: string;
-  type: string = '';
-  associateId: number;
-  swotName: string;
-  i: number = 0;
-  hasData: boolean = false;
+  content : string;
+  type : string = "";
+  comment: string = "";
+  associateId : number;
+  description: string;
+  i : number = 0;
+  hasData : boolean = false;
   @Input() passedId: number;
   //analysisItems: Array<SwotItems>;
 
@@ -38,21 +39,14 @@ export class SwotComponent implements OnInit {
   ) // private toastr: NotificationService
   {}
   ngOnInit(): void {
-    console.log(this.passedId);
     this.associateId = this.passedId;
   }
 
   //collects data from form and creates item array in the user's view (PUSH METHOD)
-  onSubmit(signInForm: NgForm) {
-    let item: SwotItem = new SwotItem(
-      0,
-      this.content,
-      this.type,
-      this.swotName,
-      this.associateId
-    );
-    this.analysisItems.push(item);
-    console.log(this.analysisItems);
+  onSubmit(signInForm: NgForm){
+   let item : SwotItem = new SwotItem(0, this.content, this.type, this.comment, this.associateId);
+   this.analysisItems.push(item);
+   console.log(this.analysisItems);
     //  this.swotService.addSwot(this.swotAnalysis)
     //    .subscribe(data => {
     //      console.log(data);
@@ -71,19 +65,17 @@ export class SwotComponent implements OnInit {
     }
   }
 
-  addSwot(): void {
-    console.log('add swot');
-    console.log(this.analysisItems);
+  addSwot(): void{
     this.swotAnalysis.analysisItems = this.analysisItems;
     this.swotAnalysis.associate = new Associate(this.associateId); //associate model constructor needs to be adjusted
-    this.swotAnalysis.manager = new Manager(this.loginService.managerId);
-    console.log(this.analysisItems);
-    console.log(this.swotAnalysis);
-    this.swotService.addSwot(this.swotAnalysis).subscribe((data) => {
-      console.log(data);
-      // this.toastr.showSuccess('SWOT added successfully !!', 'Hello ');
-      //  alert(`${data.message}`);
-    });
+    this.swotAnalysis.description = this.description;
+    console.log(this.analysisItems)
+    console.log(this.swotAnalysis)
+    this.swotAnalysis.manager = new Manager(Number(sessionStorage.getItem('managerId')));
+     this.swotService.addSwot(this.swotAnalysis)
+       .subscribe(data => {
+         alert(`${data.message}`);
+       });
     this.modalService.dismissAll();
   }
 }
