@@ -3,6 +3,7 @@ import { Associate } from '../../models/associate-model/associate.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
+import { UpdateBatchPayload } from 'src/app/components/view-associate/update-batch-payload';
 
 @Injectable({
   providedIn: 'root',
@@ -32,4 +33,9 @@ export class AssociateService {
       this.httpOptions
     );
   }
+
+  updateBatch(updatePayload: UpdateBatchPayload): any {
+    return this.http.put(`${environment.BASE_URL}associates`, updatePayload);
+  }
+
 }

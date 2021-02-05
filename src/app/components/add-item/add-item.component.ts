@@ -14,11 +14,11 @@ export class AddItemComponent implements OnInit {
 
   swotItem : SwotItem;
   @Input() parentSwot : Swot;
-  
+
   constructor(private swotService : SwotService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.swotItem = new SwotItem(0, "", "", this.parentSwot.id)
+    this.swotItem = new SwotItem(0, "", "", "", this.parentSwot.id)
   }
 
   onSubmit(itemForm: NgForm) {
