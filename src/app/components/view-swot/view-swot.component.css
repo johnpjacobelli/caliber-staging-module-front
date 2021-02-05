@@ -4,11 +4,11 @@
     box-sizing: border-box;
 }
 body{
-    background: rgb(219, 226, 226);
+    background: var(--dark-white);
     
 }
 .row{
-    background: white;
+    background: var(--white);
     border-radius: 30px;
 }
 /* img{
@@ -18,20 +18,20 @@ body{
 .btn1{
     border: none;
     padding: 5px 10px;
-    background-color: #f26926;
-    color: white;
+    background-color: var(--orange);
+    color: var(--white);
     border-radius: 10px;
     transition: 0.4s ease-in-out;
 }
 .btn1:hover{
-    background-color: #b6b1a8;
+    background-color: var(--light-gray);
     /* commented out because this line was affected the margins of other elements near this button -AK */
     /* border: 1px solid black; */
     text-decoration: underline;
 }
 .btn1:focus{
-    border-color: #f26926;
-    box-shadow: 0 0 0 0.2rem rgba(243, 156, 113, .40);
+    border-color: var(--orange);
+    box-shadow: 0 0 0 0.2rem var(--brown);
 }
 .modal-content {
     background-color: none !important;
@@ -42,12 +42,12 @@ body{
 }
 
 .left {
-    background-color: #474C55;
+    background-color: var(--dark-gray);
     height: 100%;
     width: 20%;
-    -webkit-box-shadow: 4px 2px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 4px 2px 5px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 4px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 4px 2px 5px 0px var(--black);
+    -moz-box-shadow: 4px 2px 5px 0px var(--black);
+    box-shadow: 4px 2px 5px 0px var(--black);
     padding: 20px;
 }
 
@@ -78,22 +78,22 @@ body{
     text-align: center;
     margin-bottom: 20px;
     letter-spacing: 2px;
-    color: silver;
+    color: var(--light-gray);
     font-size: 1.2rem;
 }
 
 .nav, .title {
-    color: #b6b1a8;
+    color: var(--light-gray);
 }
 #display-box-info{
-    background-color:#474C55;
-    border: 5px solid #f26926;
+    background-color: var(--dark-gray);
+    border: 5px solid var(--orange);
     width: 250px;
     font-size:0.8rem;
     border-radius: 20px;
     margin: 10px auto;
     padding: 10px;
-    color: silver;
+    color: var(--light-gray);
 
 }
 
@@ -102,7 +102,7 @@ body{
 }
 
 #homeLink{
-    color: #f26926;
+    color: var(--orange);
     margin-top: 5px;
     text-align: center;
 }
@@ -131,14 +131,14 @@ section {
 /* Added animation ENDS here -AK */
 
 .toggle-btn:focus{
-    border-color: #f26926;
-    box-shadow: 0 0 0 0.2rem rgba(243, 156, 113, .40);
+    border-color: var(--orange);
+    box-shadow: 0 0 0 0.2rem var(--brown);
 }
 
 .toggle-btn {
     padding: 10px 20px;
-    background-color: #f26926;
-    color: white;
+    background-color: var(--orange);
+    color: var(--white);
     
     border: none;
     border-radius: 50%;
@@ -148,7 +148,7 @@ section {
 }
 
 .toggle-btn:hover {
-    background-color: #b6b1a8;
+    background-color: var(--light-gray);
     
 }
 /* Cards diplay for 4 blocks */
@@ -169,6 +169,6 @@ section {
     /*optional*/
     font-family: arial, sans-serif;
     /*input has OS specific font-family*/
-    color: #069;
+    color: var(--blue);
     cursor: pointer;
 }
