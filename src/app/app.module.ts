@@ -22,6 +22,7 @@ import { CorsInterceptor } from './services/interceptor/cors.interceptor';
 import { UpdateAssociateComponent } from './components/update-associate/update-associate.component';
 import { UpdateSwotComponent } from './components/update-swot/update-swot.component';
 import { ToastMessageComponent } from './components/toast-message/toast-message.component';
+import { ToastService } from './services/notifications/toast.service';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ToastMessageComponent } from './components/toast-message/toast-message.
       useClass: CorsInterceptor,
       multi: true,
     },
+    ToastService,
   ],
   bootstrap: [AppComponent],
 })
