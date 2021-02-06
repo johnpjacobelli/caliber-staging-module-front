@@ -76,10 +76,15 @@ export class ToastMessageComponent implements OnInit, OnDestroy {
       // $(this.buttonId).click(function(){
         $('#toast').toast({delay: 10000});
         $('#toast').toast('show');
-        // $('.toast').toast({delay: 10000});
-        // $('.toast').toast('show');
-        $(document.getElementById('#toast')).toast({delay: 10000});
-        $(document.getElementById('#toast')).toast('show');
+        $('.toast').toast({delay: 10000});
+        $('.toast').toast('show');
+        // document.getElementById("toast").toast({delay: 10000});
+        // document.getElementById("toast").toast('show');
+        // $(document.getElementById('#toast')).toast({delay: 10000});
+        // $(document.getElementById('#toast')).toast('show');
+        // $('#myToast').on('show.bs.toast', function() {
+        // })
+
       // });
   // });
   }

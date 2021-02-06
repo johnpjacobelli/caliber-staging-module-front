@@ -23,6 +23,7 @@ import { UpdateAssociateComponent } from './components/update-associate/update-a
 import { UpdateSwotComponent } from './components/update-swot/update-swot.component';
 import { ToastMessageComponent } from './components/toast-message/toast-message.component';
 import { ToastService } from './services/notifications/toast.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ToastService } from './services/notifications/toast.service';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     BrowserAnimationsModule,
+    NgbModule,
     // ToastrModule.forRoot()
   ],
   providers: [
