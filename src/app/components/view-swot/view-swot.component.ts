@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AddItemComponent } from '../add-item/add-item.component';
 import { UpdateSwotComponent } from '../update-swot/update-swot.component';
 import { NgForm } from '@angular/forms';
+import { ToastRelayService } from 'src/app/services/toast-relay/toast-relay.service';
 
 @Component({
   selector: 'app-view-swot',
@@ -29,7 +30,8 @@ export class ViewSwotComponent implements OnInit {
   constructor(private swotService: SwotService,
     private router: Router,
     private modalService: NgbModal,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private toastService: ToastRelayService) {
 
   }
 
@@ -51,8 +53,12 @@ export class ViewSwotComponent implements OnInit {
   delete(swotItemId: number) {
     this.swotService.deleteItem(swotItemId)
       .subscribe((data: any) => {
-        console.log(data);
-        alert(`${data.message}`);
+        // console.log(data);
+        // alert(`${data.message}`);
+        this.toastService.addToast({
+          header:"SWOT item deleted!",
+          body:`SWOT Item ID: ${swotItemId}`
+        });
       })
     this.currentSwotAnalysis.analysisItems = this.currentSwotAnalysis.analysisItems.filter(swotItem => swotItem.id != swotItemId);
   }
