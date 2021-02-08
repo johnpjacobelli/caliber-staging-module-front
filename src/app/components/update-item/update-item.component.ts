@@ -5,7 +5,7 @@ import { SwotItem } from 'src/app/models/swot-model/swot-item';
 import { ActivatedRoute } from '@angular/router';
 import { SwotService } from 'src/app/services/swot/swot.service';
 import { NgForm } from '@angular/forms';
-import { ToastService } from 'src/app/services/notifications/toast.service';
+import { ToastRelayService } from 'src/app/services/toast-relay/toast-relay.service';
 
 @Component({
   selector: 'app-update-item',
@@ -22,8 +22,7 @@ export class UpdateItemComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private swotService: SwotService,
               private modalService: NgbModal,
-              private toastService: ToastService
-              ) { }
+              private toastService: ToastRelayService) { }
 
   ngOnInit(): void {
     console.log(this.passedSwotItem, 'update item component');
@@ -35,11 +34,15 @@ export class UpdateItemComponent implements OnInit {
     console.log(itemForm)
     console.log(itemForm.value)
     console.log(this.swotItem)
+    this.swotItem.content
     this.swotService.updateItem(this.swotItem)
       .subscribe(data => {
-        console.log(data);
-        //alert("Success! SWOT item has been updated.")
-        this.toastService.newMessage("#Update");
+        // console.log(data);
+        // alert("Success! SWOT item has been updated.")
+        this.toastService.addToast({
+          header:'SWOT item updated',
+          body:`Current type: ${this.swotItem.type}`
+        })
       });
     this.modalService.dismissAll();
   }

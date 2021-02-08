@@ -1,9 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
-//import { $ } from 'protractor';
-import { ToastService } from 'src/app/services/notifications/toast.service'
-import * as $ from 'jquery';
+import { Component, OnInit } from '@angular/core';
+import { ToastRelayService } from 'src/app/services/toast-relay/toast-relay.service';
 
 @Component({
   selector: 'app-toast-message',
@@ -67,23 +63,8 @@ export class ToastMessageComponent implements OnInit, OnDestroy {
     this.setTimeVisible();
   }
 
-  /*
-    Function used to set the amount of time toasts are visible before disappearing
-    Also to determine how many toasts can appear on screen at once?
-  */
-  setTimeVisible(): void {
-  //  $(document).ready(function(){
-      // $(this.buttonId).click(function(){
-        $('#toast').toast({delay: 10000});
-        $('#toast').toast('show');
-        $('.toast').toast({delay: 10000});
-        $('.toast').toast('show');
-        // document.getElementById("toast").toast({delay: 10000});
-        // document.getElementById("toast").toast('show');
-        // $(document.getElementById('#toast')).toast({delay: 10000});
-        // $(document.getElementById('#toast')).toast('show');
-        // $('#myToast').on('show.bs.toast', function() {
-        // })
+
+  constructor(public toastService:ToastRelayService) { }
 
       // });
   // });
