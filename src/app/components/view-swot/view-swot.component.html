@@ -39,8 +39,8 @@
             <option *ngFor="let swotAnalysis of swotAnalyses;" [ngValue]="swotAnalysis">
                 {{swotAnalysis.description}} ({{swotAnalysis.createdOn | date:'short':'EST'}})</option>
         </select>
-
-
+<br>
+        <button class="btn toggle-btn" (click)="changeDescription()">Change SWOT Title</button>
 
         <table *ngIf="currentSwotAnalysis" id="swot-table">
             <tr>
