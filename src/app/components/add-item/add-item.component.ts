@@ -15,6 +15,7 @@ export class AddItemComponent implements OnInit {
 
   swotItem : SwotItem;
   @Input() parentSwot : Swot;
+  @Input() type : string;
 
   constructor(
     private swotService : SwotService, 
@@ -22,7 +23,7 @@ export class AddItemComponent implements OnInit {
     private toastService: ToastRelayService) { }
 
   ngOnInit(): void {
-    this.swotItem = new SwotItem(0, "", "", "", this.parentSwot.id)
+    this.swotItem = new SwotItem(0, "", this.type, "", this.parentSwot.id);
   }
 
   onSubmit(itemForm: NgForm) {
