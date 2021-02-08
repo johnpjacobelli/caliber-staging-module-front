@@ -4,7 +4,6 @@ import { Swot } from 'src/app/models/swot-model/swot';
 import { SwotService } from 'src/app/services/swot/swot.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-
 @Component({
   selector: 'app-update-swot',
   templateUrl: './update-swot.component.html',
