@@ -16,6 +16,7 @@ export class UpdateAssociateComponent implements OnInit {
   curBatchId!: number;
   newBatchId!: number;
   statusId!: number;
+  curStatusId!: string;
   updatePayload!: UpdateBatchPayload;
 
 
@@ -31,8 +32,6 @@ export class UpdateAssociateComponent implements OnInit {
   onSubmit(): void {
     this.newBatchId = this.updateForm.get('inputedBatchId')?.value;
     this.statusId = this.updateForm.get('newStatusId')?.value;
-    console.log("start of my stuff");
-    console.log(this.updateForm.get('newStatusId')?.value);
     this.updatePayload = {
       associate_id: this.associateId,
       batch_id: this.newBatchId,
