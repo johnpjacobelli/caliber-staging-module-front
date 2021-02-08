@@ -26,6 +26,7 @@ export class SwotComponent implements OnInit {
   description: string;
   i : number = 0;
   hasData : boolean = false;
+  existedDescription : string[] = [];
   @Input() passedId: number;
   //analysisItems: Array<SwotItems>;
 
@@ -40,6 +41,16 @@ export class SwotComponent implements OnInit {
   {}
   ngOnInit(): void {
     this.associateId = this.passedId;
+    this.getExistedDescription();
+  }
+
+  getExistedDescription(){
+    this.swotService.getSwotByAssociatedId(this.associateId)
+    .subscribe((data: any) => {
+      data.forEach((swot)=>{
+        this.existedDescription.push(swot.description);
+      })
+    })
   }
 
   //collects data from form and creates item array in the user's view (PUSH METHOD)
@@ -65,17 +76,22 @@ export class SwotComponent implements OnInit {
     }
   }
 
+  // submit the newly created swot to the backend
   addSwot(): void{
     this.swotAnalysis.analysisItems = this.analysisItems;
     this.swotAnalysis.associate = new Associate(this.associateId); //associate model constructor needs to be adjusted
+    console.log('123');
     this.swotAnalysis.description = this.description;
-    console.log(this.analysisItems)
-    console.log(this.swotAnalysis)
     this.swotAnalysis.manager = new Manager(Number(sessionStorage.getItem('managerId')));
-     this.swotService.addSwot(this.swotAnalysis)
-       .subscribe(data => {
-         alert(`${data.message}`);
-       });
-    this.modalService.dismissAll();
+    // if swot's description is already there, alert the user and does not allow user to create swot with duplicated description
+    if(!this.existedDescription.includes(this.swotAnalysis.description)){
+      this.swotService.addSwot(this.swotAnalysis)
+      .subscribe(data => {
+        alert(`${data.message}`);
+      });
+      this.modalService.dismissAll();
+    }else{
+      alert("swot title already exist");
+    }
   }
 }
