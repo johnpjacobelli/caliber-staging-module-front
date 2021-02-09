@@ -27,6 +27,7 @@ export class SwotComponent implements OnInit {
   description: string = "";
   i : number = 0;
   hasData : boolean = false;
+  existedDescription : string[] = [];
   @Input() passedId: number;
   //analysisItems: Array<SwotItems>;
   message: string = "";
@@ -46,6 +47,16 @@ export class SwotComponent implements OnInit {
   {}
   ngOnInit(): void {
     this.associateId = this.passedId;
+    this.getExistedDescription();
+  }
+
+  getExistedDescription(){
+    this.swotService.getSwotByAssociatedId(this.associateId)
+    .subscribe((data: any) => {
+      data.forEach((swot)=>{
+        this.existedDescription.push(swot.description);
+      })
+    })
   }
 
   //collects data from form and creates item array in the user's view (PUSH METHOD)
