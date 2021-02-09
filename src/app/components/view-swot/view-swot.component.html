@@ -45,27 +45,33 @@
         <table *ngIf="currentSwotAnalysis" id="swot-table">
             <tr>
                 <td class="table-data">
+                    
+
+                    
                     <div class="card" style="width: 20rem;">
                         <h5 class="card-title">Strength
                         </h5>
                         <div class="card-body">
                             <div class="btn-group-vertical">
-                                <button *ngFor="let swotItem of currentStrengths;" class="btn toggle-btn"
+                                <ng-container *ngFor="let swotItem of currentSwotAnalysis.analysisItems">
+                                <button *ngIf="swotItem.type == 'STRENGTH'" class="btn toggle-btn"
                                     (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.name}}</button>
+                                </ng-container>
                             </div>
                         </div>
                         <button type="submit" class="btn toggle-btn circle-btn" (click)="addItemStrength()">+</button>
                     </div>
+
                 </td>
                 <td class="table-data">
                     <div class="card" style="width: 20rem;">
-                        <div class="card-body">
-
-
+                        <div  class="card-body">
                             <h5 class="card-title">Weakness</h5>
                             <div class="btn-group-vertical">
-                                <button *ngFor="let swotItem of currentWeak;" class="btn toggle-btn"
-                                    (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.name}}</button>
+                                <ng-container *ngFor="let swotItem of currentSwotAnalysis.analysisItems">
+                                    <button *ngIf="swotItem.type == 'WEAKNESS'" class="btn toggle-btn"
+                                        (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.name}}</button>
+                                    </ng-container>
                             </div>
                             <button class="btn toggle-btn circle-btn" (click)="addItemWeak()">+</button>
                         </div>
@@ -80,8 +86,10 @@
 
                             <h5 class="card-title">Opportunity</h5>
                             <div class="btn-group-vertical">
-                                <button *ngFor="let swotItem of currentOpp;" class="btn toggle-btn"
-                                    (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.name}}</button>
+                                <ng-container *ngFor="let swotItem of currentSwotAnalysis.analysisItems">
+                                    <button *ngIf="swotItem.type == 'OPPORTUNITY'" class="btn toggle-btn"
+                                        (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.name}}</button>
+                                    </ng-container>
                             </div>
                             <button class="btn toggle-btn circle-btn" (click)="addItemOpp()">+</button>
                         </div>
@@ -94,8 +102,10 @@
 
                                 <h5 class="card-title">Threat</h5>
                                 <div class="btn-group-vertical">
-                                    <button *ngFor="let swotItem of currentThreat;" class="btn toggle-btn"
-                                        (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.name}}</button>
+                                    <ng-container *ngFor="let swotItem of currentSwotAnalysis.analysisItems">
+                                        <button *ngIf="swotItem.type == 'THREAT'" class="btn toggle-btn"
+                                            (click)="openUpdatePage(swotItem, currentSwotAnalysis.id)">{{swotItem.name}}</button>
+                                        </ng-container>
                                 </div>
                                 <button class="btn toggle-btn circle-btn" (click)="addItemThreat()">+</button>
                             </div>
@@ -115,7 +125,7 @@
 
                 <button class="btn toggle-btn" (click)="addItemStrength()">Add new item</button>
 
-                <button class="btn toggle-btn" (click)="addItem()">Add new item</button>
+               <button class="btn toggle-btn" (click)="addItem()">Add new item</button>
                
                 <button class="btn toggle-btn" (click)="changeDescription()">Change Description</button>
 
