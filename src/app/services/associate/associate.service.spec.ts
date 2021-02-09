@@ -11,6 +11,7 @@ const dummyAssociateData = new Associate(1, "1", "test@email.com", "firstname", 
 const dummyUpdatePayload = {
   associate_id: 1,
   batch_id: 1,
+  status_id: 0
 }
 const dummyUpdateBatchResp = "Associate updated successfully";
 
