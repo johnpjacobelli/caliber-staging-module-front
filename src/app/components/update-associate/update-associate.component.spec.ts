@@ -9,7 +9,7 @@ import { UpdateBatchPayload } from '../view-associate/update-batch-payload';
 
 import { UpdateAssociateComponent } from './update-associate.component';
 
-fdescribe('UpdateAssociateComponent', () => {
+describe('UpdateAssociateComponent', () => {
  
   class MockService {
     updateBatch(updatePayload: UpdateBatchPayload) { }
@@ -51,9 +51,11 @@ fdescribe('UpdateAssociateComponent', () => {
     let pageTitle = fixture.debugElement.query(By.css("h1")).nativeElement;
     let assocId = fixture.debugElement.query(By.css("#assocId")).nativeElement;
     let batchId = fixture.debugElement.query(By.css("#batchId")).nativeElement;
-    expect(pageTitle.innerHTML).toBe("Update Batch");
+    let assocStatus = fixture.debugElement.query(By.css("#assocStatus")).nativeElement;
+    expect(pageTitle.innerHTML).toBe('<u _ngcontent-a-c100="">Update Associate</u>');
     expect(assocId.innerHTML).toContain("Associate ID:");
     expect(batchId.innerHTML).toContain("Current Batch ID:");
+    expect(assocStatus.innerHTML).toContain("Current Status:");
   });
 
   it('should call the onSubmit() method', waitForAsync(()=>{
