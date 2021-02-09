@@ -29,7 +29,8 @@
                 <td><button class="btn btn-primary rev-btn" (click)="activeId=associate.id; batchId=associate.batch; 
                                                                      statusId=associate.status; updateBatch()">Update Associate</button></td>
                 <td><button class="btn btn-primary rev-btn" (click)="activeId=associate.id; open()">Create SWOT</button></td>
-                <td><button class="btn btn-primary rev-btn" routerLink="/view/{{associate.id}}">View SWOTs</button></td>
+                <td><button class="btn btn-primary rev-btn" (click)="activeId=associate.id; checkSwotsValid()">View SWOTs</button></td>
+                
             </tr>
             
         </tbody>
