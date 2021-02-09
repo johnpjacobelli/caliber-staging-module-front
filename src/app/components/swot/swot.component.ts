@@ -8,18 +8,21 @@ import { SwotService } from 'src/app/services/swot/swot.service';
 import { idTokenResult } from '@angular/fire/auth-guard';
 import { Associate } from 'src/app/models/associate-model/associate.model';
 import { Manager } from 'src/app/models/manager-model/manager';
+import { ToastRelayService } from 'src/app/services/toast-relay/toast-relay.service';
+// import { ToastrService } from 'ngx-toastr';
+// import { NotificationService } from 'src/app/services/notifications/notification.service';
 
 @Component({
   selector: 'app-swot',
   templateUrl: './swot.component.html',
-  styleUrls: ['./swot.component.css']
+  styleUrls: ['./swot.component.css'],
 })
 export class SwotComponent implements OnInit {
-  myImage: string = "assets/img/swot1.png";
+  myImage: string = 'assets/img/swot1.png';
   swotAnalysis = new Swot();
-  content : string;
+  name : string;
   type : string = "";
-  comment: string = "";
+  note: string = "";
   associateId : number;
   description: string;
   i : number = 0;
@@ -28,16 +31,22 @@ export class SwotComponent implements OnInit {
   //analysisItems: Array<SwotItems>;
 
   //initililizes empty array of swot items
-  analysisItems : SwotItem[] = [];
+  analysisItems: SwotItem[] = [];
 
-  constructor(private swotService: SwotService,private loginService:LoginService, private modalService: NgbModal) { }
+  constructor(
+    private swotService: SwotService,
+    private loginService: LoginService,
+    private modalService: NgbModal,
+    private toastService: ToastRelayService
+  ) // private toastr: NotificationService
+  {}
   ngOnInit(): void {
     this.associateId = this.passedId;
   }
 
   //collects data from form and creates item array in the user's view (PUSH METHOD)
   onSubmit(signInForm: NgForm){
-   let item : SwotItem = new SwotItem(0, this.content, this.type, this.comment, this.associateId);
+   let item : SwotItem = new SwotItem(0, this.name, this.type, this.note, this.associateId);
    this.analysisItems.push(item);
    console.log(this.analysisItems);
     //  this.swotService.addSwot(this.swotAnalysis)
@@ -49,13 +58,14 @@ export class SwotComponent implements OnInit {
 
   //deletes the item from the item array in the user's view on delete click(FILTER METHOD)
   delete(item: SwotItem): void {
-    this.analysisItems = this.analysisItems.filter(swotItem => swotItem !== item);  // this is so the component maintains its own
+    this.analysisItems = this.analysisItems.filter(
+      (swotItem) => swotItem !== item
+    ); // this is so the component maintains its own
 
-    if(this.analysisItems.length == 0){
+    if (this.analysisItems.length == 0) {
       this.hasData = false;
     }
   }
-
 
   addSwot(): void{
     this.swotAnalysis.analysisItems = this.analysisItems;
@@ -66,7 +76,10 @@ export class SwotComponent implements OnInit {
     this.swotAnalysis.manager = new Manager(Number(sessionStorage.getItem('managerId')));
      this.swotService.addSwot(this.swotAnalysis)
        .subscribe(data => {
-         alert(`${data.message}`);
+        //  alert(`${data.message}`);
+        this.toastService.addToast({
+          header:`New SWOT created!`, 
+          body:`For associate ${this.swotAnalysis.associate.id}`});
        });
     this.modalService.dismissAll();
   }

@@ -26,6 +26,7 @@ export class ViewAssociateComponent implements OnInit {
   activeId: number;
   managerId: number;
   batchId: number;
+  statusId: number;
 
   private toggle = true;
 
@@ -68,7 +69,6 @@ export class ViewAssociateComponent implements OnInit {
 
   open() {
     const modalRef = this.modalService.open(SwotComponent);
-    modalRef.componentInstance.name = 'CreateSwot';
     console.log(this.activeId);
     modalRef.componentInstance.passedId = this.activeId;
   }
@@ -108,5 +108,6 @@ export class ViewAssociateComponent implements OnInit {
     const modalRef = this.modalService.open(UpdateAssociateComponent);
     modalRef.componentInstance.associateId = this.activeId;
     modalRef.componentInstance.curBatchId = this.batchId;
+    modalRef.componentInstance.curStatusId = this.statusId;
   }
 }
