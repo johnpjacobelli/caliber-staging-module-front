@@ -44,8 +44,14 @@ export class ViewSwotComponent implements OnInit {
     
   }
 
+  updateSelectedSwot(){
+    this.currentSwotAnalysis = this.currentSwotAnalysis;
+    this.pullSwotData();
+  }
+
   // Opens Update as a modal page.
   openUpdatePage(swotItem: SwotItem, swotAnalysisId: number) {
+    console.log(SwotItem);
     swotItem.swotAnalysisId = swotAnalysisId;
     const modalRef = this.modalService.open(UpdateItemComponent);
     modalRef.componentInstance.name = 'UpdateSwot';
