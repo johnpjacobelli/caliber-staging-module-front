@@ -36,7 +36,7 @@ export class UpdateItemComponent implements OnInit {
     console.log(itemForm)
     console.log(itemForm.value)
     console.log(this.swotItem)
-    this.swotItem.content
+    
     this.swotService.updateItem(this.swotItem)
       .subscribe(data => {
         // console.log(data);
