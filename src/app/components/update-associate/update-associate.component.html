@@ -15,7 +15,7 @@
                     <input type="text" placeholder="Enter New Batch ID" class="form-control my-2 p-2"
                     [formControlName]="'inputedBatchId'" id="newBatch" required>
                 </div>
-                <h4 class="font-weight-bold py-3" id="assocId">Current Status: {{curStatusId}}</h4>
+                <h4 class="font-weight-bold py-3" id="assocStatus">Current Status: {{curStatusId}}</h4>
                 <div class="form-row">
                     <select name="status" id="status" [formControlName]="'newStatusId'">
                         <option value="0" [selected]="curStatusId == 'STAGING'">STAGING</option>
