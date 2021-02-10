@@ -2,7 +2,7 @@ import { LoginService } from './../../services/login-service/login.service';
 import { Associate } from './../../models/associate-model/associate.model';
 import { SwotComponent } from './../swot/swot.component';
 import { AssociateService } from '../../services/associate/associate.service';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UpdateBatchPayload } from './update-batch-payload';
@@ -16,8 +16,9 @@ import { UpdateAssociateComponent } from '../update-associate/update-associate.c
 })
 export class ViewAssociateComponent implements OnInit {
 
-  associates: Associate[];
+  associates: Associate[]; 
   newAssociates: Associate[];
+  //filteredAssociates: Associate[];
   private associateSubject: BehaviorSubject<Associate>;
   public associate: Observable<Associate>;
   public updatePayload!: UpdateBatchPayload;
@@ -25,7 +26,10 @@ export class ViewAssociateComponent implements OnInit {
 
   activeId: number;
   managerId: number;
-  batchId: number;
+  @Input() batchId: number;
+  @Input() statusId: number;
+
+  associateFilter = "";
 
   private toggle = true;
 
@@ -40,6 +44,35 @@ export class ViewAssociateComponent implements OnInit {
     this.managerId = parseInt(sessionStorage.getItem('managerId'));
     this.getAllAssociates(this.managerId);
     this.counter = 0;
+  }
+
+  get assocFilter():string{
+    return this.associateFilter;
+  }
+
+  set assocFilter(temp:string){
+    this.associateFilter = temp;
+  }
+
+  getFilteredAssociates():Associate[] {
+    if(this.associateFilter) {
+      return this.performFilter(this.associateFilter);
+    } else {
+      return this.associates;
+    }
+  }
+
+  performFilter(filterBy:string): Associate[]{
+    filterBy = filterBy.toLowerCase();
+    return this.associates.filter((assoc:Associate) => 
+      (assoc.firstName.toLowerCase().indexOf(filterBy) != -1) ||
+      (assoc.firstName.toLowerCase().indexOf(filterBy) != -1) ||
+      (assoc.email.toLowerCase().indexOf(filterBy) != -1) ||
+      (assoc.status.toLowerCase().indexOf(filterBy) != -1) ||
+      (assoc.batch.toString().indexOf(filterBy) != -1) || 
+      (assoc.id.toString().indexOf(filterBy) != -1) ||
+      (assoc.salesforceId.toString().toLowerCase().indexOf(filterBy) != -1)
+    );
   }
 
   public toggleAssociateView() {
@@ -107,5 +140,6 @@ export class ViewAssociateComponent implements OnInit {
     const modalRef = this.modalService.open(UpdateAssociateComponent);
     modalRef.componentInstance.associateId = this.activeId;
     modalRef.componentInstance.curBatchId = this.batchId;
+    modalRef.componentInstance.curStatusId = this.statusId;
   }
 }
