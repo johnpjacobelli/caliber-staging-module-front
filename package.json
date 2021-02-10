@@ -24,7 +24,6 @@
     "@ng-bootstrap/ng-bootstrap": "^8.0.4",
     "animate.css": "^4.1.1",
     "bootstrap": "^4.6.0",
-    "bs4-toast": "^1.2.0",
     "firebase": "^8.2.5",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
