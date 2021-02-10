@@ -15,7 +15,7 @@ export class FeedbackService {
     headers: new HttpHeaders({})
   }
 
-  constructor(private http :HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getFeedbackByAssociateId(id: number): Observable<Feedback[]> {
     return this.http.get<Feedback[]>(`${environment.BASE_URL}feedback/associate/${id}`)
@@ -53,6 +53,13 @@ export class FeedbackService {
     .pipe(
       catchError(this.handleError<string>('updateFeedback'))
     );
+  }
+
+  deleteFeedback(feedbackId: number): Observable<Feedback> {
+    const httpoptions = { responseType: "text" as "json" }
+    return this.http.delete<Feedback>(`${environment.BASE_URL}feedback/${feedbackId}`, httpoptions)
+      .pipe(catchError(this.handleError<any>("deleteFeedback"))
+      );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
