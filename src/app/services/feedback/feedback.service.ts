@@ -18,20 +18,26 @@ export class FeedbackService {
   constructor(private http :HttpClient) { }
 
   getFeedbackByAssociateId(id: number): Observable<Feedback[]> {
-    return this.http.get<Feedback[]>(`${environment.BASE_URL}feedback/${id}`)
+    return this.http.get<Feedback[]>(`${environment.BASE_URL}feedback/associate/${id}`)
       .pipe(
         catchError(this.handleError<Feedback[]>('getAllFeedback', []))
       );
   }
 
-  addFeedback(feedback: Feedback): Observable<any> {
-    console.log("this should be feedback");
+  addFeedback(feedback: Feedback): Observable<Feedback> {
+    console.log("Was in addFeedback");
+    let feedbackDTO = {
+      id: feedback.id,
+      managerId: feedback.managerId,
+      content: feedback.content,
+      associateId: feedback.associateId,
+    }
     console.log(feedback);
-    return this.http.post<any>(`${environment.BASE_URL}feedback/create`, feedback, this.httpOptions)
-      .pipe(
-        tap((newFeedback: Feedback) => console.log(newFeedback)), //captures the response and handles it if its a response
-        catchError(this.handleError<any>('addFeedback')) //this handles if it is an error
-      )
+    let associateId = feedback.associateId;
+    return this.http.post<Feedback>(`${environment.BASE_URL}feedback/${associateId}`, feedbackDTO, this.httpOptions)
+    .pipe(
+      catchError(this.handleError<Feedback>('addFeedback'))
+    )
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
@@ -39,12 +45,5 @@ export class FeedbackService {
       console.error(error)
       return of(result as T);
     }
-  }
-
-  deleteFeedback(feedbackId: number) : Observable<any> {
-    return this.http.delete<any>(`${environment.BASE_URL}feedback/item/delete/${feedbackId}`)
-      .pipe(
-        catchError(this.handleError<any>('deleteFeedback'))
-      );
   }
 }

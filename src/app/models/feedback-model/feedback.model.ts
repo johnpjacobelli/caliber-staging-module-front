@@ -1,3 +1,5 @@
+import { Manager } from "../manager-model/manager";
+
 export class Feedback {
 
     id:number;
@@ -5,6 +7,7 @@ export class Feedback {
     date: Date;
     content: string;
     associateId: number;
+    manager : Manager;
 
     constructor(id:number,
         managerId: number,

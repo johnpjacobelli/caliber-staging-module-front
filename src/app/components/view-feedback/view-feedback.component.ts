@@ -35,30 +35,30 @@ export class ViewFeedbackComponent implements OnInit {
 
   pullFeedbackData(){
     this.associateId = +this.route.snapshot.paramMap.get('associateId')!.valueOf();
-    console.log(this.associateId);
     this.feedbackService.getFeedbackByAssociateId(this.associateId)
-
     .subscribe((data:any)=>{
-      console.log(data);
-
       this.feedbackArray = data;
     })
   }
 
-  delete(feedbackId : number){
+  //This method requires implementation of deleteFeedback method in the 
+  //feedback Service
+  
+  /* delete(feedbackId : number){
     this.feedbackService.deleteFeedback(feedbackId)
       .subscribe((data:any)=>{
         console.log(data);
         alert(`${data.message}`);
       })
     this.feedbackArray = this.feedbackArray.filter(feedback => feedback.id != feedbackId);
-  }
+  } */
 
   open() {
     const modalRef = this.modalService.open(AddFeedbackComponent);
     console.log(this.associateId);
     modalRef.componentInstance.passedId = this.associateId;
   }
+  
   add (itemForm: NgForm) {
     if(this.formIncomplete == true){
       this.finalCheck = true;

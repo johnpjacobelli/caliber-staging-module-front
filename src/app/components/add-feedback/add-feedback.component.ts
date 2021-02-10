@@ -22,24 +22,15 @@ export class AddFeedbackComponent implements OnInit {
   managerId : number;
   content : string = "";
   
-  
-  
-  date : Date;
-  i : number = 0;
-  hasData : boolean = false;
   @Input() passedId: number;
-  //analysisItems: Array<SwotItems>;
+  
   message : string = "";
   descBorder: string = "1px solid";
   nameBorder: string = "1px solid";
   typeBorder: string = "1px solid";
 
-  //initililizes empty array of swot items
-  //analysisItems: SwotItem[] = [];
-
   constructor(
     private feedbackService: FeedbackService,
-    //private loginService: LoginService,
     private modalService: NgbModal,
     private toastService: ToastRelayService
   ) // private toastr: NotificationService
@@ -47,8 +38,6 @@ export class AddFeedbackComponent implements OnInit {
   ngOnInit(): void {
     this.associateId = this.passedId;
     this.managerId = parseInt(sessionStorage.getItem('managerId'));
-    console.log(this.associateId);
-    console.log(this.managerId);
   }
 
   onSubmit(itemForm: NgForm) {
@@ -60,10 +49,10 @@ export class AddFeedbackComponent implements OnInit {
       else{
         this.contentInput = '1px solid #ced4da';
       }
-      return;
     }
 
     this.feedback = new Feedback(0, this.managerId, this.content, this.associateId);
+    console.log(this.feedback);
     this.feedbackService.addFeedback(this.feedback)
       .subscribe(data => {
         // alert("Success! New SWOT item has been added.")
@@ -75,65 +64,10 @@ export class AddFeedbackComponent implements OnInit {
       this.modalService.dismissAll();
   }
 
-/*   onSubmit2(signInForm: NgForm){
-    if (this.managerId === undefined) {
-      this.nameBorder = "3px solid red";
-    } else {
-      this.nameBorder = "1px solid";
-    }
-    if (this.content === "") {
-      this.typeBorder = "3px solid red";
-    } else {
-      this.typeBorder = "1px solid";
-    }
-
-    if (this.content === "") {
-      this.message = "Please enter feedback.";
-    } else {
-      let item : Feedback = new Feedback(0, this.managerId, this.date, this.content, this.associateId);
-      this.message = "";
-      //this.analysisItems.push(item);
-      //console.log(this.analysisItems);
-       //  this.swotService.addSwot(this.swotAnalysis)
-       //    .subscribe(data => {
-       //      console.log(data);
-       //    });
-       this.hasData = true;
-    }
-  }
-
-  addSwot(): void{
-    if (this.content.length === 0) {
-      this.descBorder = "3px solid red";
-      this.message = "Please enter feedback.";
-    } else {
-      this.descBorder = "1px solid";
-      this.message = "";
-      this.feedback = new Feedback(0, this.managerId, this.date, this.content, this.associateId);
-      //console.log(this.analysisItems)
-      //console.log(this.swotAnalysis)
-      this.feedback.managerId = parseInt(sessionStorage.getItem('managerId'));
-      this.swotService.addSwot(this.swotAnalysis)
-        .subscribe(data => {
-          alert(`${data.message}`);
-        });
-      this.modalService.dismissAll();
-    }
-
-  } */
-
-  /* managerChange(UpdatedValue : number) :void 
-  { 
-    if (this.managerId !== 0) {
-      this.descBorder = "1px solid";
-    };
-  }  */
-
   contentChange(UpdatedValue : string) :void 
   { 
     if (this.content.length !== 0) {
       this.nameBorder = "1px solid";
     };
   }
-
 }
