@@ -25,6 +25,7 @@ import { ToastMessageComponent } from './components/toast-message/toast-message.
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ViewFeedbackComponent } from './components/view-feedback/view-feedback.component';
 import { AddFeedbackComponent } from './components/add-feedback/add-feedback.component';
+import { UpdateFeedbackComponent } from './components/update-feedback/update-feedback.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { AddFeedbackComponent } from './components/add-feedback/add-feedback.com
     ToastMessageComponent,
     ViewFeedbackComponent,
     AddFeedbackComponent,
+    UpdateFeedbackComponent,
   ],
   imports: [
     BrowserModule,

@@ -41,33 +41,46 @@ export class AddFeedbackComponent implements OnInit {
   }
 
   onSubmit(itemForm: NgForm) {
+
     if(this.formIncomplete == true){
       this.finalCheck = true;
-      if(this.content.length === 0){
-        this.contentInput = '2px solid red';
-      }
-      else{
-        this.contentInput = '1px solid #ced4da';
-      }
+
+      // if(this.content.length === 0){
+      //   this.contentInput = '2px solid red';
+      // } else{
+      //   this.contentInput = '1px solid #ced4da';
+      // }
+
+      // change border to red if formIncomplete is true.
+      this.nameBorder = "2px solid red";
+
+      // If formIncomplete is false, allow processing of feedback.
+    } else {
+      this.feedback = new Feedback(0, this.managerId, this.content, this.associateId);
+      console.log(this.feedback);
+      this.feedbackService.addFeedback(this.feedback)
+        .subscribe(data => {
+          // alert("Success! New SWOT item has been added.")
+          this.toastService.addToast({
+            header:'New feedback added!',
+            body:`${this.feedback.content}`
+          });
+        });
+        this.modalService.dismissAll();
     }
 
-    this.feedback = new Feedback(0, this.managerId, this.content, this.associateId);
-    console.log(this.feedback);
-    this.feedbackService.addFeedback(this.feedback)
-      .subscribe(data => {
-        // alert("Success! New SWOT item has been added.")
-        this.toastService.addToast({
-          header:'New feedback added!',
-          body:`${this.feedback.content}`
-        });
-      });
-      this.modalService.dismissAll();
   }
 
   contentChange(UpdatedValue : string) :void 
   { 
     if (this.content.length !== 0) {
       this.nameBorder = "1px solid";
-    };
+
+      // updated formIncomplete if length > 0
+      this.formIncomplete = false;
+    } else {
+      // Change formIncomplete to true if length returns to 0
+      this.formIncomplete = true;
+    }
   }
 }
