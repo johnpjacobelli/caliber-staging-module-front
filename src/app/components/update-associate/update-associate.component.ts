@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AssociateService } from 'src/app/services/associate/associate.service';
+import { ToastRelayService } from 'src/app/services/toast-relay/toast-relay.service';
 import { UpdateBatchPayload } from '../view-associate/update-batch-payload';
 
 @Component({
@@ -18,9 +19,13 @@ export class UpdateAssociateComponent implements OnInit {
   statusId!: number;
   curStatusId!: string;
   updatePayload!: UpdateBatchPayload;
+  formExists: boolean = true;
 
 
-  constructor(private modalService: NgbModal, private formBuild: FormBuilder, private assocService: AssociateService) { }
+  constructor(private modalService: NgbModal, 
+    private formBuild: FormBuilder, 
+    private assocService: AssociateService,
+    private toastService: ToastRelayService) { }
 
   ngOnInit(): void {
     this.updateForm = this.formBuild.group({
@@ -39,10 +44,19 @@ export class UpdateAssociateComponent implements OnInit {
     }
 
     this.assocService.updateBatch(this.updatePayload)
-    .subscribe((data: any) => {
+    .subscribe((data) => {
+      
       console.log(data);
+      this.toastService.addToast({
+        header:'Updating associate!',
+        body:data
+      })
+      //refresh workaround causes toast to disappear 
+      //TODO populate tables asychronously
+      location.reload();
     });
-    location.reload();
+    //this.formExists = false;
+    
   }
 
 }

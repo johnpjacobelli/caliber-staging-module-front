@@ -67,7 +67,7 @@ export class ViewSwotComponent implements OnInit {
       .subscribe((data: any) => {
 
         console.log(data);
-        alert(`${data.message}`);
+        // alert(`${data.message}`);
         this.toastService.addToast({
           header:"SWOT item deleted!",
           body:`SWOT Item ID: ${swotItemId}`
