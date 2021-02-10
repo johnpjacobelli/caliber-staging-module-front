@@ -44,8 +44,14 @@ export class ViewSwotComponent implements OnInit {
     
   }
 
+  updateSelectedSwot(){
+    this.currentSwotAnalysis = this.currentSwotAnalysis;
+    this.pullSwotData();
+  }
+
   // Opens Update as a modal page.
   openUpdatePage(swotItem: SwotItem, swotAnalysisId: number) {
+    console.log(SwotItem);
     swotItem.swotAnalysisId = swotAnalysisId;
     const modalRef = this.modalService.open(UpdateItemComponent);
     modalRef.componentInstance.name = 'UpdateSwot';
@@ -59,15 +65,17 @@ export class ViewSwotComponent implements OnInit {
     
     this.swotService.deleteItem(swotItemId)
       .subscribe((data: any) => {
-        // console.log(data);
-        // alert(`${data.message}`);
+
+        console.log(data);
+        alert(`${data.message}`);
         this.toastService.addToast({
           header:"SWOT item deleted!",
           body:`SWOT Item ID: ${swotItemId}`
         });
+        this.pullSwotData();
+
       })
-    this.currentSwotAnalysis.analysisItems = this.currentSwotAnalysis.analysisItems.filter(swotItem => swotItem.id != swotItemId);
-    this.pullSwotData();
+      this.currentSwotAnalysis.analysisItems = this.currentSwotAnalysis.analysisItems.filter(swotItem => swotItem.id != swotItemId);
   }
 
   pullSwotData() {
