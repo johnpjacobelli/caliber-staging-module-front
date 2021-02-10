@@ -70,6 +70,7 @@ export class ViewFeedbackComponent implements OnInit {
       }
       return;
     }
+
     this.feedbackService.addFeedback(this.feedbackItem)
       .subscribe(data => {
         this.toastService.addToast({
@@ -77,6 +78,7 @@ export class ViewFeedbackComponent implements OnInit {
           body:`${this.feedbackItem.content}`
         });
       });
+
       this.modalService.dismissAll();
   }
 }
