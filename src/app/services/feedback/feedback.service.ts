@@ -52,10 +52,9 @@ export class FeedbackService {
     );
   }
 
-  deleteFeedback(feedbackId: number): Observable<Feedback> {
-    
-    return this.http.delete<Feedback>(`${environment.BASE_URL}feedback/${feedbackId}`, this.httpOptions)
-      .pipe(catchError(this.handleError<any>("deleteFeedback"))
+  deleteFeedback(feedbackId: number): Observable<string> {
+    return this.http.delete<string>(`${environment.BASE_URL}feedback/${feedbackId}`, this.httpOptions)
+      .pipe(catchError(this.handleError<string>("deleteFeedback"))
       );
   }
 
