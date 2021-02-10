@@ -22,6 +22,9 @@ import { CorsInterceptor } from './services/interceptor/cors.interceptor';
 import { UpdateAssociateComponent } from './components/update-associate/update-associate.component';
 import { UpdateSwotComponent } from './components/update-swot/update-swot.component';
 import { ToastMessageComponent } from './components/toast-message/toast-message.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ViewFeedbackComponent } from './components/view-feedback/view-feedback.component';
+import { AddFeedbackComponent } from './components/add-feedback/add-feedback.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,8 @@ import { ToastMessageComponent } from './components/toast-message/toast-message.
     UpdateAssociateComponent,
     UpdateSwotComponent,
     ToastMessageComponent,
+    ViewFeedbackComponent,
+    AddFeedbackComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +51,7 @@ import { ToastMessageComponent } from './components/toast-message/toast-message.
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     BrowserAnimationsModule,
+    NgbModule,
     // ToastrModule.forRoot()
   ],
   providers: [

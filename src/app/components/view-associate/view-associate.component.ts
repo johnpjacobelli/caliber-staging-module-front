@@ -7,6 +7,8 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UpdateBatchPayload } from './update-batch-payload';
 import { UpdateAssociateComponent } from '../update-associate/update-associate.component';
+import { SwotService } from 'src/app/services/swot/swot.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,12 +28,15 @@ export class ViewAssociateComponent implements OnInit {
   activeId: number;
   managerId: number;
   batchId: number;
+  statusId: number;
 
   private toggle = true;
 
   constructor(private service: AssociateService, 
               private modalService: NgbModal, 
-              private changeDetect: ChangeDetectorRef) {
+              private changeDetect: ChangeDetectorRef,
+              private swotService: SwotService,
+              private router: Router) {
     this.associateSubject = new BehaviorSubject<Associate>(JSON.parse(sessionStorage.getItem('currentUser')));
     this.associate = this.associateSubject.asObservable();
   }
@@ -107,5 +112,24 @@ export class ViewAssociateComponent implements OnInit {
     const modalRef = this.modalService.open(UpdateAssociateComponent);
     modalRef.componentInstance.associateId = this.activeId;
     modalRef.componentInstance.curBatchId = this.batchId;
+    modalRef.componentInstance.curStatusId = this.statusId;
   }
+
+  checkSwotsValid(): void {
+    console.log(`Checking swots for user: ${this.activeId}`);
+
+    this.swotService.getSwotByAssociatedId(this.activeId)
+      .subscribe((data: any[]) => {
+        console.log(`data length: ${data.length}`);
+        
+        if(data.length === 0) {
+          this.open();
+        } else {
+          this.router.navigate([`/view/${this.activeId}`]);
+        }
+      })
+      
+      
+  }
+
 }
