@@ -5,7 +5,7 @@ import { Feedback } from 'src/app/models/feedback-model/feedback.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ResourceLoader } from '@angular/compiler';
-import {AddFeedbackComponent} from 'src/app/components/add-feedback/add-feedback.component';
+import { AddFeedbackComponent } from 'src/app/components/add-feedback/add-feedback.component';
 import { ToastRelayService } from 'src/app/services/toast-relay/toast-relay.service';
 
 @Component({
@@ -15,9 +15,9 @@ import { ToastRelayService } from 'src/app/services/toast-relay/toast-relay.serv
 })
 export class ViewFeedbackComponent implements OnInit {
 
-  feedbackArray : Feedback [] = [];
-  feedbackItem : Feedback;
-  currentFeedback : Feedback;
+  feedbackArray: Feedback[] = [];
+  feedbackItem: Feedback;
+  currentFeedback: Feedback;
   formIncomplete = true;
   finalCheck = false;
   contentInput = '1px solid #ced4da';
@@ -33,39 +33,42 @@ export class ViewFeedbackComponent implements OnInit {
     this.pullFeedbackData();
   }
 
-  pullFeedbackData(){
+  pullFeedbackData() {
     this.associateId = +this.route.snapshot.paramMap.get('associateId')!.valueOf();
     this.feedbackService.getFeedbackByAssociateId(this.associateId)
-    .subscribe((data:any)=>{
-      this.feedbackArray = data;
-    })
+      .subscribe((data: any) => {
+        this.feedbackArray = data;
+      })
   }
 
   //This method requires implementation of deleteFeedback method in the 
   //feedback Service
-  
-  /* delete(feedbackId : number){
+
+  delete(feedbackId: number) {
     this.feedbackService.deleteFeedback(feedbackId)
-      .subscribe((data:any)=>{
-        console.log(data);
-        alert(`${data.message}`);
+      .subscribe(data => {
+        this.toastService.addToast({
+          header: 'Feedback removed!',
+          body: "Feedback was succesfully deleted!"
+        });
       })
     this.feedbackArray = this.feedbackArray.filter(feedback => feedback.id != feedbackId);
-  } */
+
+  }
 
   open() {
     const modalRef = this.modalService.open(AddFeedbackComponent);
     console.log(this.associateId);
     modalRef.componentInstance.passedId = this.associateId;
   }
-  
-  add (itemForm: NgForm) {
-    if(this.formIncomplete == true){
+
+  add(itemForm: NgForm) {
+    if (this.formIncomplete == true) {
       this.finalCheck = true;
-      if(this.feedbackItem.content.length === 0){
+      if (this.feedbackItem.content.length === 0) {
         this.contentInput = '2px solid red';
       }
-      else{
+      else {
         this.contentInput = '1px solid #ced4da';
       }
       return;
@@ -73,10 +76,10 @@ export class ViewFeedbackComponent implements OnInit {
     this.feedbackService.addFeedback(this.feedbackItem)
       .subscribe(data => {
         this.toastService.addToast({
-          header:'New Feedback added!',
-          body:`${this.feedbackItem.content}`
+          header: 'New Feedback added!',
+          body: `${this.feedbackItem.content}`
         });
       });
-      this.modalService.dismissAll();
+    this.modalService.dismissAll();
   }
 }

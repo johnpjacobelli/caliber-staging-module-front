@@ -19,7 +19,7 @@
     <app-toast-message></app-toast-message>
 </div>
 
-<div id="display-box-info"  class = "row align-items-center justify-content-center" *ngIf="feedbackArray">
+<div id="display-box-info" class="row align-items-center justify-content-center" *ngIf="feedbackArray">
     <h5>Feedback for Associate {{associateId}}</h5>
 </div>
 
@@ -42,10 +42,10 @@
                     <td>{{feedback.date | date:'short':'EST'}}</td>
                     <td>{{feedback.content}}</td>
                     <td><button class="btn toggle-btn">Update feedback</button></td>
-                    <td><button class="btn toggle-btn" (click)="delete()">Delete feedback</button></td>
+                    <td><button class="btn toggle-btn" (click)="delete(feedback.id)">Delete feedback</button></td>
                 </tr>
             </tbody>
         </table>
-    
+
     </div>
 </section>
