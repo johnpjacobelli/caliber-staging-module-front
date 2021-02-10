@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AssociateService } from 'src/app/services/associate/associate.service';
+import { ToastRelayService } from 'src/app/services/toast-relay/toast-relay.service';
 import { UpdateBatchPayload } from '../view-associate/update-batch-payload';
 
 @Component({
@@ -15,32 +16,47 @@ export class UpdateAssociateComponent implements OnInit {
   associateId!: number;
   curBatchId!: number;
   newBatchId!: number;
+  statusId!: number;
+  curStatusId!: string;
   updatePayload!: UpdateBatchPayload;
+  formExists: boolean = true;
 
 
-  constructor(private modalService: NgbModal, private formBuild: FormBuilder, private assocService: AssociateService) { }
+  constructor(private modalService: NgbModal, 
+    private formBuild: FormBuilder, 
+    private assocService: AssociateService,
+    private toastService: ToastRelayService) { }
 
   ngOnInit(): void {
     this.updateForm = this.formBuild.group({
-      inputedBatchId: ['', [Validators.required]]
+      inputedBatchId: ['', [Validators.required]],
+      newStatusId: ['', [Validators.required]]
     })
   }
 
   onSubmit(): void {
     this.newBatchId = this.updateForm.get('inputedBatchId')?.value;
+    this.statusId = this.updateForm.get('newStatusId')?.value;
     this.updatePayload = {
       associate_id: this.associateId,
-      batch_id: this.newBatchId
+      batch_id: this.newBatchId,
+      status_id: this.statusId
     }
-    console.log("HERES MY VALUES");
-    console.log(this.associateId);
-    console.log(this.curBatchId);
-    console.log(this.newBatchId);
+
     this.assocService.updateBatch(this.updatePayload)
-    .subscribe((data: any) => {
+    .subscribe((data) => {
+      
       console.log(data);
+      this.toastService.addToast({
+        header:'Updating associate!',
+        body:data
+      })
+      //refresh workaround causes toast to disappear 
+      //TODO populate tables asychronously
+      location.reload();
     });
-    location.reload();
+    //this.formExists = false;
+    
   }
 
 }

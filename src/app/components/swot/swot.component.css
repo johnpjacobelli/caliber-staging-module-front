@@ -37,7 +37,7 @@ img{
     color: var(--black);
 }
 
-.modal-content {
+.modal-name {
     width: 600px !important;
 }
 
@@ -49,3 +49,7 @@ img{
     color: var(--light-gray);
 }
 
+#message {
+    color: red;
+    text-align: center;
+}

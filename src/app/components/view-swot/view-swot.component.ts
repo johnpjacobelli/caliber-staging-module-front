@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AddItemComponent } from '../add-item/add-item.component';
 import { UpdateSwotComponent } from '../update-swot/update-swot.component';
 import { NgForm } from '@angular/forms';
+import { ResourceLoader } from '@angular/compiler';
 import { ToastRelayService } from 'src/app/services/toast-relay/toast-relay.service';
 
 @Component({
@@ -33,34 +34,48 @@ export class ViewSwotComponent implements OnInit {
     private route: ActivatedRoute,
     private toastService: ToastRelayService) {
 
+        
   }
 
 
   ngOnInit(): void {
     this.activeSwotIndex = 0;
     this.pullSwotData();
+    
+  }
 
+  updateSelectedSwot(){
+    this.currentSwotAnalysis = this.currentSwotAnalysis;
+    this.pullSwotData();
   }
 
   // Opens Update as a modal page.
   openUpdatePage(swotItem: SwotItem, swotAnalysisId: number) {
+    console.log(SwotItem);
     swotItem.swotAnalysisId = swotAnalysisId;
     const modalRef = this.modalService.open(UpdateItemComponent);
     modalRef.componentInstance.name = 'UpdateSwot';
     modalRef.componentInstance.passedSwotItem = swotItem;
+    modalRef.componentInstance.deleteEmitter.subscribe(this.delete.bind(this));
+    
   }
 
   delete(swotItemId: number) {
+    console.log("Deleting from view-Swot, ID: " + swotItemId);
+    
     this.swotService.deleteItem(swotItemId)
       .subscribe((data: any) => {
-        // console.log(data);
+
+        console.log(data);
         // alert(`${data.message}`);
         this.toastService.addToast({
           header:"SWOT item deleted!",
           body:`SWOT Item ID: ${swotItemId}`
         });
+        this.pullSwotData();
+
       })
-    this.currentSwotAnalysis.analysisItems = this.currentSwotAnalysis.analysisItems.filter(swotItem => swotItem.id != swotItemId);
+      this.currentSwotAnalysis.analysisItems = this.currentSwotAnalysis.analysisItems.filter(swotItem => swotItem.id != swotItemId);
   }
 
   pullSwotData() {
@@ -90,7 +105,7 @@ export class ViewSwotComponent implements OnInit {
       })
   }
 
-  addItem() {
+  addItemStrength() {
     const options: NgbModalOptions = {
       beforeDismiss: () => {
         for (var i = 0; i < this.swotAnalyses.length; i++) {
@@ -102,19 +117,84 @@ export class ViewSwotComponent implements OnInit {
         return true;
       }
     }
+    this.type = "STRENGTH";
 
     const modalRef = this.modalService.open(AddItemComponent, options);
 
     modalRef.componentInstance.name = 'AddItem';
     modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
-  }
-  
-  onSubmit(itemForm: NgForm) {
-    console.log(itemForm.value);
+    modalRef.componentInstance.type = this.type;
   }
 
+  addItemWeak() {
+    const options: NgbModalOptions = {
+      beforeDismiss: () => {
+        for (var i = 0; i < this.swotAnalyses.length; i++) {
+          if (this.currentSwotAnalysis == this.swotAnalyses[i]) {
+            this.activeSwotIndex = i;
+          }
+        }
+        this.pullSwotData();
+        return true;
+      }
+    }
+    this.type = "WEAKNESS";
+
+    const modalRef = this.modalService.open(AddItemComponent, options);
+
+    modalRef.componentInstance.name = 'AddItem';
+    modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
+    modalRef.componentInstance.type = this.type;
+  }
+
+  addItemOpp() {
+    const options: NgbModalOptions = {
+      beforeDismiss: () => {
+        for (var i = 0; i < this.swotAnalyses.length; i++) {
+          if (this.currentSwotAnalysis == this.swotAnalyses[i]) {
+            this.activeSwotIndex = i;
+          }
+        }
+        this.pullSwotData();
+        return true;
+      }
+    }
+    this.type = "OPPORTUNITY";
+
+    const modalRef = this.modalService.open(AddItemComponent, options);
+
+    modalRef.componentInstance.name = 'AddItem';
+    modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
+    modalRef.componentInstance.type = this.type;
+  }
+
+  addItemThreat() {
+    const options: NgbModalOptions = {
+      beforeDismiss: () => {
+        for (var i = 0; i < this.swotAnalyses.length; i++) {
+          if (this.currentSwotAnalysis == this.swotAnalyses[i]) {
+            this.activeSwotIndex = i;
+          }
+        }
+        this.pullSwotData();
+        return true;
+      }
+    }
+    this.type = "THREAT";
+
+    const modalRef = this.modalService.open(AddItemComponent, options);
+
+    modalRef.componentInstance.name = 'AddItem';
+    modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
+    modalRef.componentInstance.type = this.type;
+  }
+
+/**
+ * This displays the modal to update the description of a swot
+ */
   changeDescription(){
     const modalRef = this.modalService.open(UpdateSwotComponent);
     modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
   }
+
 }
