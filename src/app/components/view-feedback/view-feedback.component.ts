@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 import { ResourceLoader } from '@angular/compiler';
 import {AddFeedbackComponent} from 'src/app/components/add-feedback/add-feedback.component';
 import { ToastRelayService } from 'src/app/services/toast-relay/toast-relay.service';
+import { UpdateFeedbackComponent } from '../update-feedback/update-feedback.component';
 
 @Component({
   selector: 'app-view-feedback',
@@ -78,5 +79,14 @@ export class ViewFeedbackComponent implements OnInit {
         });
       });
       this.modalService.dismissAll();
+  }
+
+  // Opens Update as a modal page.
+  openUpdatePage(feedback: Feedback) {
+    // swotItem.swotAnalysisId = swotAnalysisId;
+    const modalRef = this.modalService.open(UpdateFeedbackComponent);
+    modalRef.componentInstance.name = 'UpdateFeedback';
+    modalRef.componentInstance.passedFeedback = feedback;
+    modalRef.componentInstance.passedAssociateId = this.associateId;
   }
 }
