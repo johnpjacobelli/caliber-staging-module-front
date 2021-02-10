@@ -40,10 +40,10 @@ export class FeedbackService {
       )
   }
 
-  deleteFeedback(feedbackId: number): Observable<Feedback> {
+  deleteFeedback(feedbackId: number): Observable<string> {
     const httpoptions = { responseType: "text" as "json" }
-    return this.http.delete<Feedback>(`${environment.BASE_URL}feedback/${feedbackId}`, httpoptions)
-      .pipe(catchError(this.handleError<any>("deleteFeedback"))
+    return this.http.delete<string>(`${environment.BASE_URL}feedback/${feedbackId}`, httpoptions)
+      .pipe(catchError(this.handleError<string>("deleteFeedback"))
       );
   }
 

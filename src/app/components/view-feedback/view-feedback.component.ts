@@ -49,7 +49,7 @@ export class ViewFeedbackComponent implements OnInit {
       .subscribe(data => {
         this.toastService.addToast({
           header: 'Feedback removed!',
-          body: "Feedback was succesfully deleted!"
+          body: "Feedback was succesfully!"
         });
       })
     this.feedbackArray = this.feedbackArray.filter(feedback => feedback.id != feedbackId);
