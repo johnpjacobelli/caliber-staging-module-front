@@ -26,7 +26,6 @@
     "bootstrap": "^4.6.0",
     "bs4-toast": "^1.2.0",
     "firebase": "^8.2.5",
-    "jquery": "^3.5.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.10.2"
