@@ -59,8 +59,8 @@ export class ViewFeedbackComponent implements OnInit {
 
   open() {
     const modalRef = this.modalService.open(AddFeedbackComponent);
-    console.log(this.associateId);
     modalRef.componentInstance.passedId = this.associateId;
+    modalRef.componentInstance.updateEmitter.subscribe(this.pullFeedbackData.bind(this));
   }
 
   add(itemForm: NgForm) {

@@ -11,9 +11,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class FeedbackService {
 
-  httpOptions = {
-    headers: new HttpHeaders({})
-  }
+  httpOptions = { responseType: "text" as "json" }
 
   constructor(private http: HttpClient) { }
 
@@ -24,20 +22,19 @@ export class FeedbackService {
       );
   }
 
-  addFeedback(feedback: Feedback): Observable<Feedback> {
-    console.log("Was in addFeedback");
+  addFeedback(feedback: Feedback): Observable<string> {
     let feedbackDTO = {
       id: feedback.id,
       managerId: feedback.managerId,
       content: feedback.content,
       associateId: feedback.associateId,
     }
-    console.log(feedback);
 
     let associateId = feedback.associateId;
-    return this.http.post<Feedback>(`${environment.BASE_URL}feedback/${associateId}`, feedbackDTO, this.httpOptions)
+    
+    return this.http.post<string>(`${environment.BASE_URL}feedback/${associateId}`, feedbackDTO, this.httpOptions)
     .pipe(
-      catchError(this.handleError<Feedback>('addFeedback'))
+      catchError(this.handleError<string>('addFeedback'))
     );
   }
 
@@ -48,16 +45,16 @@ export class FeedbackService {
       content: feedback.content,
       associateId: feedback.associateId
     }
-    const httpOptions = { responseType: "text" as "json" }
-    return this.http.put<string>(`${environment.BASE_URL}feedback/${feedback.id}`, feedbackDTO, httpOptions)
+    
+    return this.http.put<string>(`${environment.BASE_URL}feedback/${feedback.id}`, feedbackDTO, this.httpOptions)
     .pipe(
       catchError(this.handleError<string>('updateFeedback'))
     );
   }
 
   deleteFeedback(feedbackId: number): Observable<Feedback> {
-    const httpoptions = { responseType: "text" as "json" }
-    return this.http.delete<Feedback>(`${environment.BASE_URL}feedback/${feedbackId}`, httpoptions)
+    
+    return this.http.delete<Feedback>(`${environment.BASE_URL}feedback/${feedbackId}`, this.httpOptions)
       .pipe(catchError(this.handleError<any>("deleteFeedback"))
       );
   }

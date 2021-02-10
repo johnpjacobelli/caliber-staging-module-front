@@ -1,6 +1,6 @@
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FeedbackService } from 'src/app/services/feedback/feedback.service';
-import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges, Output, EventEmitter } from '@angular/core';
 import { Feedback } from 'src/app/models/feedback-model/feedback.model';
 import { NgForm } from '@angular/forms';
 import { ToastRelayService } from 'src/app/services/toast-relay/toast-relay.service';
@@ -23,6 +23,7 @@ export class AddFeedbackComponent implements OnInit {
   content : string = "";
   
   @Input() passedId: number;
+  @Output() updateEmitter: EventEmitter<any> = new EventEmitter();
   
   message : string = "";
   descBorder: string = "1px solid";
@@ -57,7 +58,6 @@ export class AddFeedbackComponent implements OnInit {
       // If formIncomplete is false, allow processing of feedback.
     } else {
       this.feedback = new Feedback(0, this.managerId, this.content, this.associateId);
-      console.log(this.feedback);
       this.feedbackService.addFeedback(this.feedback)
         .subscribe(data => {
           // alert("Success! New SWOT item has been added.")
@@ -65,6 +65,7 @@ export class AddFeedbackComponent implements OnInit {
             header:'New feedback added!',
             body:`${this.feedback.content}`
           });
+          this.updateEmitter.emit();
         });
         this.modalService.dismissAll();
     }
