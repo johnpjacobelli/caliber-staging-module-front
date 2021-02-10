@@ -8,14 +8,13 @@ export class Feedback {
 
     constructor(id:number,
         managerId: number,
-        date: Date,
         content: string,
         associateId: number){
 
         if(associateId){
             this.id = id;
             this.managerId = managerId;
-            this.date = date;
+            this.date = new Date();
             this.content = content;
             this.associateId = associateId
         }else{

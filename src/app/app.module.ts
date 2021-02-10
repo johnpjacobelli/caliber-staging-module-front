@@ -23,6 +23,8 @@ import { UpdateAssociateComponent } from './components/update-associate/update-a
 import { UpdateSwotComponent } from './components/update-swot/update-swot.component';
 import { ToastMessageComponent } from './components/toast-message/toast-message.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ViewFeedbackComponent } from './components/view-feedback/view-feedback.component';
+import { AddFeedbackComponent } from './components/add-feedback/add-feedback.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UpdateAssociateComponent,
     UpdateSwotComponent,
     ToastMessageComponent,
+    ViewFeedbackComponent,
+    AddFeedbackComponent,
   ],
   imports: [
     BrowserModule,
