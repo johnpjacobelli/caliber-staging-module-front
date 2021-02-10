@@ -21,6 +21,7 @@ body{
     --dark-white: rgb(219, 226, 226);
     --brown: rgba(243, 156, 113, .40);
     --black: rgba(0, 0, 0, 0.75);
+    --blue: #069;
 }
 @font-face {
     font-family: "Futura Bold";
