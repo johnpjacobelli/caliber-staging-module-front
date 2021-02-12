@@ -2,7 +2,7 @@ import { LoginService } from './../../services/login-service/login.service';
 import { Associate } from './../../models/associate-model/associate.model';
 import { SwotComponent } from './../swot/swot.component';
 import { AssociateService } from '../../services/associate/associate.service';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UpdateBatchPayload } from './update-batch-payload';
@@ -26,8 +26,8 @@ export class ViewAssociateComponent implements OnInit {
 
   activeId: number;
   managerId: number;
-  batchId: number;
-  statusId: number;
+  @Input() batchId: number;
+  @Input() statusId: number;
 
   associateFilter = "";
 
