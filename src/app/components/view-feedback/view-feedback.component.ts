@@ -63,27 +63,29 @@ export class ViewFeedbackComponent implements OnInit {
     modalRef.componentInstance.passedId = this.associateId;
   }
 
-  add(itemForm: NgForm) {
-    if (this.formIncomplete == true) {
-      this.finalCheck = true;
-      if (this.feedbackItem.content.length === 0) {
-        this.contentInput = '2px solid red';
-      }
-      else {
-        this.contentInput = '1px solid #ced4da';
-      }
-      return;
-    }
+  // add(itemForm: NgForm) {
+  //   if (this.formIncomplete == true) {
+  //     this.finalCheck = true;
+  //     if (this.feedbackItem.content.length === 0) {
+  //       this.contentInput = '2px solid red';
+  //     }
+  //     else {
+  //       this.contentInput = '1px solid #ced4da';
+  //     }
+  //     return;
+  //   }
 
-    this.feedbackService.addFeedback(this.feedbackItem)
-      .subscribe(data => {
-        this.toastService.addToast({
-          header: 'New Feedback added!',
-          body: `${this.feedbackItem.content}`
-        });
-      });
-    this.modalService.dismissAll();
-  }
+  //   this.feedbackService.addFeedback(this.feedbackItem)
+  //     .subscribe(data => {
+  //       this.pullFeedbackData();
+  //       this.toastService.addToast({
+  //         header: 'New Feedback added!',
+  //         body: `${this.feedbackItem.content}`
+  //       });
+  //     });
+
+  //   this.modalService.dismissAll();
+  // }
 
   // Opens Update as a modal page.
   openUpdatePage(feedback: Feedback) {
