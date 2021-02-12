@@ -25,8 +25,10 @@ export class ViewAssociateComponent implements OnInit {
   public associate: Observable<Associate>;
   public updatePayload!: UpdateBatchPayload;
   public counter: number;
+  public counter1: number = 0;
 
   activeId: number;
+  //managerId: BehaviorSubject<number> = new BehaviorSubject(0);
   managerId: number;
   @Input() batchId: number;
   @Input() statusId: number;
@@ -45,7 +47,14 @@ export class ViewAssociateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //this.managerId.next(parseInt(sessionStorage.getItem('managerId')));
     this.managerId = parseInt(sessionStorage.getItem('managerId'));
+    if(isNaN(this.managerId))
+    {
+      console.log(this.managerId);
+      location.reload();
+    }
+    
     this.getAllAssociates(this.managerId);
     this.counter = 0;
   }
