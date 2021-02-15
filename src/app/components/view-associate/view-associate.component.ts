@@ -10,6 +10,7 @@ import { UpdateAssociateComponent } from '../update-associate/update-associate.c
 import { SwotService } from 'src/app/services/swot/swot.service';
 import { Router } from '@angular/router';
 import { ToastRelayService } from 'src/app/services/toast-relay/toast-relay.service';
+import { Swot } from 'src/app/models/swot-model/swot';
 
 @Component({
   selector: 'app-view-associate',
@@ -35,6 +36,7 @@ export class ViewAssociateComponent implements OnInit {
   @Input() statusId: number;
 
   associateFilter = "";
+  swotAnalyses: Swot[];
 
   private toggle = true;
 
@@ -64,7 +66,7 @@ export class ViewAssociateComponent implements OnInit {
     if(isNaN(this.managerId))
     {
       console.log(this.managerId);
-      location.reload();
+      this.router.navigate(['/login']);
     }
     
     this.getAllAssociates(this.managerId);
@@ -137,7 +139,7 @@ export class ViewAssociateComponent implements OnInit {
     const modalRef = this.modalService.open(SwotComponent);
     console.log(this.activeId);
     modalRef.componentInstance.passedId = this.activeId;
-    modalRef.componentInstance.passedIsEmpty = this.swotIsEmpty;
+    //modalRef.componentInstance.passedIsEmpty = this.swotIsEmpty;
   }
 
   /**
@@ -212,8 +214,14 @@ export class ViewAssociateComponent implements OnInit {
           this.router.navigate([`/view/${this.activeId}`]);
         }
       })
-      
-      
+  }
+
+    getSwotsByAssociate(associateId: string) {
+      this.swotService.getSwotByAssociatedId(Number.parseInt(associateId))
+      .subscribe((data: any) => {
+        console.log(data);
+        this.swotAnalyses = data;
+    })
   }
 
 }

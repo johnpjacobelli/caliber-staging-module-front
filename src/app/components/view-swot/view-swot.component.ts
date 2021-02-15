@@ -27,8 +27,6 @@ export class ViewSwotComponent implements OnInit {
     private modalService: NgbModal,
     private route: ActivatedRoute,
     private toastService: ToastRelayService) {
-
-        
   }
 
 
@@ -36,8 +34,11 @@ export class ViewSwotComponent implements OnInit {
    * This requests all the data on a SWOT analysis from the backend on initialization
    */
   ngOnInit(): void {
+    console.log("in ngoninit");
     this.activeSwotIndex = 0;
+
     this.pullSwotData(); 
+
   }
 
   /**
@@ -60,7 +61,6 @@ export class ViewSwotComponent implements OnInit {
     modalRef.componentInstance.name = 'UpdateSwot';
     modalRef.componentInstance.passedSwotItem = swotItem;
     modalRef.componentInstance.deleteEmitter.subscribe(this.delete.bind(this));
-    
   }
 
   /**
@@ -68,7 +68,7 @@ export class ViewSwotComponent implements OnInit {
    */
   delete(swotItemId: number) {
     console.log("Deleting from view-Swot, ID: " + swotItemId);
-    
+
     this.swotService.deleteItem(swotItemId)
       .subscribe((data: any) => {
 
@@ -214,15 +214,8 @@ export class ViewSwotComponent implements OnInit {
    * This method sends a request to the backend to delete a swot with id=id.
    */
   deleteSwot(){
+    console.log(this.currentSwotAnalysis);
     this.swotService.deleteSwot(this.currentSwotAnalysis.id).subscribe();
     this.router.navigate(['/home']);
-  }
-
-  checkSwots(swotAnalyses){
-    for(let i=0; i<swotAnalyses.length; i++){
-      if(swotAnalyses[i].analysisItems==null){
-        delete swotAnalyses[i];
-      }
-    }
   }
 }
