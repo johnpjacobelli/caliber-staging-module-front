@@ -21,7 +21,7 @@
                     </div>
                     <div class="col-lg-12">
                       <label for="status">Associate Status</label>
-                      <select name="status" id="status" [formControlName]="'newStatusId'">
+                      <select name="status" id="status" class="form-control" [formControlName]="'newStatusId'">
                         <option value="0" [selected]="statusId == 0">STAGING</option>
                         <option value="1" [selected]="statusId == 1">PROJECT</option>
                         <option value="2" [selected]="statusId == 2">RELEASED</option>
