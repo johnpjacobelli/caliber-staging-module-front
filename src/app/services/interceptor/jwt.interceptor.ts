@@ -14,13 +14,13 @@ import { switchMap } from 'rxjs/operators';
 })
 export class JwtInterceptor implements HttpInterceptor {
   jwtSubject: BehaviorSubject<any> = new BehaviorSubject(null);
-  constructor(private fireAuth: AngularFireAuth) {}
+  constructor(private ngFireAuth: AngularFireAuth) {}
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    return this.fireAuth.idToken.pipe(
+    return this.ngFireAuth.idToken.pipe(
       switchMap((jwtToken: string) => {
         this.jwtSubject.next(jwtToken);
         return next.handle(this.addAuthorizationToken(req, jwtToken));
