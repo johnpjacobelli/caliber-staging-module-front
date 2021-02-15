@@ -32,12 +32,17 @@ export class ViewSwotComponent implements OnInit {
   }
 
 
+  /**
+   * This requests all the data on a SWOT analysis from the backend on initialization
+   */
   ngOnInit(): void {
     this.activeSwotIndex = 0;
-    this.pullSwotData();
-    
+    this.pullSwotData(); 
   }
 
+  /**
+   * This method updates a SWOT analysis item.
+   */
   updateSelectedSwot(){
     this.currentSwotAnalysis = this.currentSwotAnalysis;
     this.pullSwotData();
@@ -58,6 +63,9 @@ export class ViewSwotComponent implements OnInit {
     
   }
 
+  /**
+   * This method deletes a swot item from a category
+   */
   delete(swotItemId: number) {
     console.log("Deleting from view-Swot, ID: " + swotItemId);
     

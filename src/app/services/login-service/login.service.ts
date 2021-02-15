@@ -8,21 +8,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class LoginService {
-  public managerId: number = 0;
-  constructor(private client: HttpClient) { }
 
-  /**
-   * Gets the manager id from the server.
-   * @param email manager's email
-   */
-  storeManagerIdFromServer(email: string) {
-    this.postManager(email).subscribe(
-      response => {
-        this.managerId = parseInt(response.message);
-        sessionStorage.setItem('managerId', JSON.stringify(this.managerId));
-      }
-    );
-  }
+  managerId: string;
+
+  constructor(private client: HttpClient) {}
 
   /**
    * Post the manager to the database
