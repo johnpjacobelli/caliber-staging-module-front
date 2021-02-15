@@ -13,6 +13,7 @@ export class LoginService {
   constructor(private client: HttpClient) {}
 
   postManager(email: string): Observable<ClientMessage> {
+    type managerId = string;
     return this.client.post<ClientMessage>(`${environment.BASE_URL}getmanager`, new ClientMessage(email));
   }
 }
