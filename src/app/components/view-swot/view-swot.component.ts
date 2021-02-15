@@ -175,7 +175,7 @@ export class ViewSwotComponent implements OnInit {
     modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
   }
 
-    /**
+  /**
    * This shows or hides a Confirm and Cancel button for Delete SWOT.
    */
   confirmDeleteVisibility:string = 'hidden';
@@ -199,5 +199,4 @@ export class ViewSwotComponent implements OnInit {
       }
     }
   }
-
 }
