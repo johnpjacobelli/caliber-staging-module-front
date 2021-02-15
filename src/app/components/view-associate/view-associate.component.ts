@@ -56,7 +56,7 @@ export class ViewAssociateComponent implements OnInit {
     if(isNaN(this.managerId))
     {
       console.log(this.managerId);
-      location.reload();
+      this.router.navigate(['/login']);
     }
     
     this.getAllAssociates(this.managerId);
