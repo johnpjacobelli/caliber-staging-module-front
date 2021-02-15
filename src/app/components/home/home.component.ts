@@ -10,7 +10,11 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   constructor(private router: Router) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    if(!sessionStorage.getItem('managerId')){
+      this.router.navigate(['login']);
+    } 
+   }
 
   /**
    * This function logs out user when the logout button is clicked.
