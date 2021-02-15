@@ -14,18 +14,18 @@ import { Manager } from 'src/app/models/manager-model/manager';
 })
 export class AddFeedbackComponent implements OnInit {
 
-  feedback : Feedback;
+  feedback: Feedback;
   formIncomplete = true;
   finalCheck = false;
   contentInput = '1px solid #ced4da';
-  associateId : number;
-  managerId : number;
-  content : string = "";
-  
+  associateId: number;
+  managerId: number;
+  content: string = "";
+
   @Input() passedId: number;
   @Output() updateEmitter: EventEmitter<any> = new EventEmitter();
-  
-  message : string = "";
+
+  message: string = "";
   descBorder: string = "1px solid";
   nameBorder: string = "1px solid";
   typeBorder: string = "1px solid";
@@ -35,7 +35,7 @@ export class AddFeedbackComponent implements OnInit {
     private modalService: NgbModal,
     private toastService: ToastRelayService
   ) // private toastr: NotificationService
-  {}
+  { }
   ngOnInit(): void {
     this.associateId = this.passedId;
     this.managerId = parseInt(sessionStorage.getItem('managerId'));
@@ -43,7 +43,7 @@ export class AddFeedbackComponent implements OnInit {
 
   onSubmit(itemForm: NgForm) {
 
-    if(this.formIncomplete == true){
+    if (this.formIncomplete == true) {
       this.finalCheck = true;
 
       // if(this.content.length === 0){
@@ -62,18 +62,17 @@ export class AddFeedbackComponent implements OnInit {
         .subscribe(data => {
           // alert("Success! New SWOT item has been added.")
           this.toastService.addToast({
-            header:'New feedback added!',
-            body:`${this.feedback.content}`
+            header: 'New feedback added!',
+            body: `${this.feedback.content}`
           });
           this.updateEmitter.emit();
         });
-        this.modalService.dismissAll();
+      this.modalService.dismissAll();
     }
 
   }
 
-  contentChange(UpdatedValue : string) :void 
-  { 
+  contentChange(UpdatedValue: string): void {
     if (this.content.length !== 0) {
       this.nameBorder = "1px solid";
 
