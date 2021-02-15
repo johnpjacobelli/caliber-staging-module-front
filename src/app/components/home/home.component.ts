@@ -16,6 +16,8 @@ export class HomeComponent implements OnInit {
    * This function logs out user when the logout button is clicked.
    */
   logOut() {
+    debugger;
+
     this.auth
       .signOut()
       .then(() => this.router.navigate(['']))
