@@ -44,7 +44,7 @@ export class ViewSwotComponent implements OnInit {
    * This method updates a SWOT analysis item.
    */
   updateSelectedSwot(){
-    // this.currentSwotAnalysis = this.currentSwotAnalysis;
+    this.currentSwotAnalysis = this.currentSwotAnalysis;
     this.pullSwotData();
   }
 
