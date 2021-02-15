@@ -10,9 +10,11 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  // tslint:disable-next-line:typedef
+  /**
+   * This function logs out user when the logout button is clicked.
+   */
   logOut() {
     window.sessionStorage.clear();
     this.router.navigate(['']);

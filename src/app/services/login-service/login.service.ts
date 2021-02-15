@@ -8,10 +8,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class LoginService {
+
   managerId: string;
 
   constructor(private client: HttpClient) {}
 
+  /**
+   * Post the manager to the database
+   * @param email Manger's email;
+   */
   postManager(email: string): Observable<ClientMessage> {
     type managerId = string;
     return this.client.post<ClientMessage>(`${environment.BASE_URL}getmanager`, new ClientMessage(email));
