@@ -51,10 +51,11 @@ export class ViewAssociateComponent implements OnInit {
   ngOnInit(): void {
     //this.managerId.next(parseInt(sessionStorage.getItem('managerId')));
     this.managerId = parseInt(sessionStorage.getItem('managerId'));
+
     if(isNaN(this.managerId))
     {
       console.log(this.managerId);
-      location.reload();
+      setTimeout(function(){location.reload()}, 100);
     }
     
     this.getAllAssociates(this.managerId);
