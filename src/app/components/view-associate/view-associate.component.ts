@@ -142,4 +142,7 @@ export class ViewAssociateComponent implements OnInit {
     modalRef.componentInstance.curBatchId = this.batchId;
     modalRef.componentInstance.curStatusId = this.statusId;
   }
+
+  
+
 }

@@ -39,6 +39,7 @@ export class ViewSwotComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log("in ngoninit");
     this.activeSwotIndex = 0;
     this.pullSwotData();
     
@@ -208,17 +209,17 @@ export class ViewSwotComponent implements OnInit {
    * This sends a request to the backend to delete a swot with id=id.
    */
   deleteSwot(){
+    console.log(this.currentSwotAnalysis);
     this.swotService.deleteSwot(this.currentSwotAnalysis.id).subscribe();
-
-    this.router.navigate(['/home']);
-  }
-
-  checkSwots(swotAnalyses){
-    for(let i=0; i<swotAnalyses.length; i++){
-      if(swotAnalyses[i].analysisItems==null){
-        delete swotAnalyses[i];
-      }
-    }
+    // console.log(this.currentSwotAnalysis);
+    // delete this.swotAnalyses[this.activeSwotIndex];
+    // console.log(this.currentSwotAnalysis);
+    // if(this.swotAnalyses.length>0){
+    //   this.ngOnInit();
+    // } else {
+    
+      this.router.navigate(['/home']);
+    //}
   }
 
 }
