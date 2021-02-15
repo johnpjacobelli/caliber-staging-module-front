@@ -9,7 +9,7 @@ import { UpdateBatchPayload } from './update-batch-payload';
 import { UpdateAssociateComponent } from '../update-associate/update-associate.component';
 import { SwotService } from 'src/app/services/swot/swot.service';
 import { Router } from '@angular/router';
-
+import { ToastRelayService } from 'src/app/services/toast-relay/toast-relay.service';
 
 @Component({
   selector: 'app-view-associate',
@@ -20,6 +20,7 @@ export class ViewAssociateComponent implements OnInit {
 
   associates: Associate[]; 
   newAssociates: Associate[];
+  swotIsEmpty: boolean;
   //filteredAssociates: Associate[];
   private associateSubject: BehaviorSubject<Associate>;
   public associate: Observable<Associate>;
@@ -39,7 +40,8 @@ export class ViewAssociateComponent implements OnInit {
               private modalService: NgbModal, 
               private changeDetect: ChangeDetectorRef,
               private swotService: SwotService,
-              private router: Router) {
+              private router: Router,
+              private toastService: ToastRelayService) {
     this.associateSubject = new BehaviorSubject<Associate>(JSON.parse(sessionStorage.getItem('currentUser')));
     this.associate = this.associateSubject.asObservable();
   }
@@ -48,6 +50,7 @@ export class ViewAssociateComponent implements OnInit {
     this.managerId = parseInt(sessionStorage.getItem('managerId'));
     this.getAllAssociates(this.managerId);
     this.counter = 0;
+    this.swotIsEmpty = false;
   }
 
   get assocFilter():string{
@@ -107,6 +110,7 @@ export class ViewAssociateComponent implements OnInit {
     const modalRef = this.modalService.open(SwotComponent);
     console.log(this.activeId);
     modalRef.componentInstance.passedId = this.activeId;
+    modalRef.componentInstance.passedIsEmpty = this.swotIsEmpty;
   }
 
   public getAllAssociates(id: number): void {
@@ -155,7 +159,13 @@ export class ViewAssociateComponent implements OnInit {
         console.log(`data length: ${data.length}`);
         
         if(data.length === 0) {
+          this.toastService.addToast({
+            header:'No SWOTs exist yet',
+            body: 'Please create a SWOT first'
+          });
+          this.swotIsEmpty = true;
           this.open();
+          this.swotIsEmpty = false;
         } else {
           this.router.navigate([`/view/${this.activeId}`]);
         }
