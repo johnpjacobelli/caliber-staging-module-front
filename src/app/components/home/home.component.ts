@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   // tslint:disable-next-line:typedef
   logOut() {
     console.log('signing out...');
+    debugger;
     this.auth
       .signOut()
       .then(() => this.router.navigate(['']))
