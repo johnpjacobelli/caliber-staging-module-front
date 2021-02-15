@@ -48,12 +48,14 @@ ul {
 
 .left {
     background-color: var(--dark-gray);
-    height: 100%;
+    height: 151%;
+    max-height: 1000px;
     width: 20%;
     -webkit-box-shadow: 4px 2px 5px 0px var(--black);
     -moz-box-shadow: 4px 2px 5px 0px var(--black);
     box-shadow: 4px 2px 5px 0px var(--black);
     padding: 20px;
+    overflow-y: auto;
 }
 
 .title {
