@@ -28,7 +28,9 @@ export class SwotComponent implements OnInit {
   i : number = 0;
   hasData : boolean = false;
   existedDescription : string[] = [];
+  isSwotEmpty: boolean;
   @Input() passedId: number;
+  @Input() passedIsEmpty: boolean;
   //analysisItems: Array<SwotItems>;
   message: string = "";
   descBorder: string = "1px solid";
@@ -47,6 +49,9 @@ export class SwotComponent implements OnInit {
   {}
   ngOnInit(): void {
     this.associateId = this.passedId;
+    this.isSwotEmpty = this.passedIsEmpty;
+    console.log(this.passedIsEmpty);
+    
     this.getExistedDescription();
   }
 
@@ -82,10 +87,10 @@ export class SwotComponent implements OnInit {
       this.message = "";
       this.analysisItems.push(item);
       console.log(this.analysisItems);
-       //  this.swotService.addSwot(this.swotAnalysis)
-       //    .subscribe(data => {
-       //      console.log(data);
-       //    });
+        this.swotService.addSwot(this.swotAnalysis)
+          .subscribe(data => {
+            console.log(data);
+          });
        this.hasData = true;
     }
   }
@@ -117,8 +122,11 @@ export class SwotComponent implements OnInit {
       this.swotAnalysis.manager = new Manager(Number(sessionStorage.getItem('managerId')));
       this.swotService.addSwot(this.swotAnalysis)
         .subscribe(data => {
-          alert(`${data.message}`);
-        });
+          // alert(`${data.message}`);
+          this.toastService.addToast({
+            header:`New SWOT created!`, 
+            body:`For associate ${this.swotAnalysis.associate.id}`});
+         });
       this.modalService.dismissAll();
     }
 

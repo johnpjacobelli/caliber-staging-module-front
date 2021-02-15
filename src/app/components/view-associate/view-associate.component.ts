@@ -2,12 +2,14 @@ import { LoginService } from './../../services/login-service/login.service';
 import { Associate } from './../../models/associate-model/associate.model';
 import { SwotComponent } from './../swot/swot.component';
 import { AssociateService } from '../../services/associate/associate.service';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UpdateBatchPayload } from './update-batch-payload';
 import { UpdateAssociateComponent } from '../update-associate/update-associate.component';
-
+import { SwotService } from 'src/app/services/swot/swot.service';
+import { Router } from '@angular/router';
+import { ToastRelayService } from 'src/app/services/toast-relay/toast-relay.service';
 
 @Component({
   selector: 'app-view-associate',
@@ -18,16 +20,19 @@ export class ViewAssociateComponent implements OnInit {
 
   associates: Associate[]; 
   newAssociates: Associate[];
+  swotIsEmpty: boolean;
   //filteredAssociates: Associate[];
   private associateSubject: BehaviorSubject<Associate>;
   public associate: Observable<Associate>;
   public updatePayload!: UpdateBatchPayload;
   public counter: number;
+  public counter1: number = 0;
 
   activeId: number;
+  //managerId: BehaviorSubject<number> = new BehaviorSubject(0);
   managerId: number;
-  batchId: number;
-  statusId: number;
+  @Input() batchId: number;
+  @Input() statusId: number;
 
   associateFilter = "";
 
@@ -35,15 +40,26 @@ export class ViewAssociateComponent implements OnInit {
 
   constructor(private service: AssociateService, 
               private modalService: NgbModal, 
-              private changeDetect: ChangeDetectorRef) {
+              private changeDetect: ChangeDetectorRef,
+              private swotService: SwotService,
+              private router: Router,
+              private toastService: ToastRelayService) {
     this.associateSubject = new BehaviorSubject<Associate>(JSON.parse(sessionStorage.getItem('currentUser')));
     this.associate = this.associateSubject.asObservable();
   }
 
   ngOnInit(): void {
+    //this.managerId.next(parseInt(sessionStorage.getItem('managerId')));
     this.managerId = parseInt(sessionStorage.getItem('managerId'));
+    if(isNaN(this.managerId))
+    {
+      console.log(this.managerId);
+      location.reload();
+    }
+    
     this.getAllAssociates(this.managerId);
     this.counter = 0;
+    this.swotIsEmpty = false;
   }
 
   get assocFilter():string{
@@ -103,6 +119,7 @@ export class ViewAssociateComponent implements OnInit {
     const modalRef = this.modalService.open(SwotComponent);
     console.log(this.activeId);
     modalRef.componentInstance.passedId = this.activeId;
+    modalRef.componentInstance.passedIsEmpty = this.swotIsEmpty;
   }
 
   public getAllAssociates(id: number): void {
@@ -143,6 +160,27 @@ export class ViewAssociateComponent implements OnInit {
     modalRef.componentInstance.curStatusId = this.statusId;
   }
 
-  
+  checkSwotsValid(): void {
+    console.log(`Checking swots for user: ${this.activeId}`);
+
+    this.swotService.getSwotByAssociatedId(this.activeId)
+      .subscribe((data: any[]) => {
+        console.log(`data length: ${data.length}`);
+        
+        if(data.length === 0) {
+          this.toastService.addToast({
+            header:'No SWOTs exist yet',
+            body: 'Please create a SWOT first'
+          });
+          this.swotIsEmpty = true;
+          this.open();
+          this.swotIsEmpty = false;
+        } else {
+          this.router.navigate([`/view/${this.activeId}`]);
+        }
+      })
+      
+      
+  }
 
 }
