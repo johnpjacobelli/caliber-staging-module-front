@@ -7,8 +7,6 @@ import { Swot } from 'src/app/models/swot-model/swot';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AddItemComponent } from '../add-item/add-item.component';
 import { UpdateSwotComponent } from '../update-swot/update-swot.component';
-import { NgForm } from '@angular/forms';
-import { ResourceLoader } from '@angular/compiler';
 import { ToastRelayService } from 'src/app/services/toast-relay/toast-relay.service';
 
 @Component({
@@ -22,10 +20,6 @@ export class ViewSwotComponent implements OnInit {
   index: number = 0;
   currentSwotAnalysis: Swot;
   type: string = "";
-  currentStrengths: SwotItem[] = [];
-  currentWeak: SwotItem[] = [];
-  currentOpp: SwotItem[] = [];
-  currentThreat: SwotItem[] = [];
   activeSwotIndex: number;
 
   constructor(private swotService: SwotService,
@@ -67,7 +61,7 @@ export class ViewSwotComponent implements OnInit {
       .subscribe((data: any) => {
 
         console.log(data);
-        alert(`${data.message}`);
+        // alert(`${data.message}`);
         this.toastService.addToast({
           header:"SWOT item deleted!",
           body:`SWOT Item ID: ${swotItemId}`
@@ -84,23 +78,8 @@ export class ViewSwotComponent implements OnInit {
     this.swotService.getSwotByAssociatedId(associateId)
       .subscribe((data: any) => {
         console.log(data);
-        this.currentStrengths = [];
-        this.currentWeak = [];
-        this.currentOpp = [];
-        this.currentThreat = [];
         this.swotAnalyses = data;
         this.currentSwotAnalysis = this.swotAnalyses[this.activeSwotIndex]
-        for (let temp of this.currentSwotAnalysis.analysisItems) {
-          if (temp.type === 'STRENGTH') {
-            this.currentStrengths.push(temp);
-          } else if (temp.type === 'WEAKNESS') {
-            this.currentWeak.push(temp);
-          } else if (temp.type === 'OPPORTUNITY') {
-            this.currentOpp.push(temp);
-          } else {
-            this.currentThreat.push(temp);
-          }
-        }
       })
   }
 
