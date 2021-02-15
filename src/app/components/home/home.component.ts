@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
       );
     // clear all session information
     sessionStorage.clear();
+    
     console.log('session storage has been cleared!');
   }
 }
