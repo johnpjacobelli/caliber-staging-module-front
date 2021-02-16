@@ -32,7 +32,7 @@ describe('LoginService', () => {
   });
 
   it('should have postManager(email) return data', ()=>{
-    service.postManager('testEmail').subscribe(
+    service.getManagerId('testEmail').subscribe(
       response =>{
         expect(response.toString()).toEqual(dummyClientMessage.toString());
       }
