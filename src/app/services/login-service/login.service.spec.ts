@@ -15,11 +15,11 @@ describe('LoginService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-         
+
         HttpClientTestingModule,
         AngularFireModule.initializeApp(environment.firebase),
         AppRoutingModule
-        
+
        ],
         providers: [LoginService, AngularFireModule, AppRoutingModule],
     });
