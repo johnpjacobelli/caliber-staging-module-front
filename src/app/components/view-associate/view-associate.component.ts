@@ -10,6 +10,7 @@ import { UpdateAssociateComponent } from '../update-associate/update-associate.c
 import { SwotService } from 'src/app/services/swot/swot.service';
 import { Router } from '@angular/router';
 import { ToastRelayService } from 'src/app/services/toast-relay/toast-relay.service';
+import { Swot } from 'src/app/models/swot-model/swot';
 
 @Component({
   selector: 'app-view-associate',
@@ -33,6 +34,7 @@ export class ViewAssociateComponent implements OnInit {
   @Input() statusId: number;
 
   associateFilter = '';
+  swotAnalyses: Swot[];
 
   private toggle = true;
 
@@ -49,7 +51,18 @@ export class ViewAssociateComponent implements OnInit {
     );
     this.associate = this.associateSubject.asObservable();
   }
+  
+  get assocFilter():string{
+    return this.associateFilter;
+  }
 
+  set assocFilter(temp:string){
+    this.associateFilter = temp;
+  }
+
+  /**
+   * This initializes the page with the list of all associates relative to a manager
+   */
   ngOnInit(): void {
     this.managerId = parseInt(sessionStorage.getItem('managerId'));
     this.getAllAssociates(this.managerId);
@@ -57,23 +70,23 @@ export class ViewAssociateComponent implements OnInit {
     this.swotIsEmpty = false;
   }
 
-  get assocFilter(): string {
-    return this.associateFilter;
-  }
-
-  set assocFilter(temp: string) {
-    this.associateFilter = temp;
-  }
-
-  getFilteredAssociates(): Associate[] {
-    if (this.associateFilter) {
+  /**
+   * This method returns the list of associates filtered by the user input
+   * If no filter, returns the list of associates
+   */
+  getFilteredAssociates():Associate[] {
+    if(this.associateFilter) {
       return this.performFilter(this.associateFilter);
     } else {
       return this.associates;
     }
   }
 
-  performFilter(filterBy: string): Associate[] {
+  /**
+   * This methods filters the associates by the input the user enters
+   * @param filterBy is the input entered by the user
+   */
+  performFilter(filterBy:string): Associate[] {
     filterBy = filterBy.toLowerCase();
     return this.associates.filter(
       (assoc: Associate) =>
@@ -87,6 +100,10 @@ export class ViewAssociateComponent implements OnInit {
     );
   }
 
+  /**
+   * This method toggles the view button from View All to View New 
+   * in regards to associates
+   */
   public toggleAssociateView() {
     const button = document.getElementById('associate-btn');
     button.innerHTML = '';
@@ -110,13 +127,20 @@ export class ViewAssociateComponent implements OnInit {
     return this.associateSubject.value;
   }
 
+  /**
+   * This opens up a modal page in order to add a new SWOT
+   */
   open() {
     const modalRef = this.modalService.open(SwotComponent);
     console.log(this.activeId);
     modalRef.componentInstance.passedId = this.activeId;
-    modalRef.componentInstance.passedIsEmpty = this.swotIsEmpty;
+    //modalRef.componentInstance.passedIsEmpty = this.swotIsEmpty;
   }
 
+  /**
+   * This method gets all the associates relative to a manager
+   * @param id is the id of the manager
+   */
   public getAllAssociates(id: number): void {
     this.service.getAllAssociates(id).subscribe((data) => {
       console.log(data);
@@ -131,6 +155,10 @@ export class ViewAssociateComponent implements OnInit {
     title.innerHTML = 'View All Associates';
   }
 
+    /**
+     * This method gets all the new associates relative to a manager
+     * @param id is the id of the manager 
+     */
   public getAllNewAssociates(id: number): void {
     this.service.getAllNewAssociates(id).subscribe((data) => {
       this.associates = data;
@@ -142,6 +170,9 @@ export class ViewAssociateComponent implements OnInit {
     title.innerHTML = 'View New Associates';
   }
 
+  /**
+   * This opens up a modal page in order to update a batch
+   */
   updateBatch(): void {
     const modalRef = this.modalService.open(UpdateAssociateComponent);
     modalRef.componentInstance.associateId = this.activeId;
@@ -149,6 +180,10 @@ export class ViewAssociateComponent implements OnInit {
     modalRef.componentInstance.curStatusId = this.statusId;
   }
 
+  /**
+   * This method checks if a SWOT is available to view for an associate,
+   * otherwise prompts the user to create a SWOT for said associate
+   */
   checkSwotsValid(): void {
     console.log(`Checking swots for user: ${this.activeId}`);
 
@@ -169,5 +204,13 @@ export class ViewAssociateComponent implements OnInit {
           this.router.navigate([`/view/${this.activeId}`]);
         }
       });
+  }
+
+    getSwotsByAssociate(associateId: string) {
+      this.swotService.getSwotByAssociatedId(Number.parseInt(associateId))
+      .subscribe((data: any) => {
+        console.log(data);
+        this.swotAnalyses = data;
+    });
   }
 }
