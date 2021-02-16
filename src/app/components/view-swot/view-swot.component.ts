@@ -63,7 +63,6 @@ export class ViewSwotComponent implements OnInit {
    * This method deletes a swot item from a category
    */
   delete(swotItemId: number) {
-<<<<<<< HEAD
     this.swotService.deleteItem(swotItemId).subscribe((data: any) => {
       this.toastService.addToast({
         header: 'SWOT item deleted!',
@@ -74,42 +73,18 @@ export class ViewSwotComponent implements OnInit {
     this.currentSwotAnalysis.analysisItems = this.currentSwotAnalysis.analysisItems.filter(
       (swotItem) => swotItem.id != swotItemId
     );
-=======
-   
-
-    this.swotService.deleteItem(swotItemId)
-      .subscribe((data: any) => {
-
-        // alert(`${data.message}`);
-        this.toastService.addToast({
-          header:"SWOT item deleted!",
-          body:`SWOT Item ID: ${swotItemId}`
-        });
-        this.pullSwotData();
-
-      })
-      this.currentSwotAnalysis.analysisItems = this.currentSwotAnalysis.analysisItems.filter(swotItem => swotItem.id != swotItemId);
->>>>>>> e443e84156cace35521b0c0504c2de4cf562d17a
   }
 
   /**
    * This method pulls the SWOT analysis data from the backend
    */
   pullSwotData() {
-<<<<<<< HEAD
     const associateId = +this.route.snapshot.paramMap
       .get('associateId')!
       .valueOf();
     this.swotService
       .getSwotByAssociatedId(associateId)
       .subscribe((data: any) => {
-=======
-    const associateId = +this.route.snapshot.paramMap.get('associateId')!.valueOf();
-   
-    this.swotService.getSwotByAssociatedId(associateId)
-      .subscribe((data: any) => {
-       
->>>>>>> e443e84156cace35521b0c0504c2de4cf562d17a
         this.swotAnalyses = data;
         this.currentSwotAnalysis = this.swotAnalyses[this.activeSwotIndex];
       });
