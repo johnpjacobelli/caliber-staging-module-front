@@ -132,7 +132,7 @@ export class ViewAssociateComponent implements OnInit {
   open() {
     const modalRef = this.modalService.open(SwotComponent);
     modalRef.componentInstance.passedId = this.activeId;
-    //modalRef.componentInstance.passedIsEmpty = this.swotIsEmpty;
+    modalRef.componentInstance.passedIsEmpty = this.swotIsEmpty;
   }
 
   /**
