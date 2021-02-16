@@ -19,6 +19,6 @@ export class LoginService {
    */
   postManager(email: string): Observable<ClientMessage> {
     type managerId = string;
-    return this.client.post<ClientMessage>(`${environment.BASE_URL}getmanager`, new ClientMessage(email));
+    return this.client.post<ClientMessage>(`${environment.BASE_URL}manager`, new ClientMessage(email));
   }
 }
