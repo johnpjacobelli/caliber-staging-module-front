@@ -16,10 +16,11 @@ ul {
     background: var(--white);
     border-radius: 30px;
 }
-/* img{
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-} */
+
+.nav > * {
+  margin-bottom: 10px;
+}
+
 .btn1{
     border: none;
     padding: 5px 10px;
@@ -30,7 +31,7 @@ ul {
 }
 .btn1:hover{
     background-color: var(--light-gray);
-    /* commented out because this line was affected the margins of other elements near this button -AK */
+    /* commented out because this line was affecting the margins of other elements near this button -AK */
     /* border: 1px solid black; */
     text-decoration: underline;
 }
@@ -125,18 +126,6 @@ section {
 }
 
 
-/* Added animation CSS code STARTS here -AK */
-.navbar{
-    /* animation: fadeInLeft;
-    animation-duration: 2.5s; */
-}
-
-#data-row{
-    /* animation: flipInX;
-    animation-duration: 3s; */
-}
-/* Added animation ENDS here -AK */
-
 .toggle-btn:focus{
     border-color: var(--orange);
     box-shadow: 0 0 0 0.2rem var(--brown);
@@ -155,6 +144,11 @@ section {
     box-shadow: 0 1px 3px black;
 }
 
+.toggle-btn:hover {
+    background-color: var(--light-gray);
+    
+}
+
 .circle-btn {
     position: absolute;
     bottom: 0px;
@@ -162,10 +156,6 @@ section {
     border-radius: 50%;
 }
 
-.toggle-btn:hover {
-    background-color: var(--light-gray);
-    
-}
 /* Cards diplay for 4 blocks */
 
 

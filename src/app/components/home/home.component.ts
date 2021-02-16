@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,21 +7,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(public auth: AngularFireAuth, private router: Router) {}
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if(!sessionStorage.getItem('managerId')){
+      this.router.navigate(['login']);
+    } 
+   }
 
-  // tslint:disable-next-line:typedef
   logOut() {
-    console.log('signing out...');
-    this.auth
-      .signOut()
-      .then(() => this.router.navigate(['']))
-      .catch((error) =>
-        console.log(`Failed to log user out. Error => `, error)
-      );
-    // clear all session information
-    sessionStorage.clear();
-    console.log('session storage has been cleared!');
+    window.sessionStorage.clear();
+    this.router.navigate(['']);
   }
 }

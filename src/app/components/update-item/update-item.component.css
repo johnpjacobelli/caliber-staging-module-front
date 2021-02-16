@@ -20,6 +20,11 @@ img{
     border-bottom-left-radius: 30px;
 }
 
+span {
+  display: flex;
+  justify-content: space-around;
+}
+
 .btn1{
     border: none;
     outline: none;
@@ -35,6 +40,29 @@ img{
     background: var(--white);
     border: 1px solid;
     color: var(--black);
+}
+
+
+.toggle-btn {
+  padding: 10px 20px;
+  background-color: var(--orange);
+  color: var(--white);
+  
+  border: none;
+  transition: 0.4s ease-in-out;
+  margin-bottom: 10px;
+  margin-top: 10px;
+
+  box-shadow: 0 1px 3px black;
+}
+
+.toggle-btn:focus{
+  border-color: var(--orange);
+  box-shadow: 0 0 0 0.2rem var(--brown);
+}
+
+.toggle-btn:hover {
+  background-color: var(--light-gray);
 }
 
 .modal-content {
