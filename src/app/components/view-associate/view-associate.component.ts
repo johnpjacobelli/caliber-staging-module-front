@@ -14,11 +14,10 @@ import { ToastRelayService } from 'src/app/services/toast-relay/toast-relay.serv
 @Component({
   selector: 'app-view-associate',
   templateUrl: './view-associate.component.html',
-  styleUrls: ['./view-associate.component.css']
+  styleUrls: ['./view-associate.component.css'],
 })
 export class ViewAssociateComponent implements OnInit {
-
-  associates: Associate[]; 
+  associates: Associate[];
   newAssociates: Associate[];
   swotIsEmpty: boolean;
   //filteredAssociates: Associate[];
@@ -29,70 +28,66 @@ export class ViewAssociateComponent implements OnInit {
   public counter1: number = 0;
 
   activeId: number;
-  //managerId: BehaviorSubject<number> = new BehaviorSubject(0);
   managerId: number;
   @Input() batchId: number;
   @Input() statusId: number;
 
-  associateFilter = "";
+  associateFilter = '';
 
   private toggle = true;
 
-  constructor(private service: AssociateService, 
-              private modalService: NgbModal, 
-              private changeDetect: ChangeDetectorRef,
-              private swotService: SwotService,
-              private router: Router,
-              private toastService: ToastRelayService) {
-    this.associateSubject = new BehaviorSubject<Associate>(JSON.parse(sessionStorage.getItem('currentUser')));
+  constructor(
+    private service: AssociateService,
+    private modalService: NgbModal,
+    private changeDetect: ChangeDetectorRef,
+    private swotService: SwotService,
+    private router: Router,
+    private toastService: ToastRelayService
+  ) {
+    this.associateSubject = new BehaviorSubject<Associate>(
+      JSON.parse(sessionStorage.getItem('currentUser'))
+    );
     this.associate = this.associateSubject.asObservable();
   }
 
   ngOnInit(): void {
-    //this.managerId.next(parseInt(sessionStorage.getItem('managerId')));
     this.managerId = parseInt(sessionStorage.getItem('managerId'));
-    if(isNaN(this.managerId))
-    {
-      console.log(this.managerId);
-      location.reload();
-    }
-    
     this.getAllAssociates(this.managerId);
     this.counter = 0;
     this.swotIsEmpty = false;
   }
 
-  get assocFilter():string{
+  get assocFilter(): string {
     return this.associateFilter;
   }
 
-  set assocFilter(temp:string){
+  set assocFilter(temp: string) {
     this.associateFilter = temp;
   }
 
-  getFilteredAssociates():Associate[] {
-    if(this.associateFilter) {
+  getFilteredAssociates(): Associate[] {
+    if (this.associateFilter) {
       return this.performFilter(this.associateFilter);
     } else {
       return this.associates;
     }
   }
 
-  performFilter(filterBy:string): Associate[]{
+  performFilter(filterBy: string): Associate[] {
     filterBy = filterBy.toLowerCase();
-    return this.associates.filter((assoc:Associate) => 
-      (assoc.firstName.toLowerCase().indexOf(filterBy) != -1) ||
-      (assoc.firstName.toLowerCase().indexOf(filterBy) != -1) ||
-      (assoc.email.toLowerCase().indexOf(filterBy) != -1) ||
-      (assoc.status.toLowerCase().indexOf(filterBy) != -1) ||
-      (assoc.batch.toString().indexOf(filterBy) != -1) || 
-      (assoc.id.toString().indexOf(filterBy) != -1) ||
-      (assoc.salesforceId.toString().toLowerCase().indexOf(filterBy) != -1)
+    return this.associates.filter(
+      (assoc: Associate) =>
+        assoc.firstName.toLowerCase().indexOf(filterBy) != -1 ||
+        assoc.firstName.toLowerCase().indexOf(filterBy) != -1 ||
+        assoc.email.toLowerCase().indexOf(filterBy) != -1 ||
+        assoc.status.toLowerCase().indexOf(filterBy) != -1 ||
+        assoc.batch.toString().indexOf(filterBy) != -1 ||
+        assoc.id.toString().indexOf(filterBy) != -1 ||
+        assoc.salesforceId.toString().toLowerCase().indexOf(filterBy) != -1
     );
   }
 
   public toggleAssociateView() {
-
     const button = document.getElementById('associate-btn');
     button.innerHTML = '';
 
@@ -107,7 +102,7 @@ export class ViewAssociateComponent implements OnInit {
     }
   }
 
-  public trackItem(index: number, item: Associate ) {
+  public trackItem(index: number, item: Associate) {
     return `${item.id}-${index}`;
   }
 
@@ -123,31 +118,25 @@ export class ViewAssociateComponent implements OnInit {
   }
 
   public getAllAssociates(id: number): void {
-    this.service.getAllAssociates(id)
-    .subscribe(
-      data => {
-        console.log(data);
-        this.associates = data;
-        this.changeDetect.detectChanges();
-        console.log(this.associates);
-      }
-      );
+    this.service.getAllAssociates(id).subscribe((data) => {
+      console.log(data);
+      this.associates = data;
+      this.changeDetect.detectChanges();
+      console.log(this.associates);
+    });
     this.associates = this.newAssociates;
-      // change to appropriate title
+    // change to appropriate title
     const title = document.getElementById('users-list');
     title.innerHTML = '';
     title.innerHTML = 'View All Associates';
-    }
+  }
 
   public getAllNewAssociates(id: number): void {
-    this.service.getAllNewAssociates(id)
-    .subscribe(
-      data => {
-        this.associates = data;
-        this.changeDetect.detectChanges();
-      }
-    );
-     // change to appropriate title
+    this.service.getAllNewAssociates(id).subscribe((data) => {
+      this.associates = data;
+      this.changeDetect.detectChanges();
+    });
+    // change to appropriate title
     const title = document.getElementById('users-list');
     title.innerHTML = '';
     title.innerHTML = 'View New Associates';
@@ -163,14 +152,15 @@ export class ViewAssociateComponent implements OnInit {
   checkSwotsValid(): void {
     console.log(`Checking swots for user: ${this.activeId}`);
 
-    this.swotService.getSwotByAssociatedId(this.activeId)
+    this.swotService
+      .getSwotByAssociatedId(this.activeId)
       .subscribe((data: any[]) => {
         console.log(`data length: ${data.length}`);
-        
-        if(data.length === 0) {
+
+        if (data.length === 0) {
           this.toastService.addToast({
-            header:'No SWOTs exist yet',
-            body: 'Please create a SWOT first'
+            header: 'No SWOTs exist yet',
+            body: 'Please create a SWOT first',
           });
           this.swotIsEmpty = true;
           this.open();
@@ -178,9 +168,6 @@ export class ViewAssociateComponent implements OnInit {
         } else {
           this.router.navigate([`/view/${this.activeId}`]);
         }
-      })
-      
-      
+      });
   }
-
 }

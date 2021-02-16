@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +11,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // tslint:disable-next-line:typedef
   logOut() {
     window.sessionStorage.clear();
     this.router.navigate(['']);
