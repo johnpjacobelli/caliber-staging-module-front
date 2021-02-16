@@ -132,7 +132,7 @@ export class ViewAssociateComponent implements OnInit {
    */
   open() {
     const modalRef = this.modalService.open(SwotComponent);
-    console.log(this.activeId);
+    
     modalRef.componentInstance.passedId = this.activeId;
     modalRef.componentInstance.passedIsEmpty = this.swotIsEmpty;
   }
@@ -142,12 +142,16 @@ export class ViewAssociateComponent implements OnInit {
    * @param id is the id of the manager
    */
   public getAllAssociates(id: number): void {
-    this.service.getAllAssociates(id).subscribe((data) => {
-      console.log(data);
-      this.associates = data;
-      this.changeDetect.detectChanges();
-      console.log(this.associates);
-    });
+
+    this.service.getAllAssociates(id)
+    .subscribe(
+      data => {
+        
+        this.associates = data;
+        this.changeDetect.detectChanges();
+        
+      }
+      );
     this.associates = this.newAssociates;
     // change to appropriate title
     const title = document.getElementById('users-list');
@@ -185,14 +189,13 @@ export class ViewAssociateComponent implements OnInit {
    * otherwise prompts the user to create a SWOT for said associate
    */
   checkSwotsValid(): void {
-    console.log(`Checking swots for user: ${this.activeId}`);
+   
 
     this.swotService
       .getSwotByAssociatedId(this.activeId)
-      .subscribe((data: any[]) => {
-        console.log(`data length: ${data.length}`);
+      .subscribe((data: any[]) => {        
+        if(data.length === 0) {
 
-        if (data.length === 0) {
           this.toastService.addToast({
             header: 'No SWOTs exist yet',
             body: 'Please create a SWOT first',
@@ -209,7 +212,7 @@ export class ViewAssociateComponent implements OnInit {
     getSwotsByAssociate(associateId: string) {
       this.swotService.getSwotByAssociatedId(Number.parseInt(associateId))
       .subscribe((data: any) => {
-        console.log(data);
+       
         this.swotAnalyses = data;
     });
   }
