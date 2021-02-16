@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,11 +9,12 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   constructor(private router: Router) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    if(!sessionStorage.getItem('managerId')){
+      this.router.navigate(['login']);
+    } 
+   }
 
-  /**
-   * This function logs out user when the logout button is clicked.
-   */
   logOut() {
     window.sessionStorage.clear();
     this.router.navigate(['']);
