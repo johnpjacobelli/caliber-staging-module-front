@@ -21,7 +21,6 @@ export class ViewAssociateComponent implements OnInit {
   associates: Associate[];
   newAssociates: Associate[];
   swotIsEmpty: boolean;
-  //filteredAssociates: Associate[];
   private associateSubject: BehaviorSubject<Associate>;
   public associate: Observable<Associate>;
   public updatePayload!: UpdateBatchPayload;
@@ -51,12 +50,12 @@ export class ViewAssociateComponent implements OnInit {
     );
     this.associate = this.associateSubject.asObservable();
   }
-  
-  get assocFilter():string{
+
+  get assocFilter(): string {
     return this.associateFilter;
   }
 
-  set assocFilter(temp:string){
+  set assocFilter(temp: string) {
     this.associateFilter = temp;
   }
 
@@ -74,8 +73,8 @@ export class ViewAssociateComponent implements OnInit {
    * This method returns the list of associates filtered by the user input
    * If no filter, returns the list of associates
    */
-  getFilteredAssociates():Associate[] {
-    if(this.associateFilter) {
+  getFilteredAssociates(): Associate[] {
+    if (this.associateFilter) {
       return this.performFilter(this.associateFilter);
     } else {
       return this.associates;
@@ -86,7 +85,7 @@ export class ViewAssociateComponent implements OnInit {
    * This methods filters the associates by the input the user enters
    * @param filterBy is the input entered by the user
    */
-  performFilter(filterBy:string): Associate[] {
+  performFilter(filterBy: string): Associate[] {
     filterBy = filterBy.toLowerCase();
     return this.associates.filter(
       (assoc: Associate) =>
@@ -101,7 +100,7 @@ export class ViewAssociateComponent implements OnInit {
   }
 
   /**
-   * This method toggles the view button from View All to View New 
+   * This method toggles the view button from View All to View New
    * in regards to associates
    */
   public toggleAssociateView() {
@@ -132,7 +131,6 @@ export class ViewAssociateComponent implements OnInit {
    */
   open() {
     const modalRef = this.modalService.open(SwotComponent);
-    
     modalRef.componentInstance.passedId = this.activeId;
     modalRef.componentInstance.passedIsEmpty = this.swotIsEmpty;
   }
@@ -142,16 +140,10 @@ export class ViewAssociateComponent implements OnInit {
    * @param id is the id of the manager
    */
   public getAllAssociates(id: number): void {
-
-    this.service.getAllAssociates(id)
-    .subscribe(
-      data => {
-        
-        this.associates = data;
-        this.changeDetect.detectChanges();
-        
-      }
-      );
+    this.service.getAllAssociates(id).subscribe((data) => {
+      this.associates = data;
+      this.changeDetect.detectChanges();
+    });
     this.associates = this.newAssociates;
     // change to appropriate title
     const title = document.getElementById('users-list');
@@ -159,10 +151,10 @@ export class ViewAssociateComponent implements OnInit {
     title.innerHTML = 'View All Associates';
   }
 
-    /**
-     * This method gets all the new associates relative to a manager
-     * @param id is the id of the manager 
-     */
+  /**
+   * This method gets all the new associates relative to a manager
+   * @param id is the id of the manager
+   */
   public getAllNewAssociates(id: number): void {
     this.service.getAllNewAssociates(id).subscribe((data) => {
       this.associates = data;
@@ -189,13 +181,10 @@ export class ViewAssociateComponent implements OnInit {
    * otherwise prompts the user to create a SWOT for said associate
    */
   checkSwotsValid(): void {
-   
-
     this.swotService
       .getSwotByAssociatedId(this.activeId)
-      .subscribe((data: any[]) => {        
-        if(data.length === 0) {
-
+      .subscribe((data: any[]) => {
+        if (data.length === 0) {
           this.toastService.addToast({
             header: 'No SWOTs exist yet',
             body: 'Please create a SWOT first',
@@ -209,11 +198,11 @@ export class ViewAssociateComponent implements OnInit {
       });
   }
 
-    getSwotsByAssociate(associateId: string) {
-      this.swotService.getSwotByAssociatedId(Number.parseInt(associateId))
+  getSwotsByAssociate(associateId: string) {
+    this.swotService
+      .getSwotByAssociatedId(Number.parseInt(associateId))
       .subscribe((data: any) => {
-       
         this.swotAnalyses = data;
-    });
+      });
   }
 }
