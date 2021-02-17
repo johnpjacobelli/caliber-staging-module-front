@@ -25,6 +25,7 @@ import { JwtInterceptor } from './services/interceptor/jwt.interceptor';
 import { ViewFeedbackComponent } from './components/view-feedback/view-feedback.component';
 import { AddFeedbackComponent } from './components/add-feedback/add-feedback.component';
 import { UpdateFeedbackComponent } from './components/update-feedback/update-feedback.component';
+import {HttpCancelInterceptor} from './services/interceptor/http-cancel.interceptor';
 
 
 @NgModule({
@@ -56,6 +57,11 @@ import { UpdateFeedbackComponent } from './components/update-feedback/update-fee
     NgbModule,
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpCancelInterceptor,
+      multi: true,
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

@@ -55,7 +55,6 @@ const routes: Routes = [
       authGuardPipe: redirectUnauthorizedToLogin,
     },
   },
-
   {
     path: 'home',
     component: HomeComponent,
@@ -64,7 +63,6 @@ const routes: Routes = [
       authGuardPipe: redirectUnauthorizedToLogin,
     },
   },
-
   {
     path: 'feedback/:associateId',
     component: ViewFeedbackComponent,
