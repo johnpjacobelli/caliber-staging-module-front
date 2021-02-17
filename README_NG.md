@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # StagingAssist
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
@@ -26,7 +25,3 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-=======
-# caliber-staging-module-front
-Client application for Caliber Staging Module 
->>>>>>> 714457fa6f7bd0bbd09435494e432fa409de3654
