@@ -4,9 +4,6 @@ import { environment } from './../../../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing'
 import { TestBed } from '@angular/core/testing';
-import { ClientMessage } from 'src/app/models/client-message-model/client-message-model';
-
-const dummyClientMessage = new ClientMessage("1");
 
 describe('LoginService', () => {
   let service: LoginService;
@@ -34,12 +31,12 @@ describe('LoginService', () => {
   it('should have postManager(email) return data', ()=>{
     service.getManagerId('testEmail').subscribe(
       response =>{
-        expect(response.toString()).toEqual(dummyClientMessage.toString());
+        expect(response.toString()).toEqual("1");
       }
     );
 
     const req = httpMock.expectOne(`${environment.BASE_URL}getmanager`);
     expect(req.request.method).toBe('POST');
-    req.flush(dummyClientMessage);
+    req.flush("1");
   });
 });

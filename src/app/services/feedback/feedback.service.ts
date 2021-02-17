@@ -6,22 +6,20 @@ import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FeedbackService {
+  httpOptions = { responseType: 'text' as 'json' };
 
-  httpOptions = { responseType: "text" as "json" }
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   /**
    * This retrieves the feedback by associate Id
    */
   getFeedbackByAssociateId(id: number): Observable<Feedback[]> {
-    return this.http.get<Feedback[]>(`${environment.BASE_URL}feedback/associate/${id}`)
-      .pipe(
-        catchError(this.handleError<Feedback[]>('getAllFeedback', []))
-      );
+    return this.http
+      .get<Feedback[]>(`${environment.BASE_URL}feedback/associate/${id}`)
+      .pipe(catchError(this.handleError<Feedback[]>('getAllFeedback', [])));
   }
 
   /**
@@ -33,13 +31,16 @@ export class FeedbackService {
       managerId: feedback.managerId,
       content: feedback.content,
       associateId: feedback.associateId,
-    }
+    };
     let associateId = feedback.associateId;
-    
-    return this.http.post<string>(`${environment.BASE_URL}feedback`, feedbackDTO, this.httpOptions)
-    .pipe(
-      catchError(this.handleError<string>('addFeedback'))
-    );
+
+    return this.http
+      .post<string>(
+        `${environment.BASE_URL}feedback`,
+        feedbackDTO,
+        this.httpOptions
+      )
+      .pipe(catchError(this.handleError<string>('addFeedback')));
   }
 
   /**
@@ -50,28 +51,34 @@ export class FeedbackService {
       id: feedback.id,
       managerId: feedback.manager.id,
       content: feedback.content,
-      associateId: feedback.associateId
-    }
-    
-    return this.http.put<string>(`${environment.BASE_URL}feedback/${feedback.id}`, feedbackDTO, this.httpOptions)
-    .pipe(
-      catchError(this.handleError<string>('updateFeedback'))
-    );
+      associateId: feedback.associateId,
+    };
+
+    return this.http
+      .put<string>(
+        `${environment.BASE_URL}feedback/${feedback.id}`,
+        feedbackDTO,
+        this.httpOptions
+      )
+      .pipe(catchError(this.handleError<string>('updateFeedback')));
   }
 
   /**
    * This deletes the feedback by its id passed as an argument
    */
   deleteFeedback(feedbackId: number): Observable<string> {
-    return this.http.delete<string>(`${environment.BASE_URL}feedback/${feedbackId}`, this.httpOptions)
-      .pipe(catchError(this.handleError<string>("deleteFeedback"))
-      );
+    return this.http
+      .delete<string>(
+        `${environment.BASE_URL}feedback/${feedbackId}`,
+        this.httpOptions
+      )
+      .pipe(catchError(this.handleError<string>('deleteFeedback')));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error)
+      console.error(error);
       return of(result as T);
-    }
+    };
   }
 }
