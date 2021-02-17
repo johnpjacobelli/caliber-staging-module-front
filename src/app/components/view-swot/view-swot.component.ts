@@ -101,7 +101,7 @@ export class ViewSwotComponent implements OnInit {
             this.activeSwotIndex = i;
           }
         }
-        this.pullSwotData();
+        setTimeout(() => { this.pullSwotData(); }, 150);
         return true;
       },
     };
@@ -125,7 +125,7 @@ export class ViewSwotComponent implements OnInit {
             this.activeSwotIndex = i;
           }
         }
-        this.pullSwotData();
+        setTimeout(() => { this.pullSwotData(); }, 150);
         return true;
       },
     };
@@ -149,7 +149,7 @@ export class ViewSwotComponent implements OnInit {
             this.activeSwotIndex = i;
           }
         }
-        this.pullSwotData();
+        setTimeout(() => { this.pullSwotData(); }, 150);
         return true;
       },
     };
@@ -173,7 +173,7 @@ export class ViewSwotComponent implements OnInit {
             this.activeSwotIndex = i;
           }
         }
-        this.pullSwotData();
+        setTimeout(() => { this.pullSwotData(); }, 150);
         return true;
       },
     };
