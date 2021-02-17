@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { ActivationEnd, Router } from '@angular/router';
+import {HttpCancelService} from 'src/app/services/http-cancel-service.service';
 
 @Component({
   selector: 'app-home',
@@ -7,15 +9,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private httpCancelService: HttpCancelService, private router: Router, private ngFireAuth: AngularFireAuth) {}
 
   ngOnInit(): void {
-    if(!sessionStorage.getItem('managerId')){
-      this.router.navigate(['login']);
-    } 
-   }
+    this.router.events.subscribe(event => {
+      if (event instanceof ActivationEnd) {
+        this.httpCancelService.cancelPendingRequests()
+      }
+    })
+  }
 
   logOut() {
+    this.ngFireAuth.signOut();
     window.sessionStorage.clear();
     this.router.navigate(['']);
   }

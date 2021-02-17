@@ -20,9 +20,9 @@ export class AssociateService {
         'X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding, X-Auth-Token, content-type',
     }),
   };
-  getAllAssociates(id: number): Observable<Associate[]> {
+  getAllAssociates(managerId: number): Observable<Associate[]> {
     return this.http.get<Associate[]>(
-      `${environment.BASE_URL}associates?manager=${id}`,
+      `${environment.BASE_URL}associates?manager=${managerId}`,
       this.httpOptions
     );
   }

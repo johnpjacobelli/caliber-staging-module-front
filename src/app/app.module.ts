@@ -15,7 +15,6 @@ import { SwotComponent } from './components/swot/swot.component';
 import { UpdateItemComponent } from './components/update-item/update-item.component';
 import { ViewAssociateComponent } from './components/view-associate/view-associate.component';
 import { ViewSwotComponent } from './components/view-swot/view-swot.component';
-import { CorsInterceptor } from './services/interceptor/cors.interceptor';
 import { UpdateAssociateComponent } from './components/update-associate/update-associate.component';
 import { UpdateSwotComponent } from './components/update-swot/update-swot.component';
 import { ToastMessageComponent } from './components/toast-message/toast-message.component';
@@ -26,6 +25,7 @@ import { JwtInterceptor } from './services/interceptor/jwt.interceptor';
 import { ViewFeedbackComponent } from './components/view-feedback/view-feedback.component';
 import { AddFeedbackComponent } from './components/add-feedback/add-feedback.component';
 import { UpdateFeedbackComponent } from './components/update-feedback/update-feedback.component';
+import {HttpCancelInterceptor} from './services/interceptor/http-cancel.interceptor';
 
 
 @NgModule({
@@ -57,6 +57,11 @@ import { UpdateFeedbackComponent } from './components/update-feedback/update-fee
     NgbModule,
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpCancelInterceptor,
+      multi: true,
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

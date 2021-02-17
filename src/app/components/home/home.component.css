@@ -57,7 +57,7 @@
     border-radius: 10px;
     transition: 0.4s ease-in-out;
     /* animation: fadeInUp;
-     referring directly to the animation's @keyframe declaration 
+     referring directly to the animation's @keyframe declaration
     animation-duration: 3s;
     don't forget to set a duration! */
     position: fixed;
@@ -78,11 +78,6 @@
     color: var(--orange);
     margin-top: 20px;
     letter-spacing: 2px;
-}
-
- .navbar{
-    /*animation: fadeInLeft;
-    animation-duration: 2.5s;*/
 }
 
 .nav-components{
@@ -125,7 +120,7 @@
         font-size: 1rem;
         letter-spacing: normal;
     }
-    
+
     .logout-btn{
         width: 100px;
         height: 40px;

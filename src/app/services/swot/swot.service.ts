@@ -2,7 +2,7 @@ import { Observable, of } from 'rxjs';
 import { Swot } from './../../models/swot-model/swot';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap, catchError } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { SwotItem } from 'src/app/models/swot-model/swot-item';
 import { environment } from 'src/environments/environment.prod';
 
