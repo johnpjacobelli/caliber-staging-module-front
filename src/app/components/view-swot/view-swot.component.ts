@@ -26,7 +26,7 @@ export class ViewSwotComponent implements OnInit {
     private router: Router,
     private modalService: NgbModal,
     private route: ActivatedRoute,
-    private toastService: ToastRelayService
+    private toastService: ToastRelayService,
   ) {}
 
   /**

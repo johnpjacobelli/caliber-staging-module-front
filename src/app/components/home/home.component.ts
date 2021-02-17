@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,16 +7,11 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {
-    if(!sessionStorage.getItem('managerId')){
-      this.router.navigate(['login']);
-    }
-   }
+export class HomeComponent {
+  constructor(private router: Router, private ngFireAuth: AngularFireAuth) {}
 
   logOut() {
+    this.ngFireAuth.signOut();
     window.sessionStorage.clear();
     this.router.navigate(['']);
   }

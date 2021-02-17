@@ -14,11 +14,10 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    public ngFireAuth: AngularFireAuth,
+    private ngFireAuth: AngularFireAuth,
     private router: Router,
     private loginService: LoginService
   ) {}
-
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -29,15 +28,15 @@ export class LoginComponent implements OnInit {
 
   async loginUser() {
     const manager = this.loginForm.value;
-    await this.ngFireAuth
-      .signInWithEmailAndPassword(manager.email, manager.password)
-      .then(({ user }) => {
-        sessionStorage.setItem('currentUser', JSON.stringify(user));
-        this.loginService.getManagerId(user.email).subscribe((managerId) => {
-          sessionStorage.setItem('managerId', managerId);
-          this.router.navigate(['home']);
-        });
-      })
-      .catch((error) => console.error('Error while logging in user: ', error));
+    const userCredentials = await this.ngFireAuth.signInWithEmailAndPassword(
+      manager.email,
+      manager.password
+    );
+    this.loginService
+      .getManagerId(userCredentials.user.email)
+      .subscribe((managerId) => {
+        window.sessionStorage.setItem('managerId', managerId);
+        this.router.navigate(['home']);
+      });
   }
 }
