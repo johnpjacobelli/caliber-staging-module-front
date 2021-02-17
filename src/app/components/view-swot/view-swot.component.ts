@@ -34,15 +34,6 @@ export class ViewSwotComponent implements OnInit {
    */
   ngOnInit(): void {
     this.activeSwotIndex = 0;
-
-    this.pullSwotData();
-  }
-
-  /**
-   * This method updates a SWOT analysis item.
-   */
-  updateSelectedSwot() {
-    this.currentSwotAnalysis = this.currentSwotAnalysis;
     this.pullSwotData();
   }
 
@@ -96,7 +87,7 @@ export class ViewSwotComponent implements OnInit {
   addItemStrength() {
     const options: NgbModalOptions = {
       beforeDismiss: () => {
-        for (var i = 0; i < this.swotAnalyses.length; i++) {
+        for (let i = 0; i < this.swotAnalyses.length; i++) {
           if (this.currentSwotAnalysis == this.swotAnalyses[i]) {
             this.activeSwotIndex = i;
           }
@@ -120,7 +111,7 @@ export class ViewSwotComponent implements OnInit {
   addItemWeak() {
     const options: NgbModalOptions = {
       beforeDismiss: () => {
-        for (var i = 0; i < this.swotAnalyses.length; i++) {
+        for (let i = 0; i < this.swotAnalyses.length; i++) {
           if (this.currentSwotAnalysis == this.swotAnalyses[i]) {
             this.activeSwotIndex = i;
           }
@@ -144,7 +135,7 @@ export class ViewSwotComponent implements OnInit {
   addItemOpp() {
     const options: NgbModalOptions = {
       beforeDismiss: () => {
-        for (var i = 0; i < this.swotAnalyses.length; i++) {
+        for (let i = 0; i < this.swotAnalyses.length; i++) {
           if (this.currentSwotAnalysis == this.swotAnalyses[i]) {
             this.activeSwotIndex = i;
           }
@@ -168,7 +159,7 @@ export class ViewSwotComponent implements OnInit {
   addItemThreat() {
     const options: NgbModalOptions = {
       beforeDismiss: () => {
-        for (var i = 0; i < this.swotAnalyses.length; i++) {
+        for (let i = 0; i < this.swotAnalyses.length; i++) {
           if (this.currentSwotAnalysis == this.swotAnalyses[i]) {
             this.activeSwotIndex = i;
           }

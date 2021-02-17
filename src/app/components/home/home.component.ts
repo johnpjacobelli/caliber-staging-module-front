@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     if(!sessionStorage.getItem('managerId')){
       this.router.navigate(['login']);
-    } 
+    }
    }
 
   logOut() {

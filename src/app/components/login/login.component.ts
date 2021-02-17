@@ -27,9 +27,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  loginUser() {
+  async loginUser() {
     const manager = this.loginForm.value;
-    this.ngFireAuth
+    await this.ngFireAuth
       .signInWithEmailAndPassword(manager.email, manager.password)
       .then(({ user }) => {
         sessionStorage.setItem('currentUser', JSON.stringify(user));

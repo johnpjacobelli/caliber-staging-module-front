@@ -1,11 +1,8 @@
-import { LoginService } from './../../services/login-service/login.service';
 import { Associate } from './../../models/associate-model/associate.model';
 import { SwotComponent } from './../swot/swot.component';
 import { AssociateService } from '../../services/associate/associate.service';
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { UpdateBatchPayload } from './update-batch-payload';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UpdateAssociateComponent } from '../update-associate/update-associate.component';
 import { SwotService } from 'src/app/services/swot/swot.service';
 import { Router } from '@angular/router';
@@ -17,39 +14,20 @@ import { Swot } from 'src/app/models/swot-model/swot';
   templateUrl: './view-associate.component.html',
   styleUrls: ['./view-associate.component.css'],
 })
-export class ViewAssociateComponent implements OnInit {
+export class ViewAssociateComponent implements OnInit, OnDestroy {
   associates: Associate[];
-  newAssociates: Associate[];
   swotIsEmpty: boolean;
-  private associateSubject: BehaviorSubject<Associate>;
-  public associate: Observable<Associate>;
-  public updatePayload!: UpdateBatchPayload;
-  public counter: number;
-  public counter1: number = 0;
-
-  activeId: number;
   managerId: number;
-  @Input() batchId: number;
-  @Input() statusId: number;
-
   associateFilter = '';
-  swotAnalyses: Swot[];
-
-  private toggle = true;
+  isNewAssociateView: boolean = true;
 
   constructor(
-    private service: AssociateService,
+    private associateService: AssociateService,
     private modalService: NgbModal,
-    private changeDetect: ChangeDetectorRef,
     private swotService: SwotService,
     private router: Router,
     private toastService: ToastRelayService
-  ) {
-    this.associateSubject = new BehaviorSubject<Associate>(
-      JSON.parse(sessionStorage.getItem('currentUser'))
-    );
-    this.associate = this.associateSubject.asObservable();
-  }
+  ) {}
 
   get assocFilter(): string {
     return this.associateFilter;
@@ -65,9 +43,10 @@ export class ViewAssociateComponent implements OnInit {
   ngOnInit(): void {
     this.managerId = parseInt(sessionStorage.getItem('managerId'));
     this.getAllAssociates(this.managerId);
-    this.counter = 0;
     this.swotIsEmpty = false;
   }
+
+  ngOnDestroy(): void {}
 
   /**
    * This method returns the list of associates filtered by the user input
@@ -85,7 +64,7 @@ export class ViewAssociateComponent implements OnInit {
    * This methods filters the associates by the input the user enters
    * @param filterBy is the input entered by the user
    */
-  performFilter(filterBy: string): Associate[] {
+  private performFilter(filterBy: string): Associate[] {
     filterBy = filterBy.toLowerCase();
     return this.associates.filter(
       (assoc: Associate) =>
@@ -100,38 +79,28 @@ export class ViewAssociateComponent implements OnInit {
   }
 
   /**
-   * This method toggles the view button from View All to View New
+   * This method isNewAssociateViews the view button from View All to View New
    * in regards to associates
    */
-  public toggleAssociateView() {
-    const button = document.getElementById('associate-btn');
-    button.innerHTML = '';
-
-    if (this.toggle) {
-      this.toggle = false;
-      button.innerHTML = 'View All';
+  toggleAssociateView() {
+    if (this.isNewAssociateView) {
       this.getAllNewAssociates(this.managerId);
     } else {
-      this.toggle = true;
-      button.innerHTML = 'View New';
       this.getAllAssociates(this.managerId);
     }
+    this.isNewAssociateView = !this.isNewAssociateView;
   }
 
-  public trackItem(index: number, item: Associate) {
+  trackItem(index: number, item: Associate) {
     return `${item.id}-${index}`;
-  }
-
-  public get associateValue(): Associate {
-    return this.associateSubject.value;
   }
 
   /**
    * This opens up a modal page in order to add a new SWOT
    */
-  open() {
+  open(associateId: number) {
     const modalRef = this.modalService.open(SwotComponent);
-    modalRef.componentInstance.passedId = this.activeId;
+    modalRef.componentInstance.passedId = associateId;
     modalRef.componentInstance.passedIsEmpty = this.swotIsEmpty;
   }
 
@@ -139,70 +108,48 @@ export class ViewAssociateComponent implements OnInit {
    * This method gets all the associates relative to a manager
    * @param id is the id of the manager
    */
-  public getAllAssociates(id: number): void {
-    this.service.getAllAssociates(id).subscribe((data) => {
+  getAllAssociates(managerId: number): void {
+    this.associateService.getAllAssociates(managerId).subscribe((data) => {
       this.associates = data;
-      this.changeDetect.detectChanges();
     });
-    this.associates = this.newAssociates;
-    // change to appropriate title
-    const title = document.getElementById('users-list');
-    title.innerHTML = '';
-    title.innerHTML = 'View All Associates';
   }
 
   /**
    * This method gets all the new associates relative to a manager
    * @param id is the id of the manager
    */
-  public getAllNewAssociates(id: number): void {
-    this.service.getAllNewAssociates(id).subscribe((data) => {
+  getAllNewAssociates(id: number): void {
+    this.associateService.getAllNewAssociates(id).subscribe((data) => {
       this.associates = data;
-      this.changeDetect.detectChanges();
     });
-    // change to appropriate title
-    const title = document.getElementById('users-list');
-    title.innerHTML = '';
-    title.innerHTML = 'View New Associates';
   }
 
   /**
    * This opens up a modal page in order to update a batch
    */
-  updateBatch(): void {
+  updateBatch(associateId: number, batchId: number, statusId: number): void {
     const modalRef = this.modalService.open(UpdateAssociateComponent);
-    modalRef.componentInstance.associateId = this.activeId;
-    modalRef.componentInstance.curBatchId = this.batchId;
-    modalRef.componentInstance.curStatusId = this.statusId;
+    modalRef.componentInstance.associateId = associateId;
+    modalRef.componentInstance.curBatchId = batchId;
+    modalRef.componentInstance.curStatusId = statusId;
   }
 
   /**
    * This method checks if a SWOT is available to view for an associate,
    * otherwise prompts the user to create a SWOT for said associate
    */
-  checkSwotsValid(): void {
+  checkSwotsValid(associateId: number): void {
     this.swotService
-      .getSwotByAssociatedId(this.activeId)
-      .subscribe((data: any[]) => {
+      .getSwotByAssociatedId(associateId)
+      .subscribe((data: Swot[]) => {
         if (data.length === 0) {
           this.toastService.addToast({
             header: 'No SWOTs exist yet',
             body: 'Please create a SWOT first',
           });
-          this.swotIsEmpty = true;
-          this.open();
-          this.swotIsEmpty = false;
         } else {
-          this.router.navigate([`/view/${this.activeId}`]);
+          this.router.navigate([`/view/${associateId}`]);
         }
-      });
-  }
-
-  getSwotsByAssociate(associateId: string) {
-    this.swotService
-      .getSwotByAssociatedId(Number.parseInt(associateId))
-      .subscribe((data: any) => {
-        this.swotAnalyses = data;
       });
   }
 }
